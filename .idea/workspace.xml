@@ -9,7 +9,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8bdab5b-aa37-4217-beca-130f959b7627" name="Default" comment="" />
+    <list default="true" id="f8bdab5b-aa37-4217-beca-130f959b7627" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -28,7 +36,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-114">
+            <state>
               <caret column="14" selection-start-column="14" selection-end-column="14" />
             </state>
           </provider>
@@ -37,7 +45,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/screens/task/recorder.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
+            <state relative-caret-position="1444">
               <caret line="81" column="15" selection-start-line="81" selection-start-column="15" selection-end-line="81" selection-end-column="15" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -49,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="194" column="24" selection-start-line="194" selection-start-column="24" selection-end-line="194" selection-end-column="24" />
+            <state relative-caret-position="295">
+              <caret line="206" column="3" selection-start-line="206" selection-start-column="3" selection-end-line="206" selection-end-column="3" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -164,7 +172,7 @@
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -242,11 +250,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="-11" width="1873" height="1092" extended-state="6" />
-    <editor active="true" />
+    <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
     <layout>
       <window_info anchor="top" id="Flutter Outline" order="0" side_tool="true" weight="0.0" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.17369863" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.1715368" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -257,7 +264,7 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.13926701" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9128767" weight="0.2751606" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9128767" weight="0.4817987" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -582,14 +589,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
+        <state>
           <caret column="14" selection-start-column="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/task/recorder.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
+        <state relative-caret-position="1444">
           <caret line="81" column="15" selection-start-line="81" selection-start-column="15" selection-end-line="81" selection-end-column="15" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -599,8 +606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="194" column="24" selection-start-line="194" selection-start-column="24" selection-end-line="194" selection-end-column="24" />
+        <state relative-caret-position="295">
+          <caret line="206" column="3" selection-start-line="206" selection-start-column="3" selection-end-line="206" selection-end-column="3" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
