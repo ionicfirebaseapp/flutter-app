@@ -16,6 +16,7 @@
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/task/add_task.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/add_task.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -32,11 +33,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="343">
+              <caret line="70" column="58" selection-start-line="70" selection-start-column="58" selection-end-line="70" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="586" column="61" selection-start-line="586" selection-start-column="61" selection-end-line="586" selection-end-column="61" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -103,7 +116,6 @@
         <option value="$PROJECT_DIR$/lib/screens/profile/profile.dart" />
         <option value="$PROJECT_DIR$/lib/screens/settings/contact_us.dart" />
         <option value="$PROJECT_DIR$/lib/screens/settings/settings.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/task/add_task.dart" />
         <option value="$PROJECT_DIR$/lib/screens/task/recorder.dart" />
         <option value="$PROJECT_DIR$/lib/screens/task/task_expanded.dart" />
         <option value="$PROJECT_DIR$/lib/screens/task/task_list.dart" />
@@ -112,6 +124,7 @@
         <option value="$PROJECT_DIR$/lib/widgets/checkboxTile.dart" />
         <option value="$PROJECT_DIR$/lib/widgets/taskCard.dart" />
         <option value="$PROJECT_DIR$/lib/screens/auth/login.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/task/add_task.dart" />
       </list>
     </option>
   </component>
@@ -127,8 +140,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -158,6 +169,13 @@
               <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="todoapp" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="task" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -176,7 +194,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -262,6 +282,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="top" id="Flutter Outline" order="0" side_tool="true" weight="0.0" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.15835616" />
@@ -285,7 +306,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50027394" side_tool="true" weight="0.18736617" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32984293" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" visible="true" weight="0.3072805" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" weight="0.5995717" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9128767" weight="0.32976446" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -494,13 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/services/json.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/task/task_list.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4120">
@@ -525,16 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3531">
           <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="129" column="4" selection-start-line="129" selection-start-column="4" selection-end-line="129" selection-end-column="4" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -605,10 +609,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/services/json.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="343">
+          <caret line="70" column="58" selection-start-line="70" selection-start-column="58" selection-end-line="70" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="586" column="61" selection-start-line="586" selection-start-column="61" selection-end-line="586" selection-end-column="61" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

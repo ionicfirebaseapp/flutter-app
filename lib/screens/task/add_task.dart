@@ -132,6 +132,17 @@ class _AddTaskState extends State<AddTask> {
     });
   }
 
+  void getAudio() async {
+    String filePath = await FilePicker.getFilePath(type: FileType.AUDIO);
+    if (filePath == '') {
+      return;
+    }
+    print("File path: " + filePath);
+    setState(() {
+      this._filePath = filePath;
+    });
+  }
+
   _scheduleNotificationAlert() async {
     await ScheduledNotifications.scheduleNotification(
         new DateTime.now().add(new Duration(seconds: 5)).millisecondsSinceEpoch,
@@ -573,7 +584,7 @@ class _AddTaskState extends State<AddTask> {
                                             ),
                                           ),
                                           InkWell(
-                                              onTap: () {},
+                                              onTap: getAudio,
                                               child: Column(
                                                 children: <Widget>[
                                                   Stack(
