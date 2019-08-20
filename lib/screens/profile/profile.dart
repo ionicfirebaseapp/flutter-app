@@ -21,7 +21,6 @@ class _ProfileState extends State<Profile> {
         title: Text(""),
         iconTheme: IconThemeData(color: Colors.white),
       ),
-//      backgroundColor: primary,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -31,14 +30,14 @@ class _ProfileState extends State<Profile> {
           ),
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 30.0),
+              padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 30.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
-                    padding: EdgeInsets.only(left:20.0),
+                    padding: EdgeInsets.only(left: 20.0),
                     height: 130.0,
                     color: primary,
                     child: Column(
@@ -56,22 +55,32 @@ class _ProfileState extends State<Profile> {
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 33.0, left: 20.0),
-                              child: Text("John Snow", style: titleBoldWhite(),),
+                              child: Text(
+                                "John Snow",
+                                style: titleBoldWhite(),
+                              ),
                             ),
                           ],
                         ),
-                        Divider(color: Colors.white, height: 3.0,),
+                        Divider(
+                          color: Colors.white,
+                          height: 3.0,
+                        ),
                         InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(ResetPassword.tag);
                           },
                           child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0, top: 6.0, bottom: 6.0),
+                            padding: const EdgeInsets.only(
+                                right: 8.0, top: 6.0, bottom: 6.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
-                                Text("Change Password", style: categoryWhite(),)
+                                Text(
+                                  "Change Password",
+                                  style: categoryWhite(),
+                                )
                               ],
                             ),
                           ),
@@ -79,14 +88,20 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  Text("YOUR TASKS", style: categoryWhite(),),
+                  Text(
+                    "YOUR TASKS",
+                    style: categoryWhite(),
+                  ),
                   Container(
-                    margin: EdgeInsets.only(top: 20.0, bottom: 30.0,),
+                    margin: EdgeInsets.only(
+                      top: 20.0,
+                      bottom: 30.0,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                         Flexible(
+                        Flexible(
                           flex: 6,
                           child: Container(
                               padding: EdgeInsets.all(20.0),
@@ -97,22 +112,35 @@ class _ProfileState extends State<Profile> {
                                 color: Colors.white,
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   FloatingActionButton(
-                                      elevation: 0.0,
-                                      child: Icon(FontAwesomeIcons.briefcase, size: 22.0, color: Colors.deepPurple),
-                                      backgroundColor: Colors.grey.shade100,
-                                      heroTag: null,
-                                      onPressed:() {
-                                      Navigator.of(context).pushNamed(CategoryExpanded.tag);
+                                    elevation: 0.0,
+                                    child: Icon(FontAwesomeIcons.briefcase,
+                                        size: 22.0, color: Colors.deepPurple),
+                                    backgroundColor: Colors.grey.shade100,
+                                    heroTag: null,
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              CategoryExpanded(
+                                            title: 'Work',
+                                            time: "12:30",
+                                          ),
+                                        ),
+                                      );
                                     },
                                   ),
-                                  Text("Work", style: categoryTitle2(),)
+                                  Text(
+                                    "Work",
+                                    style: categoryTitle2(),
+                                  )
                                 ],
-                              )
-                          ),
+                              )),
                         ),
                         Flexible(
                           flex: 6,
@@ -125,28 +153,43 @@ class _ProfileState extends State<Profile> {
                                 color: Colors.white,
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   FloatingActionButton(
-                                      elevation: 0.0,
-                                      child: Icon(FontAwesomeIcons.handshake, size: 22.0, color: Colors.blue),
-                                      backgroundColor: Colors.grey.shade100,
-                                      heroTag: null,
-                                      onPressed:() {
-                                      Navigator.of(context).pushNamed(CategoryExpanded.tag);
+                                    elevation: 0.0,
+                                    child: Icon(FontAwesomeIcons.handshake,
+                                        size: 22.0, color: Colors.blue),
+                                    backgroundColor: Colors.grey.shade100,
+                                    heroTag: null,
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              CategoryExpanded(
+                                            title: 'Meeting',
+                                            time: "10:30",
+                                          ),
+                                        ),
+                                      );
                                     },
                                   ),
-                                  Text("Meeting", style: categoryTitle2(),)
+                                  Text(
+                                    "Meeting",
+                                    style: categoryTitle2(),
+                                  )
                                 ],
-                              )
-                          ),
+                              )),
                         ),
-                        
                       ],
                     ),
                   ),
-                  Text("TASKS COMPLETED", style: categoryWhite(),),
+                  Text(
+                    "TASKS COMPLETED",
+                    style: categoryWhite(),
+                  ),
                   Container(
                     margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
                     padding: EdgeInsets.all(20.0),
@@ -170,8 +213,14 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                Text("70% Completed", style: categoryTitle(),),
-                                Text("30% Pending", style: categoryTitle(),),
+                                Text(
+                                  "70% Completed",
+                                  style: categoryTitle(),
+                                ),
+                                Text(
+                                  "30% Pending",
+                                  style: categoryTitle(),
+                                ),
                               ],
                             ),
                           )
@@ -184,7 +233,7 @@ class _ProfileState extends State<Profile> {
             ),
           ),
         ],
-      )
+      ),
     );
   }
 }

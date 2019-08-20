@@ -15,9 +15,17 @@ final bgGrey = Colors.grey.shade200;
 final darkGrey = const Color(0xFF525252);
 final lightBlue = const Color(0xFFececec);
 final border = const Color(0xFF707070);
+//--------------------------- screen height & width ----------------------------
 
-Padding padding = Padding(padding: EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 10.0),);
+double screenHeight(context) {
+  return MediaQuery.of(context).size.height;
+}
 
+double screenWidth(context) {
+  return MediaQuery.of(context).size.width;
+}
+
+//---------------------------------- text-styles -------------------------------
 
 TextStyle headerTitleLight() {
   return TextStyle(
@@ -35,17 +43,17 @@ TextStyle emptyScreenHeaderTitle() {
     color: Colors.white,
     fontWeight: FontWeight.w400,
     letterSpacing: 1.0,
-      fontFamily: 'OpenSansSemiBold',
+    fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle lightHeaderTitle() {
   return TextStyle(
-      fontSize: 16.0,
-      color: lightBlue,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 1.0,
-      fontFamily: 'OpenSansSemiBold',
+    fontSize: 16.0,
+    color: lightBlue,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 1.0,
+    fontFamily: 'OpenSansSemiBold',
   );
 }
 
@@ -55,7 +63,7 @@ TextStyle subBoldTitleStyle() {
     color: Colors.white,
     fontWeight: FontWeight.w500,
     letterSpacing: 1.0,
-      fontFamily: 'OpenSansSemiBold',
+    fontFamily: 'OpenSansSemiBold',
   );
 }
 
@@ -97,10 +105,10 @@ TextStyle smallAddress() {
 
 TextStyle address() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 14.0,
-      color: Colors.black87,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
+    color: Colors.black87,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -190,9 +198,9 @@ TextStyle roundButton() {
 
 TextStyle categoryTitle2() {
   return new TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 14.0,
-      color: Colors.black45,
+    fontWeight: FontWeight.w500,
+    fontSize: 14.0,
+    color: Colors.black45,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -236,69 +244,68 @@ TextStyle titleBlack() {
 
 TextStyle titleStyleBoldLight() {
   return new TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 16.0,
-      color: darker,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w500,
+    fontSize: 16.0,
+    color: darker,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle titleLighter() {
   return new TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 18.0,
-      color: Colors.black45,
+    fontWeight: FontWeight.w500,
+    fontSize: 18.0,
+    color: Colors.black45,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle title() {
   return new TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 18.0,
-      color: Colors.black87,
+    fontWeight: FontWeight.w500,
+    fontSize: 18.0,
+    color: Colors.black87,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle titleLight() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 20.0,
-      color: Colors.black87,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w400,
+    fontSize: 20.0,
+    color: Colors.black87,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle titleStyleBold() {
   return new TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 20.0,
-      color: Colors.black87,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w500,
+    fontSize: 20.0,
+    color: Colors.black87,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
-
 TextStyle titleStyleLight() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 14.0,
-      color: darker,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
+    color: darker,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle titleStyleLighter() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 22.0,
-      color: darker,
-      letterSpacing: 0.0,
+    fontWeight: FontWeight.w400,
+    fontSize: 22.0,
+    color: darker,
+    letterSpacing: 0.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -314,16 +321,15 @@ TextStyle titleStyle2() {
 
 TextStyle titleStyle3() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 38.0,
-      color: darkLight,
-      decoration: TextDecoration.underline,
+    fontWeight: FontWeight.w400,
+    fontSize: 38.0,
+    color: darkLight,
+    decoration: TextDecoration.underline,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
-
-//.................................white text.............................
+//------------------------------ white-text ------------------------------------
 
 TextStyle smallDescriptionWhite() {
   return new TextStyle(
@@ -345,10 +351,10 @@ TextStyle smallBoldDescriptionWhite() {
 
 TextStyle hintStyle() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 14.0,
-      color: Colors.white70,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
+    color: Colors.white70,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -364,9 +370,9 @@ TextStyle categoryTitleWhite() {
 
 TextStyle smallAddressWhite() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 14.0,
-      color: Colors.white,
+    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
+    color: Colors.white,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -400,18 +406,18 @@ TextStyle priceDescriptionTextWhite() {
 
 TextStyle descriptionWhite() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 16.0,
-      color: Colors.white30,
+    fontWeight: FontWeight.w400,
+    fontSize: 16.0,
+    color: Colors.white30,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle productTitleWhite() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 16.0,
-      color: Colors.white70,
+    fontWeight: FontWeight.w400,
+    fontSize: 16.0,
+    color: Colors.white70,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -471,7 +477,7 @@ TextStyle categoryWhite() {
     fontSize: 14.0,
     color: Colors.white,
     letterSpacing: 1.0,
-  fontFamily: 'OpenSansSemiBold',
+    fontFamily: 'OpenSansSemiBold',
   );
 }
 
@@ -495,10 +501,10 @@ TextStyle titleWhiteBold() {
 
 TextStyle titleBoldWhite() {
   return new TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 16.0,
-      color: Colors.white,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w500,
+    fontSize: 16.0,
+    color: Colors.white,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -534,10 +540,10 @@ TextStyle titleStyleWhite() {
 
 TextStyle titleWhite() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 20.0,
-      color: Colors.white,
-      letterSpacing: 1.0,
+    fontWeight: FontWeight.w400,
+    fontSize: 20.0,
+    color: Colors.white,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -560,8 +566,7 @@ TextStyle titleStyleBoldWhite() {
   );
 }
 
-//..................................primary....................
-
+//---------------------------------- primary-text ------------------------------
 TextStyle primaryText() {
   return new TextStyle(
     fontWeight: FontWeight.w400,
@@ -573,13 +578,12 @@ TextStyle primaryText() {
 
 TextStyle primaryTitleText() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 16.0,
-      color: primary,
+    fontWeight: FontWeight.w400,
+    fontSize: 16.0,
+    color: primary,
     fontFamily: 'OpenSansSemiBold',
   );
 }
-
 
 TextStyle deliverText() {
   return new TextStyle(
@@ -595,7 +599,7 @@ TextStyle primaryTextUnderline() {
     fontWeight: FontWeight.w500,
     fontSize: 14.0,
     color: primary,
-      decoration: TextDecoration.underline,
+    decoration: TextDecoration.underline,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -645,7 +649,7 @@ TextStyle primaryHeaderTitle() {
   );
 }
 
-//.......................................red...............................................
+//--------------------------------- red-text -----------------------------------
 
 TextStyle redText() {
   return new TextStyle(
@@ -656,7 +660,6 @@ TextStyle redText() {
   );
 }
 
-
 TextStyle redBoldText() {
   return new TextStyle(
     fontWeight: FontWeight.w500,
@@ -665,7 +668,7 @@ TextStyle redBoldText() {
     fontFamily: 'OpenSansSemiBold',
   );
 }
-//..........yellow............
+//--------------------------------- yellow-text --------------------------------
 
 TextStyle titleStyleYellow() {
   return new TextStyle(
@@ -685,7 +688,7 @@ TextStyle titleStyleBoldYellow() {
   );
 }
 
-//..................offer text..................
+//--------------------------------- offer-text ---------------------------------
 
 TextStyle offer() {
   return new TextStyle(
@@ -696,7 +699,7 @@ TextStyle offer() {
   );
 }
 
-//..................blue text.................
+//--------------------------------- blue-text ----------------------------------
 
 TextStyle blueText() {
   return new TextStyle(
@@ -707,8 +710,7 @@ TextStyle blueText() {
   );
 }
 
-//...................logo text.................
-
+//--------------------------------- logo-text ----------------------------------
 
 TextStyle logoText() {
   return new TextStyle(
@@ -728,22 +730,22 @@ TextStyle infoText() {
   );
 }
 
-//.......................secondary text............................................
+//-------------------------------- secondary-text ------------------------------
 
 TextStyle secondaryTitleText() {
   return new TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 16.0,
-      color: secondary,
+    fontWeight: FontWeight.w400,
+    fontSize: 16.0,
+    color: secondary,
     fontFamily: 'OpenSansSemiBold',
   );
 }
 
 TextStyle secondaryBoldTitleText() {
   return new TextStyle(
-      fontWeight: FontWeight.w500,
-      fontSize: 16.0,
-      color: secondary,
+    fontWeight: FontWeight.w500,
+    fontSize: 16.0,
+    color: secondary,
     fontFamily: 'OpenSansSemiBold',
   );
 }

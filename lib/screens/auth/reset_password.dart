@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../style/style.dart';
-import '../../screens/home/landing.dart';
+import '../../screens/auth/login.dart';
 
 class ResetPassword extends StatefulWidget {
   static String tag = "reset-password";
@@ -9,13 +9,47 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _passwordTextController = TextEditingController();
+
+  String password, confirmPassword;
+  bool loading = false;
+
+  resetPassword() async {
+    final FormState form = _formKey.currentState;
+    if (!form.validate()) {
+      return;
+    } else {
+      form.save();
+      setState(() {
+        loading = true;
+      });
+      if (confirmPassword.isNotEmpty && password.isNotEmpty) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Login(),
+          ),
+        );
+      }
+      setState(() {
+        loading = false;
+      });
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      // backgroundColor: primary,
-        body: Stack(
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
             new Image(
@@ -35,11 +69,14 @@ class _ResetPasswordState extends State<ResetPassword> {
                     Container(
                       alignment: AlignmentDirectional.center,
                       padding: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 30.0),
-                      child: Text("Reset Password If you have an Account",
-                        style: subTitleWhite2(), textAlign: TextAlign.center,),
+                      child: Text(
+                        "Reset Password If you have an Account",
+                        style: subTitleWhite2(),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     Form(
-//                     key: _formKey,
+                      key: _formKey,
                       child: Theme(
                         data: ThemeData(
                           brightness: Brightness.dark,
@@ -61,8 +98,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 children: <Widget>[
                                   Container(
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 70.0),
+                                    padding: EdgeInsets.only(left: 50.0),
                                     child: TextFormField(
+                                      cursorColor: border,
                                       decoration: new InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'Password',
@@ -70,6 +108,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                                       ),
                                       keyboardType: TextInputType.text,
                                       style: hintStyleDark(),
+                                      validator: (String value) {
+                                        if (value.isEmpty || value.length < 6) {
+                                          return 'Password invalid';
+                                        }
+                                      },
+                                      controller: _passwordTextController,
+                                      onSaved: (String value) {
+                                        password = value;
+                                      },
                                       obscureText: true,
                                     ),
                                   ),
@@ -82,8 +129,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                                       children: <Widget>[
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
-                                          padding: EdgeInsets.only(bottom: 6.0, left: 3.0),
-                                          child: Icon(Icons.lock_outline, color: Colors.white, size: 18.0,),
+                                          padding: EdgeInsets.only(
+                                              bottom: 6.0, left: 3.0),
+                                          child: Icon(
+                                            Icons.lock_outline,
+                                            color: Colors.white,
+                                            size: 18.0,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -91,23 +143,32 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 ],
                               ),
                             ),
-
                             Container(
                               padding: EdgeInsets.only(bottom: 20.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 70.0),
+                                    padding: EdgeInsets.only(left: 50.0),
                                     child: TextFormField(
+                                      cursorColor: border,
                                       decoration: new InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: 'Confrim Password',
+                                        hintText: 'Confirm Password',
                                         hintStyle: hintStyleDark(),
                                       ),
                                       keyboardType: TextInputType.text,
                                       style: hintStyleDark(),
                                       obscureText: true,
+                                      validator: (String value) {
+                                        if (_passwordTextController.text !=
+                                            value) {
+                                          return 'Passwords do not match.';
+                                        }
+                                      },
+                                      onSaved: (String value) {
+                                        confirmPassword = value;
+                                      },
                                     ),
                                   ),
                                   Positioned(
@@ -119,8 +180,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                                       children: <Widget>[
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
-                                          padding: EdgeInsets.only(bottom: 6.0, left: 3.0),
-                                          child: Icon(Icons.lock_outline, color: Colors.white, size: 18.0,),
+                                          padding: EdgeInsets.only(
+                                              bottom: 6.0, left: 3.0),
+                                          child: Icon(
+                                            Icons.lock_outline,
+                                            color: Colors.white,
+                                            size: 18.0,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -128,10 +194,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 ],
                               ),
                             ),
-
                             Padding(
-                              padding: EdgeInsetsDirectional.only(top: 30.0, start: 45.0, end: 45.0, bottom: 10.0),
-                              child:  MaterialButton(
+                              padding: EdgeInsetsDirectional.only(
+                                  top: 30.0,
+                                  start: 45.0,
+                                  end: 45.0,
+                                  bottom: 10.0),
+                              child: MaterialButton(
                                 height: 45.0,
                                 color: secondary,
                                 textColor: Colors.white,
@@ -139,25 +208,23 @@ class _ResetPasswordState extends State<ResetPassword> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Text('SUBMIT', style: categoryWhite()),
-//                                   new Padding(
-//                                     padding: new EdgeInsets.only(left: 5.0, right: 5.0),
-//                                   ),
-//                                   loading
-//                                       ? new Image.asset(
-//                                     'lib/assets/spinner.gif',
-//                                     width: 19.0,
-//                                     height: 19.0,
-//                                   )
-//                                       : new Text(''),
+                                    new Padding(
+                                      padding: new EdgeInsets.only(
+                                          left: 5.0, right: 5.0),
+                                    ),
+                                    loading
+                                        ? new Image.asset(
+                                            'lib/assets/gif/load.gif',
+                                            width: 19.0,
+                                            height: 19.0,
+                                          )
+                                        : new Text(''),
                                   ],
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pushNamed(Landing.tag);
-                                },
+                                onPressed: resetPassword,
                                 splashColor: secondary,
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -167,7 +234,8 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
             ),
           ],
-        )
+        ),
+      ),
     );
   }
 }

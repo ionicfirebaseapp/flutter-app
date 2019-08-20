@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../screens/profile/profile.dart';
 import '../../screens/settings/contact_us.dart';
 
-
 class Settings extends StatefulWidget {
   static String tag = "settings";
   @override
@@ -13,12 +12,12 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-
   bool _value = false;
   onChanged(bool value) {
-    setState(() {
-      _value = value;
-    },
+    setState(
+      () {
+        _value = value;
+      },
     );
   }
 
@@ -38,12 +37,14 @@ class _SettingsState extends State<Settings> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("ACCOUNT", style: productTitle(),),
+              Text(
+                "ACCOUNT",
+                style: productTitle(),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
-                padding: EdgeInsets.only(left:20.0),
+                padding: EdgeInsets.only(left: 20.0),
                 height: 130.0,
-//                width: 380.0,
                 color: Colors.white,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -60,22 +61,35 @@ class _SettingsState extends State<Settings> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 30.0, left: 20.0),
-                          child: Text("John Snow", style: categoryTitle(),),
+                          child: Text(
+                            "John Snow",
+                            style: categoryTitle(),
+                          ),
                         ),
                       ],
                     ),
-                    Divider(color: Colors.grey, height: 3.0,),
+                    Divider(
+                      color: Colors.grey,
+                      height: 3.0,
+                    ),
                     InkWell(
                       onTap: () {
                         Navigator.of(context).pushNamed(Profile.tag);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(top:8.0, bottom: 8.0, right: 8.0, ),
+                        padding: const EdgeInsets.only(
+                          top: 8.0,
+                          bottom: 8.0,
+                          right: 8.0,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            Text("Edit Profile", style: redBoldText(),)
+                            Text(
+                              "Edit Profile",
+                              style: redBoldText(),
+                            )
                           ],
                         ),
                       ),
@@ -83,43 +97,59 @@ class _SettingsState extends State<Settings> {
                   ],
                 ),
               ),
-              Text("PUSH NOTIFICATIONS", style: productTitle(),),
+              Text(
+                "PUSH NOTIFICATIONS",
+                style: productTitle(),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
                 height: 80.0,
                 color: Colors.white,
                 child: Center(
                   child: SwitchListTile(
-                    title: Text("John Snow", style: categoryTitle(),),
+                    title: Text(
+                      "John Snow",
+                      style: categoryTitle(),
+                    ),
                     value: _value,
-                    onChanged: (bool value){
+                    onChanged: (bool value) {
                       onChanged(value);
                     },
                     activeColor: primary,
                   ),
                 ),
               ),
-              Text("GET HELP", style: productTitle(),),
+              Text(
+                "GET HELP",
+                style: productTitle(),
+              ),
               InkWell(
                 onTap: () {
                   Navigator.of(context).pushNamed(ContactUs.tag);
                 },
                 child: Container(
-                margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
-                padding: EdgeInsets.all(20.0),
-                height: 80.0,
-                color: Colors.white,
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text("Contact Us", style: categoryTitle(),),
-                      Icon(FontAwesomeIcons.chevronRight, size: 20.0, color: Colors.grey.shade700,),
-                    ],
+                  margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
+                  padding: EdgeInsets.all(20.0),
+                  height: 80.0,
+                  color: Colors.white,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Contact Us",
+                          style: categoryTitle(),
+                        ),
+                        Icon(
+                          FontAwesomeIcons.chevronRight,
+                          size: 20.0,
+                          color: Colors.grey.shade700,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
               ),
             ],
           ),

@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:flutter_sound/flutter_sound.dart';
 
 class Recorder extends StatefulWidget {
-    static String tag = "recorder";
+  static String tag = "recorder";
 
   @override
   _RecorderState createState() => new _RecorderState();
@@ -29,13 +29,14 @@ class _RecorderState extends State<Recorder> {
     flutterSound.setSubscriptionDuration(0.01);
   }
 
-  void startRecorder() async{
+  void startRecorder() async {
     try {
       String path = await flutterSound.startRecorder(null);
       print('startRecorder: $path');
 
       _recorderSubscription = flutterSound.onRecorderStateChanged.listen((e) {
-        DateTime date = new DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
+        DateTime date =
+            new DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
         String txt = DateFormat('mm:ss:SS', 'en_US').format(date);
 
         this.setState(() {
@@ -51,7 +52,7 @@ class _RecorderState extends State<Recorder> {
     }
   }
 
-  void stopRecorder() async{
+  void stopRecorder() async {
     try {
       String result = await flutterSound.stopRecorder();
       print('stopRecorder: $result');
@@ -69,7 +70,7 @@ class _RecorderState extends State<Recorder> {
     }
   }
 
-  void startPlayer() async{
+  void startPlayer() async {
     String path = await flutterSound.startPlayer(null);
     await flutterSound.setVolume(1.0);
     print('startPlayer: $path');
@@ -77,7 +78,8 @@ class _RecorderState extends State<Recorder> {
     try {
       _playerSubscription = flutterSound.onPlayerStateChanged.listen((e) {
         if (e != null) {
-          DateTime date = new DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
+          DateTime date = new DateTime.fromMillisecondsSinceEpoch(
+              e.currentPosition.toInt());
           String txt = DateFormat('mm:ss:SS', 'en_US').format(date);
           this.setState(() {
             this._isPlaying = true;
@@ -90,7 +92,7 @@ class _RecorderState extends State<Recorder> {
     }
   }
 
-  void stopPlayer() async{
+  void stopPlayer() async {
     try {
       String result = await flutterSound.stopPlayer();
       print('stopPlayer: $result');
@@ -107,17 +109,17 @@ class _RecorderState extends State<Recorder> {
     }
   }
 
-  void pausePlayer() async{
+  void pausePlayer() async {
     String result = await flutterSound.pausePlayer();
     print('pausePlayer: $result');
   }
 
-  void resumePlayer() async{
+  void resumePlayer() async {
     String result = await flutterSound.resumePlayer();
     print('resumePlayer: $result');
   }
 
-  void seekToPlayer(int milliSecs) async{
+  void seekToPlayer(int milliSecs) async {
     int secs = Platform.isIOS ? milliSecs / 1000 : milliSecs;
 
     String result = await flutterSound.seekToPlayer(secs);
@@ -139,7 +141,7 @@ class _RecorderState extends State<Recorder> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 24.0, bottom:16.0),
+                  margin: EdgeInsets.only(top: 24.0, bottom: 16.0),
                   child: Text(
                     this._recorderTxt,
                     style: TextStyle(
@@ -165,7 +167,6 @@ class _RecorderState extends State<Recorder> {
                       },
                       padding: EdgeInsets.all(8.0),
                       child: this._isRecording ? Text('Stop') : Text('Start'),
-                    
                     ),
                   ),
                 ),
@@ -178,7 +179,7 @@ class _RecorderState extends State<Recorder> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 60.0, bottom:16.0),
+                  margin: EdgeInsets.only(top: 60.0, bottom: 16.0),
                   child: Text(
                     this._playerTxt,
                     style: TextStyle(
@@ -196,12 +197,11 @@ class _RecorderState extends State<Recorder> {
                   height: 56.0,
                   child: ClipOval(
                     child: FlatButton(
-                      onPressed: () {
-                        startPlayer();
-                      },
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Start')
-                    ),
+                        onPressed: () {
+                          startPlayer();
+                        },
+                        padding: EdgeInsets.all(8.0),
+                        child: Text('Start')),
                   ),
                 ),
                 Container(
@@ -209,12 +209,11 @@ class _RecorderState extends State<Recorder> {
                   height: 56.0,
                   child: ClipOval(
                     child: FlatButton(
-                      onPressed: () {
-                        pausePlayer();
-                      },
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Pause')
-                    ),
+                        onPressed: () {
+                          pausePlayer();
+                        },
+                        padding: EdgeInsets.all(8.0),
+                        child: Text('Pause')),
                   ),
                 ),
                 Container(
@@ -222,12 +221,11 @@ class _RecorderState extends State<Recorder> {
                   height: 56.0,
                   child: ClipOval(
                     child: FlatButton(
-                      onPressed: () {
-                        stopPlayer();
-                      },
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Stop')
-                    ),
+                        onPressed: () {
+                          stopPlayer();
+                        },
+                        padding: EdgeInsets.all(8.0),
+                        child: Text('Stop')),
                   ),
                 ),
               ],

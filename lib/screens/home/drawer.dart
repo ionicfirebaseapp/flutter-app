@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../style/style.dart';
 import '../../screens/home/landing.dart';
-import '../../screens/categories/categories.dart';
 import '../../screens/priority_task/priority_task.dart';
 import '../../screens/task/task_list.dart';
 import '../../screens/profile/profile.dart';
@@ -29,54 +28,90 @@ class _DrawerListState extends State<DrawerList> {
           child: ListView(
             children: <Widget>[
               ListTile(
-                title: Text("Profile", style: productTitle(),),
-                leading: Icon(Icons.person, color: Colors.black45,),
-                trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black45,),
+                title: Text(
+                  "Profile",
+                  style: productTitle(),
+                ),
+                leading: Icon(
+                  Icons.person,
+                  color: Colors.black45,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.black45,
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushNamed(Profile.tag);
                 },
               ),
               ListTile(
-                title: Text("Home", style: productTitle(),),
-                leading: Icon(Icons.home, color: Colors.black45,),
-                trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black45,),
+                title: Text(
+                  "Home",
+                  style: productTitle(),
+                ),
+                leading: Icon(
+                  Icons.home,
+                  color: Colors.black45,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.black45,
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushNamed(Landing.tag);
                 },
               ),
               ListTile(
-                title: Text("My Tasks List", style: productTitle(),),
-                leading: Icon(Icons.list, color: Colors.black45,),
-                trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black45,),
+                title: Text(
+                  "My Tasks List",
+                  style: productTitle(),
+                ),
+                leading: Icon(
+                  Icons.list,
+                  color: Colors.black45,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.black45,
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushNamed(TaskList.tag);
                 },
               ),
               ListTile(
-                title: Text("Priority Task", style: productTitle(),),
-                leading: Icon(Icons.star, color: Colors.black45,),
-                trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black45,),
+                title: Text(
+                  "Priority Task",
+                  style: productTitle(),
+                ),
+                leading: Icon(
+                  Icons.star,
+                  color: Colors.black45,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.black45,
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushNamed(PriorityTask.tag);
                 },
               ),
-//              ListTile(
-//                title: Text("My Categories", style: productTitle(),),
-//                leading: Icon(Icons.apps, color: Colors.black45,),
-//                trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black45,),
-//                onTap: () {
-//                  Navigator.of(context).pop();
-//                  Navigator.of(context).pushNamed(Categories.tag);
-//                },
-//              ),
               ListTile(
-                title: Text("Settings", style: productTitle(),),
-                leading: Icon(Icons.settings, color: Colors.black45,),
-                trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black45,),
+                title: Text(
+                  "Settings",
+                  style: productTitle(),
+                ),
+                leading: Icon(
+                  Icons.settings,
+                  color: Colors.black45,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.black45,
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushNamed(Settings.tag);
@@ -89,4 +124,3 @@ class _DrawerListState extends State<DrawerList> {
     );
   }
 }
-

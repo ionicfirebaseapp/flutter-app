@@ -13,8 +13,7 @@ class Landing extends StatefulWidget {
   _LandingState createState() => _LandingState();
 }
 
-class _LandingState extends State<Landing>with SingleTickerProviderStateMixin  {
-
+class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {
   final f = new DateFormat('yyyy-month-dd');
   DateTime _date = new DateTime.now();
 
@@ -27,7 +26,10 @@ class _LandingState extends State<Landing>with SingleTickerProviderStateMixin  {
   @override
   void initState() {
     super.initState();
-    pages = [pageOne, pageTwo,];
+    pages = [
+      pageOne,
+      pageTwo,
+    ];
     currentPage = pageOne;
   }
 
@@ -43,7 +45,7 @@ class _LandingState extends State<Landing>with SingleTickerProviderStateMixin  {
       firstDate: DateTime(2019),
       lastDate: DateTime(2020),
     );
-    if(picked != null && picked != _date) {
+    if (picked != null && picked != _date) {
       print('Date selected: ${_date.toString()}');
       setState(() {
         _date = picked;
@@ -51,51 +53,7 @@ class _LandingState extends State<Landing>with SingleTickerProviderStateMixin  {
     }
   }
 
-  Icon searchIcon = new Icon(Icons.search);
-  Widget appBarTitle = Text("bv");
-
-
-  void _searchPressed() {
-    setState(() {
-      print('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-      if (this.searchIcon.icon == Icons.search) {
-        this.searchIcon = new Icon(Icons.close);
-        this.appBarTitle = new TextField(
-          decoration: new InputDecoration(
-              prefixIcon: new Icon(Icons.search, color: Colors.white, size: 14.0,),
-              hintText: 'Search...'
-          ),
-        );
-      } else {
-        InkWell(
-          onTap: () {
-            _selectDate(context);
-          },
-          child: Row(
-            children: <Widget>[
-              Text('${_date.day} / ${_date.month} / ${_date.year}', style: subTitleWhite(),),
-              Icon(Icons.arrow_drop_down, color: Colors.white,),
-            ],
-          ),
-        );
-      }
-    });
-  }
-
   Widget buildBar(BuildContext context) {
-
-//    Widget appBarTitle = InkWell(
-//      onTap: () {
-//        _selectDate(context);
-//      },
-//      child: Row(
-//        children: <Widget>[
-//          Text('${_date.day} / ${_date.month} / ${_date.year}', style: subTitleWhite(),),
-//          Icon(Icons.arrow_drop_down, color: Colors.white,),
-//        ],
-//      ),
-//    );
-
     return AppBar(
         title: InkWell(
           onTap: () {
@@ -103,25 +61,29 @@ class _LandingState extends State<Landing>with SingleTickerProviderStateMixin  {
           },
           child: Row(
             children: <Widget>[
-              Text('${_date.day} / ${_date.month} / ${_date.year}', style: subTitleWhite(),),
-              Icon(Icons.arrow_drop_down, color: Colors.white,),
+              Text(
+                '${_date.day} / ${_date.month} / ${_date.year}',
+                style: subTitleWhite(),
+              ),
+              Icon(
+                Icons.arrow_drop_down,
+                color: Colors.white,
+              ),
             ],
           ),
         ),
-//        title: appBarTitle,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: primary,
-         actions: <Widget>[
-//           IconButton(
-//             icon: Icon(FontAwesomeIcons.search, color: Colors.white, size: 14.0,),
-//             onPressed: _searchPressed,
-//           ),
-//           IconButton(
-//             icon: Icon(FontAwesomeIcons.ellipsisV, color: Colors.white, size: 14.0,),
-//             onPressed: () {},
-//           ),
-         ]
-    );
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              FontAwesomeIcons.ellipsisV,
+              color: Colors.white,
+              size: 14.0,
+            ),
+            onPressed: () {},
+          ),
+        ]);
   }
 
   @override
@@ -133,14 +95,17 @@ class _LandingState extends State<Landing>with SingleTickerProviderStateMixin  {
       body: currentPage,
       floatingActionButton: FloatingActionButton(
           elevation: 6.0,
-          child: Icon(Icons.add, color: Colors.white, size: 26.0,),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 26.0,
+          ),
           backgroundColor: secondary,
           mini: false,
           highlightElevation: 16.0,
           onPressed: () {
             Navigator.of(context).pushNamed(AddTask.tag);
-          }
-      ),
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentTab,
@@ -164,5 +129,4 @@ class _LandingState extends State<Landing>with SingleTickerProviderStateMixin  {
       ),
     );
   }
-
 }

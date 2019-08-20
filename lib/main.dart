@@ -10,19 +10,15 @@ import 'screens/categories/category_expanded.dart';
 import 'screens/task/add_task.dart';
 import 'screens/priority_task/priority_task.dart';
 import 'screens/task/task_expanded.dart';
-import 'services/firestoreService.dart';
 import 'screens/task/task_list.dart';
 import 'screens/profile/profile.dart';
 import 'screens/settings/settings.dart';
 import 'screens/task/recorder.dart';
 import 'screens/settings/contact_us.dart';
 
-
 void main() async {
-  fireStoreCommonService();
   runApp(MyApp());
-  }
-
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -30,7 +26,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   final routes = <String, WidgetBuilder>{
     Register.tag: (context) => Register(),
     Login.tag: (context) => Login(),
@@ -45,11 +40,9 @@ class _MyAppState extends State<MyApp> {
     TaskList.tag: (context) => TaskList(),
     Profile.tag: (context) => Profile(),
     Settings.tag: (context) => Settings(),
-    Recorder.tag: (context) => Recorder(), 
+    Recorder.tag: (context) => Recorder(),
     ContactUs.tag: (context) => ContactUs()
   };
-
-  List ser = new List();
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +53,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'Roboto',
         primaryColor: primary,
         accentColor: primary,
+        cursorColor: border,
       ),
       home: Login(),
       routes: routes,
