@@ -9,52 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8bdab5b-aa37-4217-beca-130f959b7627" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/todoapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/todoapp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/auth/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/auth/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/auth/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/auth/register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/auth/reset_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/auth/reset_password.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/categories/categories.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/categories/categories.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/categories/category_expanded.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/categories/category_expanded.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/appbar.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/home.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/landing.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/landing.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/profile/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/profile/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/settings/contact_us.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/settings/contact_us.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/settings/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/settings/settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/task/add_task.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/add_task.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/task/recorder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/recorder.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/task/task_expanded.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/task_expanded.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/task/task_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/task_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/authServices.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/firestoreService.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/json.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/json.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/style/style.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/style/style.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/categoryCard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/categoryCard.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/checkboxTile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/checkboxTile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/taskCard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/taskCard.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="f8bdab5b-aa37-4217-beca-130f959b7627" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -69,7 +24,20 @@
     <favorites_list name="todo_app" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1142">
+              <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -300,7 +268,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="top" id="Flutter Outline" order="0" side_tool="true" weight="0.0" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.15835616" />
@@ -324,7 +291,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50027394" side_tool="true" weight="0.18736617" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32984293" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" weight="0.4646681" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" visible="true" weight="0.4646681" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9128767" weight="0.32976446" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -551,16 +518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="55" column="6" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/settings/contact_us.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -652,6 +609,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
           <caret line="129" column="4" selection-start-line="129" selection-start-column="4" selection-end-line="129" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1142">
+          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
