@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1142">
-              <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+            <state relative-caret-position="131">
+              <caret line="327" column="67" selection-start-line="327" selection-start-column="67" selection-end-line="327" selection-end-column="67" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -86,7 +86,6 @@
         <option value="$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart" />
         <option value="$PROJECT_DIR$/lib/screens/categories/categories.dart" />
         <option value="$PROJECT_DIR$/lib/screens/categories/category_expanded.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/auth/login.dart" />
         <option value="$PROJECT_DIR$/lib/screens/auth/register.dart" />
         <option value="$PROJECT_DIR$/lib/screens/auth/reset_password.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/drawer.dart" />
@@ -105,6 +104,7 @@
         <option value="$PROJECT_DIR$/lib/widgets/categoryCard.dart" />
         <option value="$PROJECT_DIR$/lib/widgets/checkboxTile.dart" />
         <option value="$PROJECT_DIR$/lib/widgets/taskCard.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/auth/login.dart" />
       </list>
     </option>
   </component>
@@ -268,6 +268,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="-4" width="1871" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="top" id="Flutter Outline" order="0" side_tool="true" weight="0.0" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.15835616" />
@@ -291,7 +292,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50027394" side_tool="true" weight="0.18736617" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32984293" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" visible="true" weight="0.4646681" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" visible="true" weight="0.3072805" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9128767" weight="0.32976446" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -397,9 +398,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/assets/gif/load.gif">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/assets/gif/load.gif" />
     <entry file="file://$PROJECT_DIR$/lib/services/firestoreService.dart" />
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
@@ -408,9 +407,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/home/appbar.dart">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/home/appbar.dart" />
     <entry file="file://$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -617,8 +614,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1142">
-          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+        <state relative-caret-position="131">
+          <caret line="327" column="67" selection-start-line="327" selection-start-column="67" selection-end-line="327" selection-end-column="67" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
