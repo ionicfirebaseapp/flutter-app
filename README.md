@@ -27,6 +27,7 @@
     <img src="https://res.cloudinary.com/dlx35qw0l/image/upload/v1566380513/todo-App-Banner_xlvq3r.jpg" alt="ionicfirebaseapp logo">
   </a>
 </p>
+
 ## Table of contents
 
 - [Quick start](#quick-start)
