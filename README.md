@@ -65,9 +65,9 @@ Read the [Getting started page](https://docs.ionicfirebaseapp.com/todo/) for inf
 ## Flutter Application Screens
   
   <p align="center">
-    <img src="https://res.cloudinary.com/dzu7tvexv/image/upload/f_auto,q_auto/v1540273764/il1fu5dmqzvqn4ksnyce.png" alt="Flutter To Do Mobile App Overview">
-  <img src="https://res.cloudinary.com/dzu7tvexv/image/upload/f_auto,q_auto/v1540298020/z4k8dqvztghjpo4jjj4p.png" alt="Flutter App Screens">
   <img src="https://res.cloudinary.com/dlx35qw0l/image/upload/v1566380513/todo-App-Banner_xlvq3r.jpg" alt="Flutter TO Do Mobile App All Screens">
+  <span> <img src="https://res.cloudinary.com/dzu7tvexv/image/upload/f_auto,q_auto/v1540273764/il1fu5dmqzvqn4ksnyce.png" alt="Flutter To Do Mobile App Overview"> </span>
+  <img src="https://res.cloudinary.com/dzu7tvexv/image/upload/f_auto,q_auto/v1540298020/z4k8dqvztghjpo4jjj4p.png" alt="Flutter App Screens">
 </p>
 
 ## What's included
