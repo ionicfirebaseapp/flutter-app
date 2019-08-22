@@ -56,10 +56,10 @@ Read the [Getting started page](https://docs.ionicfirebaseapp.com/todo/) for inf
 3. Forget 
 4. Home page
 5. Add Todo list
-6. Reminbder 
+6. Reminder
 7. Notification 
 8. List of task
-9. Calndear 
+9. Calendar 
 10. Many more screen 
 
 ## Flutter Application Screens
