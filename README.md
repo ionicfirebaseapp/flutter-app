@@ -72,15 +72,15 @@ Read the [Getting started page](https://docs.ionicfirebaseapp.com/todo/) for inf
 
 ## What's included
 
-Our Flutter TO DO Mobile Application included free source code and setup file to download. Within the download you'll find Flutter UI for all the above screen mention. We release UI integration with Firestore for Pro-members. In case if you would like to add some feature or do you have any kind of suggetion then please let us know. We'll love to hear from your side. And/Or if you build something awesome in this application then alos let us know, if we love your innovation then we'll add to our Flutter Mobile App and you'll get rewarded form <a href="https://www.ionicfirebaseapp.com">Ionicfirebaseapp.com</a>.
+Our Flutter TO DO Mobile Application included free source code and setup file to download. Within the download you'll find Flutter UI for all the above screen mention. We release UI integration with Firestore for Pro-members. In case if you would like to add some feature or do you have any kind of suggestion then please let us know. We'll love to hear from your side. And/Or if you build something awesome in this application then alos let us know, if we love your innovation then we'll add to our Flutter Mobile App and you'll get rewarded form <a href="https://www.ionicfirebaseapp.com">Ionicfirebaseapp.com</a>.
 
 
 ## Bugs and feature requests
-  Have a setup our Flutter Applicationa and in case you have been any bugs or do you have feature request. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/ionicfirebaseapp/flutter-todo-app/issues/new).
+  Have a setup of our Flutter Application and in case you have been any bugs or do you have feature request. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/ionicfirebaseapp/flutter-todo-app/issues/new).
 
 ## Documentation
 
-Flutter TO DO Mobiole Application documentation, included in this repo in the root directory, is built with [Flutter](https://flutter.dev) and publicly hosted on ionicfirebaseapp docs Pages at <https://docs.ionicfirebaseapp.com/flutterapp/>.
+Flutter TO DO Mobile Application documentation, included in this repo in the root directory, is built with [Flutter](https://flutter.dev) and publicly hosted on ionicfirebaseapp docs Pages at <https://docs.ionicfirebaseapp.com/flutterapp/>.
 
 
 ## Copyright and license
