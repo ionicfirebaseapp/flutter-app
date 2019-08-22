@@ -14,7 +14,7 @@
   <br>
   <br>
   </p>
-  <h2 align="center"> Looking for awesome Web and Mobiel applications and Custom  Backend! Browse Our Product!</h2> 
+  <h2 align="center"> Looking for awesome Web and Mobile applications and Custom  Backend! Browse Our Product!</h2> 
   <h2 align="center">
   ·
   <a href="https://www.ionicfirebaseapp.com/products">Products</a>
