@@ -30,6 +30,7 @@
 
 ## Table of contents
 
+- [About Flutter TO DO APP](#about-flutter-to-do-mobile-app)
 - [Quick start](#quick-start)
 - [Features](#features)
 - [What's included](#whats-included)
@@ -37,12 +38,15 @@
 - [Documentation](#documentation)
 - [Copyright and license](#copyright-and-license)
 
+## About Flutter To Do Mobile App
+
+We developed Flutter To Do Mobile Application (App) leading technology FLUTTER & It is a very useful application for today's fast world. The app is created for the users who want to schedule their day to day routine, timings, events, & many more with giving priorities to the tasks. This app will definitely make your schedule perfect up to the mark & you will never miss an event.
+
 ## Quick start
 
-  ### Comming soon please keep support and encourage us through share and star so we can bring all these product as opensource.
-
-Read the [Getting started page]() for information on the ionic firebase restaurant app.
-
+Read the [Getting started page](https://docs.ionicfirebaseapp.com/todo/) for information on the ionic firebase restaurant app.
+  ### Video Guide is Comming soon, Please keep support and encourage us through share and star so we can bring all these product as opensource.
+  
 ## Features
 
 1. Signup 
