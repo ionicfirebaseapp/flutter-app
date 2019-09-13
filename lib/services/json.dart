@@ -17,6 +17,6 @@ Map<String, dynamic> data = {
     {'title': 'Meet', 'isLast': 'no', 'icon': 'lib/assets/icon/handshake.png'},
     {'title': 'Home', 'isLast': 'no', 'icon': 'lib/assets/icon/home.png'},
     {'title': 'Free Time', 'isLast': 'no', 'icon': 'lib/assets/icon/cafe.png'},
-    {'title': '', 'isLast': 'yes', 'icon': ''}
+//    {'title': '', 'isLast': 'yes', 'icon': ''}
   ]
 };

@@ -10,13 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8bdab5b-aa37-4217-beca-130f959b7627" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/task/add_task.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/add_task.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -28,6 +22,10 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="2YH3Y18831019485" />
   <component name="FavoritesManager">
     <favorites_list name="todo_app" />
   </component>
@@ -36,8 +34,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="70" column="58" selection-start-line="70" selection-start-column="58" selection-end-line="70" selection-end-column="58" />
+            <state relative-caret-position="323">
+              <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/screens/home/home.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/main.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="489">
+              <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -46,13 +68,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="586" column="61" selection-start-line="586" selection-start-column="61" selection-end-line="586" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="869">
+              <caret line="112" column="118" selection-start-line="112" selection-start-column="118" selection-end-line="112" selection-end-column="118" />
             </state>
           </provider>
         </entry>
@@ -62,14 +81,43 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="valueResourceFile" />
         <option value="Dart File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hintstyledark</find>
-      <find>hintStyleDark</find>
+      <find>add ala</find>
+      <find>add task</find>
+      <find>signout</find>
+      <find>add alarm</find>
+      <find>subTitleBlack()</find>
+      <find>subTitleWhite2()</find>
+      <find>smallAddressWhite()</find>
+      <find>categoryWhite()</find>
+      <find>subTitleWhiteUnderline2()</find>
+      <find>11</find>
+      <find>dark</find>
+      <find>subtask</find>
+      <find>categ</find>
+      <find>due date</find>
+      <find>duedate</find>
+      <find>smallAddressSS()</find>
+      <find>subTitle()</find>
+      <find>subTitleWhite2SR()</find>
+      <find>smallAddressWhite2SR()</find>
+      <find>subtitleun</find>
+      <find>subtitlew</find>
+      <find>subBoldTitle()</find>
+      <find>attach</find>
+      <find>updateda</find>
+      <find>aaaaaaavfvnxjfnbxfsbnxfdjbnfjba</find>
+      <find>16</find>
+      <find>14</find>
+      <find>12</find>
+      <find>darkgrey</find>
+      <find>productTitle()</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -78,17 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/pages/home/drawer.dart" />
-        <option value="$PROJECT_DIR$/lib/pages/home/size_change_notifier.dart" />
-        <option value="$PROJECT_DIR$/lib/pages/home/swipe_widget.dart" />
-        <option value="$PROJECT_DIR$/lib/pages/product_list/product_list.dart" />
-        <option value="$PROJECT_DIR$/lib/pages/drawer/drawer.dart" />
-        <option value="$PROJECT_DIR$/lib/pages/drawer/landing.dart" />
-        <option value="$PROJECT_DIR$/lib/pages/drawer/appbar.dart" />
-        <option value="$PROJECT_DIR$/pubspec.lock" />
-        <option value="$PROJECT_DIR$/android/app/build.gradle" />
-        <option value="$PROJECT_DIR$/android/build.gradle" />
-        <option value="$PROJECT_DIR$/lib/auth/login.dart" />
         <option value="$PROJECT_DIR$/lib/pages/task/task_expanded.dart" />
         <option value="$PROJECT_DIR$/lib/pages/categories/category_expanded.dart" />
         <option value="$PROJECT_DIR$/lib/pages/categories/categories.dart" />
@@ -101,30 +138,45 @@
         <option value="$PROJECT_DIR$/lib/auth/reset_password.dart" />
         <option value="$PROJECT_DIR$/test/widget_test.dart" />
         <option value="$PROJECT_DIR$/lib/pages/add_task/add_task.dart" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/lib/screens/home/appbar.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart" />
         <option value="$PROJECT_DIR$/lib/screens/categories/categories.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/categories/category_expanded.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/auth/register.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/auth/reset_password.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/home/drawer.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/home/home.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/home/landing.dart" />
-        <option value="$PROJECT_DIR$/lib/main.dart" />
-        <option value="$PROJECT_DIR$/lib/style/style.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/profile/profile.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/settings/contact_us.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/settings/settings.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/home/appbar.dart" />
+        <option value="$PROJECT_DIR$/android/build.gradle" />
+        <option value="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" />
+        <option value="$PROJECT_DIR$/lib/widgets/checkboxTile.dart" />
         <option value="$PROJECT_DIR$/lib/screens/task/recorder.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/task/task_expanded.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/task/task_list.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/task/currentLocation.dart" />
+        <option value="$PROJECT_DIR$/android/app/build.gradle" />
+        <option value="$PROJECT_DIR$/lib/services/firestoreService.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/categories/category_expanded.dart" />
+        <option value="$PROJECT_DIR$/lib/services/authServices.dart" />
+        <option value="$PROJECT_DIR$/lib/widgets/attachmentIcon.dart" />
+        <option value="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/lib/services/json.dart" />
         <option value="$PROJECT_DIR$/lib/widgets/categoryCard.dart" />
-        <option value="$PROJECT_DIR$/lib/widgets/checkboxTile.dart" />
-        <option value="$PROJECT_DIR$/lib/widgets/taskCard.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/auth/login.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/auth/register.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/auth/reset_password.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/task/task_list.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/task/task_expanded.dart" />
+        <option value="$PROJECT_DIR$/lib/animations/fade_in_ui.dart" />
         <option value="$PROJECT_DIR$/lib/screens/task/add_task.dart" />
+        <option value="$PROJECT_DIR$/lib/services/crud.dart" />
+        <option value="$PROJECT_DIR$/lib/widgets/getPriorityTaskDetails.dart" />
+        <option value="$PROJECT_DIR$/lib/widgets/getTaskDetails.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/home/home.dart" />
+        <option value="$PROJECT_DIR$/lib/widgets/getCompletedTask.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/home/landing.dart" />
+        <option value="$PROJECT_DIR$/lib/widgets/taskCard.dart" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/lib/screens/settings/contact_us.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/profile/profile.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/settings/settings.dart" />
+        <option value="$PROJECT_DIR$/lib/style/style.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/home/drawer.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/auth/login.dart" />
+        <option value="$PROJECT_DIR$/lib/main.dart" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -140,55 +192,76 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
               <item name="auth" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="profile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
               <item name="task" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
+              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="widgets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -196,10 +269,10 @@
       </pane>
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -224,15 +297,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-    </configuration>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -241,6 +305,12 @@
     </configuration>
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -285,7 +355,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="top" id="Flutter Outline" order="0" side_tool="true" weight="0.0" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.15835616" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.18958904" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -296,18 +366,18 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.13926701" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49972603" weight="0.25695932" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.910137" weight="0.369379" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3993576" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4980822" weight="0.3291536" />
-      <window_info anchor="bottom" id="Dart Analysis" order="7" sideWeight="0.91178083" weight="0.0" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4980822" weight="0.32869378" />
+      <window_info anchor="bottom" id="Dart Analysis" order="7" sideWeight="0.91178083" weight="0.32976446" />
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50027394" side_tool="true" weight="0.18736617" />
-      <window_info anchor="bottom" id="Logcat" order="10" weight="0.32984293" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.0909589" side_tool="true" weight="0.32976446" />
+      <window_info anchor="bottom" id="Logcat" order="10" weight="0.32976446" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" weight="0.5995717" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9128767" weight="0.32976446" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.90958905" weight="0.50428265" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9090411" weight="0.32976446" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -320,28 +390,30 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="top" id="Flutter Outline" order="0" side_tool="true" weight="0.0" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.1720548" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.17369863" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.12149533" side_tool="true" weight="0.1720548" />
-      <window_info id="Captures" order="6" />
+      <window_info id="Captures" order="6" side_tool="true" />
       <window_info id="Capture Tool" order="7" />
+      <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.13926701" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9128767" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.91178083" visible="true" weight="0.23019272" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4980822" weight="0.3291536" />
-      <window_info anchor="bottom" id="Dart Analysis" order="7" sideWeight="0.91178083" weight="0.0" />
+      <window_info anchor="bottom" id="Dart Analysis" order="7" sideWeight="0.91178083" weight="0.32976446" />
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.08712329" side_tool="true" weight="0.16579224" />
-      <window_info anchor="bottom" id="Logcat" order="10" weight="0.32984293" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.08821918" side_tool="true" weight="0.38865095" />
+      <window_info anchor="bottom" id="Logcat" order="10" weight="0.32976446" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" weight="0.26236558" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9128767" weight="0.0" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.9134247" weight="0.6997863" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9128767" weight="0.32976446" />
+      <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -353,172 +425,153 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/flutter/flutter/flutter/packages/flutter/lib/src/painting/edge_insets.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/drawer/drawer.dart" />
-    <entry file="file://$USER_HOME$/flutter/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/drawer/appbar.dart" />
-    <entry file="file://$PROJECT_DIR$/.metadata">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common/constant.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/google-services.json" />
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/sliver.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="1152" column="66" selection-start-line="1152" selection-start-column="66" selection-end-line="1152" selection-end-column="66" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/android/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+        <state relative-caret-position="1121">
+          <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/pages/task/task_expanded.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/categories/category_expanded.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/drawer/landing.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/categories/categories.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/task_list/task_list.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/priority_task/priority_task.dart" />
-    <entry file="file://$USER_HOME$/flutter/flutter/flutter/packages/flutter/lib/src/widgets/icon.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/auth/register.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/profile/profile.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/auth/reset_password.dart" />
-    <entry file="file://$PROJECT_DIR$/android/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/widget_test.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/auth/login.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/settings/settings.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/home/home.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/add_task/add_task.dart" />
-    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/scroll_view.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="1332" column="11" selection-start-line="1332" selection-start-column="11" selection-end-line="1332" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/assets/gif/load.gif" />
-    <entry file="file://$PROJECT_DIR$/lib/services/firestoreService.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/screens/home/appbar.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="78" column="10" selection-start-line="78" selection-start-column="10" selection-end-line="78" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/home/drawer.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-636">
-          <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/home/home.dart">
+    <entry file="file://$PROJECT_DIR$/lib/services/firestoreService.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/home/landing.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="92" column="6" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/categories/categories.dart">
+    <entry file="file://$PROJECT_DIR$/lib/services/authServices.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/profile/profile.dart">
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/services/platform_channel.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1017">
-          <caret line="233" column="10" selection-start-line="233" selection-start-column="10" selection-end-line="233" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="74">
+          <caret line="503" column="28" selection-start-line="503" selection-start-column="28" selection-end-line="503" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/settings/contact_us.dart">
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-0.7.1+3/lib/src/flutter_local_notifications.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="104" column="3" lean-forward="true" selection-start-line="104" selection-start-column="3" selection-end-line="104" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/categories/category_expanded.dart" />
+    <entry file="file://$PROJECT_DIR$/lib/services/json.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/categories/categories.dart" />
+    <entry file="file://$PROJECT_DIR$/lib/assets/icon/logo.png">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/assets/icon/send.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.flutter-plugins">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/auth/reset_password.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="222" column="50" selection-start-line="222" selection-start-column="50" selection-end-line="222" selection-end-column="50" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/settings/settings.dart">
+    <entry file="file://$PROJECT_DIR$/lib/assets/icon/completed.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/assets/icon/checked.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/priority_task/priority_task.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="154" column="12" lean-forward="true" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
+        <state relative-caret-position="133">
+          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/widgets/taskCard.dart">
+    <entry file="file://$PROJECT_DIR$/lib/transitions/enter_exit_route.dart">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/transitions/fade_route.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-551">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="456">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/widgets/checkboxTile.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/lib/transitions/rotation_route.dart">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/task/task_list.dart">
+    <entry file="file://$PROJECT_DIR$/lib/transitions/scale_route.dart">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/animations/fade_in_ui.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4120">
-          <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+        <state relative-caret-position="2603">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -527,99 +580,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/task/task_expanded.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1479">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/task/recorder.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3531">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/widgets/categoryCard.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="37" column="31" lean-forward="true" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/style/style.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="738" column="4" selection-end-line="751" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/categories/category_expanded.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3230">
-          <caret line="170" column="26" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/auth/reset_password.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/auth/register.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="16" column="48" lean-forward="true" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/services/json.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="70" column="58" selection-start-line="70" selection-start-column="58" selection-end-line="70" selection-end-column="58" />
+        <state relative-caret-position="314">
+          <caret line="178" column="66" selection-start-line="178" selection-start-column="66" selection-end-line="178" selection-end-column="66" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -628,11 +590,203 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="586" column="61" selection-start-line="586" selection-start-column="61" selection-end-line="586" selection-end-column="61" />
+        <state relative-caret-position="456">
+          <caret line="706" column="21" lean-forward="true" selection-start-line="706" selection-start-column="21" selection-end-line="706" selection-end-column="21" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/services/crud.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widgets/getCompletedTask.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="172" column="46" selection-start-line="172" selection-start-column="46" selection-end-line="172" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widgets/getPriorityTaskDetails.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/assets/icon/drawerIcon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/task/task_list.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="61" column="19" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/text.dart">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/home/landing.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widgets/categoryCard.dart" />
+    <entry file="file://$PROJECT_DIR$/lib/widgets/attachmentIcon.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widgets/checkboxTile.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widgets/getTaskDetails.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="161" column="38" lean-forward="true" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widgets/taskCard.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/auth/register.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="115" column="27" lean-forward="true" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/settings/contact_us.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/profile/profile.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="76" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/settings/settings.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="83" column="53" lean-forward="true" selection-start-line="83" selection-start-column="53" selection-end-line="83" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/home/drawer.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="144" column="22" lean-forward="true" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/style/style.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="905" column="10" selection-start-line="905" selection-start-column="10" selection-end-line="905" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/auth/login.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/home/home.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="869">
+          <caret line="112" column="118" selection-start-line="112" selection-start-column="118" selection-end-line="112" selection-end-column="118" />
         </state>
       </provider>
     </entry>

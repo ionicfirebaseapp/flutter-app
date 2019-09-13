@@ -5,16 +5,14 @@ import 'screens/auth/reset_password.dart';
 import 'screens/auth/login.dart';
 import 'screens/home/landing.dart';
 import 'screens/home/home.dart';
-import 'screens/categories/categories.dart';
-import 'screens/categories/category_expanded.dart';
 import 'screens/task/add_task.dart';
 import 'screens/priority_task/priority_task.dart';
 import 'screens/task/task_expanded.dart';
 import 'screens/task/task_list.dart';
 import 'screens/profile/profile.dart';
 import 'screens/settings/settings.dart';
-import 'screens/task/recorder.dart';
 import 'screens/settings/contact_us.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   runApp(MyApp());
@@ -26,23 +24,37 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+    userInfo();
+  }
+
   final routes = <String, WidgetBuilder>{
     Register.tag: (context) => Register(),
     Login.tag: (context) => Login(),
     ResetPassword.tag: (context) => ResetPassword(),
     Landing.tag: (context) => Landing(),
     Home.tag: (context) => Home(),
-    Categories.tag: (context) => Categories(),
-    CategoryExpanded.tag: (context) => CategoryExpanded(),
     AddTask.tag: (context) => AddTask(),
     PriorityTask.tag: (context) => PriorityTask(),
     TaskExpanded.tag: (context) => TaskExpanded(),
     TaskList.tag: (context) => TaskList(),
     Profile.tag: (context) => Profile(),
     Settings.tag: (context) => Settings(),
-    Recorder.tag: (context) => Recorder(),
     ContactUs.tag: (context) => ContactUs()
   };
+
+  var login;
+
+  userInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      login = prefs.getBool('login');
+    });
+    print("user...................$login ");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +67,7 @@ class _MyAppState extends State<MyApp> {
         accentColor: primary,
         cursorColor: border,
       ),
-      home: Login(),
+      home: login == true || login != null ? Landing() : Login(),
       routes: routes,
     );
   }

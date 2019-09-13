@@ -4,13 +4,13 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
-        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../todoapp/gen" />
-        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../todoapp/gen" />
-        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../todoapp/AndroidManifest.xml" />
-        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../todoapp/res" />
-        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../todoapp/assets" />
-        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../todoapp/libs" />
-        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../todoapp/proguard_logs" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../todoapp-pro/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../todoapp-pro/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../todoapp-pro/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../todoapp-pro/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../todoapp-pro/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../todoapp-pro/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../todoapp-pro/proguard_logs" />
       </configuration>
     </facet>
   </component>
@@ -25,7 +25,7 @@
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
-    <orderEntry type="library" name="Dart Packages" level="project" />
     <orderEntry type="library" name="Flutter Plugins" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
   </component>
 </module>

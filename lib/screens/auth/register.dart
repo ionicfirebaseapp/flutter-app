@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../../style/style.dart';
 import '../../screens/auth/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../screens/home/landing.dart';
+import '../../services/firestoreService.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../common/constant.dart';
+
 
 class Register extends StatefulWidget {
   static String tag = 'register';
@@ -14,33 +18,83 @@ class _RegisterState extends State<Register> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
 
-  String email, password, confirmPassword, name;
-
+  String email, password, confirmPassword, name, phone;
   bool loading = false;
+  var errorText;
 
-  registerUser() async {
+  Firestore store;
+  @override
+  void initState() {
+    super.initState();
+    callFireStore();
+  }
+
+  callFireStore() async {
+    store = await fireStoreCommonService();
+  }
+
+  CollectionReference get users => store.collection('users');
+
+  registration() async {
     final FormState form = _formKey.currentState;
+    print(email);
+    setState(() {
+      loading = true;
+    });
     if (!form.validate()) {
       return;
     } else {
       form.save();
-      setState(() {
-        loading = true;
-      });
-      if (email.isNotEmpty && password.isNotEmpty) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Landing(),
-          ),
+      print('email name $email $name $password');
+//      await LoginService.registerUser(email, password, name).then((onValue) {
+      FirebaseUser user = await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((userNew) {
+        print('onvalue $userNew');
+        setState(() {
+          loading = false;
+        });
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => Login(),
+            ),
+                (Route<dynamic> route) => false);
+      }).catchError((onError) {
+        setState(() {
+          loading = false;
+        });
+//        errorText = onError.toString().split(',')[1];
+        showDialog<Null>(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return Container(
+              width: 270.0,
+              child: new AlertDialog(
+                title: new Text('Please!!'),
+                content: new SingleChildScrollView(
+                  child: new ListBody(
+                    children: <Widget>[
+                      new Text('$onError'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  new FlatButton(
+                    child: new Text('ok'),
+                    onPressed: () {Navigator.pop(context);},
+                  ),
+                ],
+              ),
+            );
+          },
         );
-      }
-      setState(() {
-        loading = false;
       });
-      return;
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,22 +111,25 @@ class _RegisterState extends State<Register> {
               image: new AssetImage("lib/assets/bg/image.png"),
               fit: BoxFit.cover,
             ),
-            Center(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 30.0),
+            Positioned(
+              top: 80.0,
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Image(
-                      image: new AssetImage("lib/assets/icon/logo.png"),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
+                      child: Image(
+                        image: AssetImage("lib/assets/icon/logo.png"),
+                      ),
                     ),
                     Container(
-                      alignment: FractionalOffset.center,
-                      padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 30.0),
+                      padding: EdgeInsets.fromLTRB(30.0, 40.0, 0.0, 30.0),
                       child: Text(
-                        "Register, If you don't have an account",
-                        style: subTitleWhite2(),
+                        "Register If you don't have an account",
+                        style: subTitleWhite2SR(),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -94,12 +151,14 @@ class _RegisterState extends State<Register> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.only(bottom: 15.0),
+                              padding:
+                              EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 15.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
+                                    width: screenWidth(context)*0.83,
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 50.0),
+                                    padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
                                       cursorColor: border,
                                       decoration: InputDecoration(
@@ -108,10 +167,10 @@ class _RegisterState extends State<Register> {
                                         hintStyle: hintStyleDark(),
                                       ),
                                       style: hintStyleDark(),
-                                      keyboardType: TextInputType.emailAddress,
+                                      keyboardType: TextInputType.text,
                                       validator: (String value) {
                                         final RegExp nameExp =
-                                            new RegExp(r'^[A-Za-z ]+$');
+                                        new RegExp(r'^[A-Za-z ]+$');
                                         if (value.isEmpty ||
                                             !nameExp.hasMatch(value)) {
                                           return 'Please enter your name';
@@ -124,7 +183,7 @@ class _RegisterState extends State<Register> {
                                   ),
                                   Positioned(
                                     top: -6.0,
-                                    right: screenWidth(context) * 0.72,
+                                    right: (screenWidth(context) * 0.83) - 55.0,
                                     child: Stack(
                                       fit: StackFit.loose,
                                       alignment: AlignmentDirectional.center,
@@ -132,7 +191,7 @@ class _RegisterState extends State<Register> {
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              bottom: 6.0, left: 15.0),
+                                              bottom: 8.0, left: 2.0),
                                           child: Icon(
                                             FontAwesomeIcons.user,
                                             color: Colors.white,
@@ -146,12 +205,14 @@ class _RegisterState extends State<Register> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(bottom: 15.0),
+                              padding:
+                              EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 15.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
+                                    width: screenWidth(context)*0.83,
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 50.0),
+                                    padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
                                       cursorColor: border,
                                       decoration: InputDecoration(
@@ -175,7 +236,7 @@ class _RegisterState extends State<Register> {
                                   ),
                                   Positioned(
                                     top: -6.0,
-                                    right: screenWidth(context) * 0.72,
+                                    right: (screenWidth(context) * 0.83) - 55.0,
                                     child: Stack(
                                       fit: StackFit.loose,
                                       alignment: AlignmentDirectional.center,
@@ -183,7 +244,7 @@ class _RegisterState extends State<Register> {
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              bottom: 6.0, left: 15.0),
+                                              bottom: 8.0, left: 2.0),
                                           child: Icon(
                                             Icons.mail,
                                             color: Colors.white,
@@ -197,12 +258,14 @@ class _RegisterState extends State<Register> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(bottom: 15.0),
+                              padding:
+                              EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 15.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
+                                    width: screenWidth(context)*0.83,
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 50.0),
+                                    padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
                                       cursorColor: border,
                                       decoration: new InputDecoration(
@@ -226,7 +289,7 @@ class _RegisterState extends State<Register> {
                                   ),
                                   Positioned(
                                     top: -6.0,
-                                    right: screenWidth(context) * 0.72,
+                                    right: (screenWidth(context) * 0.83) - 55.0,
                                     child: Stack(
                                       fit: StackFit.loose,
                                       alignment: AlignmentDirectional.center,
@@ -234,7 +297,7 @@ class _RegisterState extends State<Register> {
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              bottom: 6.0, left: 15.0),
+                                              bottom: 8.0, left: 2.0),
                                           child: Icon(
                                             Icons.lock_outline,
                                             color: Colors.white,
@@ -248,11 +311,14 @@ class _RegisterState extends State<Register> {
                               ),
                             ),
                             Container(
+                              padding:
+                              EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
+                                    width: screenWidth(context)*0.83,
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 50.0),
+                                    padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
                                       cursorColor: border,
                                       decoration: new InputDecoration(
@@ -276,7 +342,7 @@ class _RegisterState extends State<Register> {
                                   ),
                                   Positioned(
                                     top: -6.0,
-                                    right: screenWidth(context) * 0.72,
+                                    right: (screenWidth(context) * 0.83) - 55.0,
                                     child: Stack(
                                       fit: StackFit.loose,
                                       alignment: AlignmentDirectional.center,
@@ -284,7 +350,7 @@ class _RegisterState extends State<Register> {
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              bottom: 6.0, left: 15.0),
+                                              bottom: 8.0, left: 2.0),
                                           child: Icon(
                                             Icons.lock_outline,
                                             color: Colors.white,
@@ -298,56 +364,68 @@ class _RegisterState extends State<Register> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.only(
+                              padding: EdgeInsetsDirectional.only(
                                   top: 30.0,
                                   start: 45.0,
                                   end: 45.0,
                                   bottom: 10.0),
-                              child: MaterialButton(
-                                height: 45.0,
-                                color: secondary,
-                                textColor: Colors.white,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      'REGISTER',
-                                      style: categoryWhite(),
-                                    ),
-                                    new Padding(
-                                      padding: new EdgeInsets.only(
-                                          left: 5.0, right: 5.0),
-                                    ),
-                                    loading
-                                        ? new Image.asset(
-                                            'lib/assets/gif/load.gif',
-                                            width: 19.0,
-                                            height: 19.0,
-                                          )
-                                        : new Text(''),
-                                  ],
+                              child: RawMaterialButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
                                 ),
-                                onPressed: registerUser,
+                                fillColor: secondary,
+                                child: Container(
+                                  height: 45.0,
+                                  width: screenWidth(context) * 0.5,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        'REGISTER',
+                                        style: subTitleWhiteSR(),
+                                      ),
+                                      new Padding(
+                                        padding: new EdgeInsets.only(
+                                            left: 5.0, right: 5.0),
+                                      ),
+                                      loading
+                                          ? new Image.asset(
+                                        'lib/assets/gif/load.gif',
+                                        width: 19.0,
+                                        height: 19.0,
+                                      )
+                                          : new Text(''),
+                                    ],
+                                  ),
+                                ),
+                                onPressed: registration,
                                 splashColor: secondary,
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(Login.tag);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.only(top: 30.0),
-                                child: Text(
-                                  "Already have an Account ? Login",
-                                  style: subTitleWhiteUnderline2(),
-                                ),
-                              ),
-                            ),
+
                           ],
                         ),
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional.bottomCenter,
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(Login.tag);
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 30.0, right: 30.0, bottom: 14.0),
+                  child: Text(
+                    "Already have an Account ? Login",
+                    style: subTitleWhiteUnderline2(),
+                  ),
                 ),
               ),
             ),

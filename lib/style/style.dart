@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 final primary = const Color(0xFF77BB23);
 final secondary = const Color(0xFFFFB70F);
 final tertiary = const Color(0xFFFF5752);
+final orange = const Color(0xFFFF600E);
 final danger = const Color(0xFFcb202d);
 final dark = const Color(0xFF040C0E);
 final darker = const Color(0xFF483E3E);
@@ -11,10 +12,12 @@ final darkLighter = const Color(0xFF525B56);
 final light = const Color(0xFFA4978E);
 final borderColor = const Color(0xFFA4978D);
 final gold = const Color(0xFFff9600);
-final bgGrey = Colors.grey.shade200;
+final bgGrey = Color(0xFFF3F3F2);
 final darkGrey = const Color(0xFF525252);
 final lightBlue = const Color(0xFFececec);
 final border = const Color(0xFF707070);
+final grey = const Color(0xFF232222);
+
 //--------------------------- screen height & width ----------------------------
 
 double screenHeight(context) {
@@ -25,7 +28,89 @@ double screenWidth(context) {
   return MediaQuery.of(context).size.width;
 }
 
-//---------------------------------- text-styles -------------------------------
+//---------------------------------- text-styles sans italic -------------------
+
+TextStyle smallAddressWhiteSI() {
+  return new TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 12.0,
+    color: Colors.white,
+    fontFamily: 'OpenSansItalic',
+  );
+}
+
+//---------------------------------- text-styles sans Regular ------------------
+
+
+TextStyle subTitleWhite2SR() {
+  return new TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 14.0,
+    color: Colors.white,
+    letterSpacing: 0.5,
+    fontFamily: 'OpenSansRegular',
+  );
+}
+
+TextStyle smallAddressGreySR() {
+  return new TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 12.0,
+    color: grey,
+    fontFamily: 'OpenSansRegular',
+  );
+}
+
+TextStyle smallAddressWhiteSR() {
+  return new TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 12.0,
+    color: Colors.white,
+    fontFamily: 'OpenSansRegular',
+  );
+}
+
+TextStyle smallAddressWhite2SR() {
+  return new TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 12.0,
+    color: Colors.white.withOpacity(0.69),
+    letterSpacing: 0.7,
+    fontFamily: 'OpenSansRegular',
+  );
+}
+
+TextStyle subTitleWhiteSR() {
+  return new TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 16.0,
+    color: Colors.white,
+    letterSpacing: 1.0,
+    fontFamily: 'OpenSansRegular',
+  );
+}
+
+TextStyle categoryWhiteSR() {
+  return new TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 15.0,
+    color: Colors.white,
+    fontFamily: 'OpenSansRegular',
+  );
+}
+
+TextStyle subTitleWhiteUnderline2SR() {
+  return new TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
+    color: Colors.white,
+    letterSpacing: 1.0,
+    fontFamily: 'OpenSansRegular',
+    decoration: TextDecoration.underline,
+  );
+}
+
+//---------------------------------- text-styles sans semibold -------------------------------
 
 TextStyle headerTitleLight() {
   return TextStyle(
@@ -133,9 +218,9 @@ TextStyle cardText() {
 
 TextStyle subTitle() {
   return new TextStyle(
-    fontWeight: FontWeight.w400,
-    fontSize: 14.0,
-    color: Colors.black,
+    fontWeight: FontWeight.w600,
+    fontSize: 16.0,
+    color: darkGrey,
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -146,6 +231,16 @@ TextStyle subBoldTitle() {
     fontSize: 14.0,
     color: darkLighter,
     fontFamily: 'OpenSansSemiBold',
+  );
+}
+
+TextStyle subBoldTitleUnderline() {
+  return new TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 14.0,
+    color: darkLighter,
+    fontFamily: 'OpenSansSemiBold',
+    decoration: TextDecoration.underline
   );
 }
 
@@ -280,6 +375,24 @@ TextStyle titleLight() {
   );
 }
 
+TextStyle textStyleGreySS() {
+  return new TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 14.0,
+    color: darkGrey,
+    fontFamily: 'OpenSansSemiBold',
+  );
+}
+
+TextStyle textSmallStyleGreySS() {
+  return new TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 14.0,
+    color: darkGrey,
+    fontFamily: 'OpenSansSemiBold',
+  );
+}
+
 TextStyle titleStyleBold() {
   return new TextStyle(
     fontWeight: FontWeight.w500,
@@ -325,6 +438,24 @@ TextStyle titleStyle3() {
     fontSize: 38.0,
     color: darkLight,
     decoration: TextDecoration.underline,
+    fontFamily: 'OpenSansSemiBold',
+  );
+}
+
+TextStyle subTitleDarkSS() {
+  return new TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 11.0,
+    color: grey,
+    fontFamily: 'OpenSansSemiBold',
+  );
+}
+
+TextStyle smallAddressSS() {
+  return new TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 12.0,
+    color: grey.withOpacity(0.61),
     fontFamily: 'OpenSansSemiBold',
   );
 }
@@ -746,6 +877,38 @@ TextStyle secondaryBoldTitleText() {
     fontWeight: FontWeight.w500,
     fontSize: 16.0,
     color: secondary,
+    fontFamily: 'OpenSansSemiBold',
+  );
+}
+
+//-------------------------------------- red-text ------------------------------
+
+TextStyle textStyleRed() {
+  return new TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 12.0,
+    color: danger,
+    fontFamily: 'OpenSansSemiBold',
+  );
+}
+
+//-------------------------------------- orange-text ------------------------------
+
+TextStyle textStyleOrangeSS() {
+  return new TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 14.0,
+    color: orange,
+    fontFamily: 'OpenSansSemiBold',
+  );
+}
+
+TextStyle productTitleOrange() {
+  return new TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 14.0,
+    color: orange,
+    letterSpacing: 1.0,
     fontFamily: 'OpenSansSemiBold',
   );
 }

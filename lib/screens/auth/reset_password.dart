@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
 import '../../screens/auth/login.dart';
 
@@ -41,7 +42,6 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -70,7 +70,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       alignment: AlignmentDirectional.center,
                       padding: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 30.0),
                       child: Text(
-                        "Reset Password If you have an Account",
+                        "Reset Password If you have forgot password",
                         style: subTitleWhite2(),
                         textAlign: TextAlign.center,
                       ),
@@ -97,8 +97,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                               child: Stack(
                                 children: <Widget>[
                                   Container(
+                                    width: screenWidth(context)*0.83,
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 50.0),
+                                    padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
                                       cursorColor: border,
                                       decoration: new InputDecoration(
@@ -122,7 +123,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                   ),
                                   Positioned(
                                     top: -6.0,
-                                    right: screenWidth * 0.72,
+                                    right: (screenWidth(context) * 0.83) - 55.0,
                                     child: Stack(
                                       fit: StackFit.loose,
                                       alignment: AlignmentDirectional.center,
@@ -130,7 +131,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              bottom: 6.0, left: 3.0),
+                                              bottom: 8.0, left: 2.0),
                                           child: Icon(
                                             Icons.lock_outline,
                                             color: Colors.white,
@@ -148,8 +149,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                               child: Stack(
                                 children: <Widget>[
                                   Container(
+                                    width: screenWidth(context)*0.83,
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 50.0),
+                                    padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
                                       cursorColor: border,
                                       decoration: new InputDecoration(
@@ -173,7 +175,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                   ),
                                   Positioned(
                                     top: -6.0,
-                                    right: screenWidth * 0.72,
+                                    right: (screenWidth(context) * 0.83) - 55.0,
                                     child: Stack(
                                       fit: StackFit.loose,
                                       alignment: AlignmentDirectional.center,
@@ -181,7 +183,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                         Image.asset("lib/assets/icon/send.png"),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              bottom: 6.0, left: 3.0),
+                                              bottom: 8.0, left: 2.0),
                                           child: Icon(
                                             Icons.lock_outline,
                                             color: Colors.white,
@@ -200,26 +202,37 @@ class _ResetPasswordState extends State<ResetPassword> {
                                   start: 45.0,
                                   end: 45.0,
                                   bottom: 10.0),
-                              child: MaterialButton(
-                                height: 45.0,
-                                color: secondary,
-                                textColor: Colors.white,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text('SUBMIT', style: categoryWhite()),
-                                    new Padding(
-                                      padding: new EdgeInsets.only(
-                                          left: 5.0, right: 5.0),
-                                    ),
-                                    loading
-                                        ? new Image.asset(
-                                            'lib/assets/gif/load.gif',
-                                            width: 19.0,
-                                            height: 19.0,
-                                          )
-                                        : new Text(''),
-                                  ],
+                              child: RawMaterialButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                fillColor: secondary,
+                                child: Container(
+                                  height: 45.0,
+                                  width: screenWidth(context) * 0.5,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        'SUBMIT',
+                                        style: subTitleWhiteSR(),
+                                      ),
+                                      new Padding(
+                                        padding: new EdgeInsets.only(
+                                            left: 5.0, right: 5.0),
+                                      ),
+                                      loading
+                                          ? new Image.asset(
+                                        'lib/assets/gif/load.gif',
+                                        width: 19.0,
+                                        height: 19.0,
+                                      )
+                                          : new Text(''),
+                                    ],
+                                  ),
                                 ),
                                 onPressed: resetPassword,
                                 splashColor: secondary,

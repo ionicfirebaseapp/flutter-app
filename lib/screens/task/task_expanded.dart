@@ -1,46 +1,224 @@
 import 'package:flutter/material.dart';
+import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
-import '../../services/json.dart';
-import '../../widgets/checkboxTile.dart';
+import '../../services/crud.dart';
+import '../../screens/home/landing.dart';
+import 'dart:async';
 
 class TaskExpanded extends StatefulWidget {
   static String tag = "task-expanded";
-  final title;
-  final time;
-  TaskExpanded({Key key, this.title, this.time}) : super(key: key);
+  final String updateDocId;
+  bool priorityTask;
+  TaskExpanded({Key key,this.updateDocId, this.priorityTask}) : super(key: key);
   @override
   _TaskExpandedState createState() => _TaskExpandedState();
 }
 
 class _TaskExpandedState extends State<TaskExpanded> {
-  bool isChecked = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  bool isFav = false;
+  crudMedthods crudObj = new crudMedthods();
 
-  _favorites() {
-    var newVal = true;
-    if (isFav) {
-      newVal = false;
-    } else {
-      newVal = true;
-    }
-    setState(() {
-      isFav = newVal;
+  bool isPriority = false;
+  bool doNotify = false;
+  var tasks;
+  String taskDetail;
+
+  @override
+  void initState() {
+    String id = widget.updateDocId;
+    crudObj.getTaskData(id).then((results) {
+      setState(() {
+        tasks = results;
+      });
     });
+    super.initState();
   }
 
   bool isNotificationOn = false;
 
-  _notificationOn() {
-    var newVal = true;
-    if (isNotificationOn) {
-      newVal = false;
+  saveDetails() {
+    final FormState form = _formKey.currentState;
+    if (!form.validate()) {
+      return;
     } else {
-      newVal = true;
+      form.save();
+      crudObj.updateData(widget.updateDocId, {
+        'taskDetail': this.taskDetail,
+      });
     }
-    setState(() {
-      isNotificationOn = newVal;
-    });
+  }
+
+  Widget _taskData() {
+    if (tasks != null) {
+      return SingleChildScrollView(
+        child: Container(
+          child: StreamBuilder(
+              stream: tasks,
+              builder: (context, snapshot) {
+                if (snapshot.data != null) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      ListTile(
+                        title: Text(
+                          snapshot.data['taskTitle'],
+                          style: titleBlack(),
+                        ),
+                        subtitle: Text(
+                          snapshot.data['category'],
+                          style: smallAddress(),
+                        ),
+                      ),
+                      Container(
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                                height: 50.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      alignment: AlignmentDirectional.topStart,
+                                      padding: const EdgeInsets.only(
+                                          left: 16.0, top: 4.0, bottom: 4.0),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Text(
+                                            snapshot.data['dateTime'].split('-')[0],
+                                            style:  textStyleOrangeSS(),
+                                          ),
+                                          Text(
+                                            snapshot.data['dateTime'].split('-')[1],
+                                            style: textStyleGreySS(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Divider(
+                                      height: 1.0,
+                                      color: border,
+                                    ),
+                                  ],
+                                )),
+                            Positioned(
+                              right: 0.0,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                                    child: FloatingActionButton(
+                                      elevation: 3.0,
+                                      mini: true,
+                                      child: Icon(
+                                          snapshot.data['priorityTask'] ? Icons.star : Icons.star_border,
+                                          size: 24.0, color: secondary),
+                                      backgroundColor: Colors.white,
+                                      heroTag: null,
+                                      onPressed: (){
+                                        setState(() {
+                                          isPriority =! isPriority;
+                                          try{
+                                            crudObj.updateData(widget.updateDocId, {
+                                              'priorityTask' : this.isPriority
+                                            });
+                                          }catch(e) {
+                                            print(e);
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 5.0),
+                                    child: FloatingActionButton(
+                                      elevation: 3.0,
+                                      mini: true,
+                                      child: Icon(
+                                          Icons.delete_outline,
+                                          size: 24.0,
+                                          color: tertiary),
+                                      backgroundColor: Colors.white,
+                                      heroTag: null,
+                                      onPressed: (){
+                                        setState(() {
+                                          try{
+                                            crudObj.deleteData(snapshot.data.documentID);
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (BuildContext context) => Landing(
+                                                ),
+                                              ),
+                                            );
+                                          }catch(e) {
+                                            print(e);
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: snapshot.data['dueDate'] != null ? Row(
+                          children: <Widget>[
+                            Text("Due Date: ", style: redBoldText(),),
+                            Text(snapshot.data['dueDate'], style: productTitle(),)
+                          ],
+                        ) : Container(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Text("About your task:", style: prefix0.subBoldTitleUnderline(),),
+                      ),
+                      Form(
+                        key: _formKey,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: TextFormField(
+                            decoration: new InputDecoration(
+                              border: InputBorder.none,
+                              hintStyle: hintStyleDark(),
+                            ),
+                            initialValue: snapshot.data['taskDetail'],
+                            keyboardType: TextInputType.text,
+                            maxLines: 10,
+                            style: subTitleBlack(),
+
+                            validator: (String value) {
+                              if (value.isEmpty) {
+                                return 'Please enter your Task Detail';
+                              }
+                            },
+                            onSaved: (value) {
+                              this.taskDetail = value;
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                } else {
+                  return Container(
+                    child: Text("error"),
+                  );
+                }
+              }),
+        ),
+      );
+    } else {
+      return Container(
+        child: CircularProgressIndicator(),
+      );
+    }
   }
 
   @override
@@ -50,90 +228,19 @@ class _TaskExpandedState extends State<TaskExpanded> {
         backgroundColor: primary,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          ListTile(
-            title: Text(
-              widget.title,
-              style: titleBlack(),
-            ),
+      body: _taskData(),
+      bottomNavigationBar: InkWell(
+        onTap: saveDetails,
+        child: Container(
+          color: secondary,
+          padding: new EdgeInsets.all(15.0),
+          child: new Text(
+            "SAVE",
+            style: categoryWhite(),
+            textAlign: TextAlign.center,
           ),
-          Container(
-            child: Stack(
-              children: <Widget>[
-                Container(
-                    height: 50.0,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          alignment: AlignmentDirectional.topStart,
-                          padding: const EdgeInsets.only(
-                              left: 16.0, top: 4.0, bottom: 4.0),
-                          child: Text(
-                            widget.time,
-                            style: category(),
-                          ),
-                        ),
-                        Divider(
-                          height: 1.0,
-                          color: border,
-                        ),
-                      ],
-                    )),
-                Positioned(
-                  right: 0.0,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                        child: FloatingActionButton(
-                          elevation: 3.0,
-                          mini: true,
-                          child: Icon(isFav ? Icons.star : Icons.star_border,
-                              size: 24.0, color: secondary),
-                          backgroundColor: Colors.white,
-                          heroTag: null,
-                          onPressed: _favorites,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 5.0),
-                        child: FloatingActionButton(
-                          elevation: 3.0,
-                          mini: true,
-                          child: Icon(
-                              isNotificationOn
-                                  ? Icons.notifications
-                                  : Icons.notifications_none,
-                              size: 24.0,
-                              color: tertiary),
-                          backgroundColor: Colors.white,
-                          heroTag: null,
-                          onPressed: _notificationOn,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          ListView.builder(
-              physics: ScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: data['subTasks'].length,
-              itemBuilder: (BuildContext context, int index) {
-                return CheckboxTile(
-                  title: data['subTasks'][index]['title'],
-                );
-              }),
-        ],
-      ),
+        ),
+      )
     );
   }
 }

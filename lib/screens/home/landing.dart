@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todo_open/transitions/scale_route.dart';
 import '../../style/style.dart';
 import '../../screens/home/drawer.dart';
 import 'package:intl/intl.dart';
 import '../../screens/home/home.dart';
-import '../../screens/categories/categories.dart';
 import '../../screens/task/add_task.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../transitions/scale_route.dart';
 
 class Landing extends StatefulWidget {
   static String tag = "landing";
@@ -14,14 +15,18 @@ class Landing extends StatefulWidget {
 }
 
 class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {
+
   final f = new DateFormat('yyyy-month-dd');
   DateTime _date = new DateTime.now();
 
+  String dateNow = DateFormat('kk:mm EEE d MMM').format(DateTime.now());
+
   int currentTab = 0;
   Home pageOne = new Home();
-  Categories pageTwo = new Categories();
+  AddTask pageTwo = new AddTask();
   List<Widget> pages;
   Widget currentPage;
+  var user, accountUser;
 
   @override
   void initState() {
@@ -53,37 +58,70 @@ class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {
     }
   }
 
+  Widget appBarTitle = Text('${DateFormat('d MMM yyyy').format(DateTime.now())}',
+    style:  smallAddressWhite(),
+  );
+  Icon actionIcon = new Icon(Icons.search);
+  final key = new GlobalKey<ScaffoldState>();
+  final TextEditingController _searchQuery = new TextEditingController();
+  bool _IsSearching;
+  String _searchText = "";
+
+
+  void _searchPressed() {
+
+    setState(() {
+      if (this.actionIcon.icon == Icons.search) {
+        this.actionIcon = new Icon(Icons.close);
+        this.appBarTitle = new TextField(
+          style: new TextStyle(
+            color: Colors.white,
+          ),
+          decoration: new InputDecoration(
+              prefixIcon: new Icon(Icons.search, color: Colors.white, size: 14.0,),
+              hintText: "Search...",
+              hintStyle: subTitleWhite(),
+          ),
+        );
+        _handleSearchStart();
+      }
+      else {
+        _handleSearchEnd();
+      }
+    });
+  }
+
+  void _handleSearchStart() {
+    setState(() {
+      _IsSearching = true;
+    });
+  }
+
+  void _handleSearchEnd() {
+    setState(() {
+      this.actionIcon = new Icon(Icons.search, color: Colors.white,);
+      this.appBarTitle =
+          Text('${DateFormat('d MMM yyyy').format(DateTime.now())}',
+            style:  smallAddressWhite(),
+          );
+      _IsSearching = false;
+      _searchQuery.clear();
+    });
+  }
+
+
   Widget buildBar(BuildContext context) {
     return AppBar(
-        title: InkWell(
-          onTap: () {
-            _selectDate(context);
-          },
-          child: Row(
-            children: <Widget>[
-              Text(
-                '${_date.day} / ${_date.month} / ${_date.year}',
-                style: subTitleWhite(),
-              ),
-              Icon(
-                Icons.arrow_drop_down,
-                color: Colors.white,
-              ),
-            ],
-          ),
-        ),
+        title:  appBarTitle,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: primary,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.ellipsisV,
-              color: Colors.white,
-              size: 14.0,
-            ),
-            onPressed: () {},
-          ),
-        ]);
+           IconButton(
+             icon: Icon(FontAwesomeIcons.search, color: Colors.white, size: 14.0,),
+             onPressed: _searchPressed,
+           ),
+        ]
+    );
   }
 
   @override
@@ -104,29 +142,30 @@ class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {
           mini: false,
           highlightElevation: 16.0,
           onPressed: () {
-            Navigator.of(context).pushNamed(AddTask.tag);
+            Navigator.push(context, ScaleRoute(page: AddTask()));
+//            Navigator.of(context).pushNamed(AddTask.tag);
           }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentTab,
-        onTap: (int numTab) {
-          setState(() {
-            print("Current tab: " + numTab.toString());
-            currentTab = numTab;
-            currentPage = pages[numTab];
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.apps),
-            title: Text("Categories"),
-          ),
-        ],
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+//      bottomNavigationBar: BottomNavigationBar(
+//        currentIndex: currentTab,
+//        onTap: (int numTab) {
+//          setState(() {
+//            print("Current tab: " + numTab.toString());
+//            currentTab = numTab;
+//            currentPage = pages[numTab];
+//          });
+//        },
+//        items: [
+//          BottomNavigationBarItem(
+//            icon: Icon(Icons.home),
+//            title: Text("Home"),
+//          ),
+//          BottomNavigationBarItem(
+//            icon: Icon(Icons.add_circle),
+//            title: Text("Add Task"),
+//          ),
+//        ],
+//      ),
     );
   }
 }

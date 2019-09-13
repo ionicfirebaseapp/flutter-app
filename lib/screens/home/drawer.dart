@@ -5,6 +5,12 @@ import '../../screens/priority_task/priority_task.dart';
 import '../../screens/task/task_list.dart';
 import '../../screens/profile/profile.dart';
 import '../../screens/settings/settings.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_twitter_login/flutter_twitter_login.dart';
+import '../../screens/auth/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerList extends StatefulWidget {
   @override
@@ -12,113 +18,140 @@ class DrawerList extends StatefulWidget {
 }
 
 class _DrawerListState extends State<DrawerList> {
+
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  signOutGoogle() async{
+    await googleSignIn.signOut();
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => Login(),
+        ),(Route<dynamic> route) => false);
+
+    print("User Sign Out");
+  }
+
+  static final TwitterLogin twitterLogin = new TwitterLogin(
+    consumerKey: '1OR06t702rtEEMGEDhe5Lfxpd',
+    consumerSecret: 'vw7jKpy45DlE8Y0wpB5o886olhTgwsfFbLoRTmftWRGQ1qQwnT',
+  );
+
+  String _message = 'Logged out.';
+
+  _twitterLogout() async {
+    await twitterLogin.logOut();
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => Login(),
+        ),(Route<dynamic> route) => false);
+
+    setState(() {
+      _message = 'Logged out.';
+    });
+  }
+
+  static final FacebookLogin facebookSignIn = new FacebookLogin();
+
+  _facebookLogOut() async {
+    await facebookSignIn.logOut();
+    _showMessage('Logged out.');
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => Login(),
+      ),(Route<dynamic> route) => false);
+  }
+
+  void _showMessage(String message) {
+    setState(() {
+      message = message;
+    });
+  }
+
+  bool selected = false;
+
+
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Theme(
+      data: Theme.of(context).copyWith(
+        canvasColor: Colors.white,
+      ),
       child: Drawer(
-        child: Container(
-          alignment: FractionalOffset.bottomCenter,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("lib/assets/bg/sidebar_bg.png"),
-              fit: BoxFit.cover,
+        child: ListView(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(12.0),
+              alignment: AlignmentDirectional.topEnd,
+              child: Image.asset("lib/assets/icon/drawerIcon.png"),
             ),
-          ),
-          padding: EdgeInsetsDirectional.only(top: 180.0),
-          child: ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text(
-                  "Profile",
-                  style: productTitle(),
-                ),
-                leading: Icon(
-                  Icons.person,
-                  color: Colors.black45,
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.black45,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pushNamed(Profile.tag);
-                },
+            Center(
+              child: Column(
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        selected = true;
+                      });
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed(Profile.tag);
+                    },
+                    child: ListTile(
+                      leading: Icon(Icons.person_outline, color: Colors.black,),
+                      title: Text("Profile", style: productTitle(),),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed(Landing.tag);
+                    },
+                    child: ListTile(
+                      leading: Image.asset("lib/assets/icon/home.png", height: 22.0, width: 22.0,),
+                      title: Text("Home", style: productTitle(),),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed(Settings.tag);
+                    },
+                    child: ListTile(
+                      leading: Image.asset("lib/assets/icon/settings.png", height: 22.0, width: 22.0,),
+                      title: Text("Settings", style: productTitle(),),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: ListTile(
+                      leading: Image.asset("lib/assets/icon/info.png", height: 22.0, width: 22.0,),
+                      title: Text("About us", style: productTitle(),),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async{
+                      Navigator.of(context).pop();
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setString('fbuser', '');
+                      prefs.setString('user', '');
+                      signOutGoogle() || _facebookLogOut() || _twitterLogout();
+                    },
+                    child: ListTile(
+                      leading: Image.asset("lib/assets/icon/signout.png", height: 22.0, width: 22.0,),
+                      title: Text("Sign out", style: productTitle(),),
+                    ),
+                  ),
+                ],
               ),
-              ListTile(
-                title: Text(
-                  "Home",
-                  style: productTitle(),
-                ),
-                leading: Icon(
-                  Icons.home,
-                  color: Colors.black45,
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.black45,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pushNamed(Landing.tag);
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "My Tasks List",
-                  style: productTitle(),
-                ),
-                leading: Icon(
-                  Icons.list,
-                  color: Colors.black45,
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.black45,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pushNamed(TaskList.tag);
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Priority Task",
-                  style: productTitle(),
-                ),
-                leading: Icon(
-                  Icons.star,
-                  color: Colors.black45,
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.black45,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pushNamed(PriorityTask.tag);
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Settings",
-                  style: productTitle(),
-                ),
-                leading: Icon(
-                  Icons.settings,
-                  color: Colors.black45,
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.black45,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pushNamed(Settings.tag);
-                },
-              ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

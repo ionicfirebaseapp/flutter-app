@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../style/style.dart';
-import '../../screens/task/task_expanded.dart';
 import '../../screens/home/drawer.dart';
 import '../../screens/home/landing.dart';
-import '../../widgets/taskCard.dart';
-import '../../services/json.dart';
+import '../../widgets/getPriorityTaskDetails.dart';
+import '../../widgets/getTaskDetails.dart';
 
 class TaskList extends StatefulWidget {
   static String tag = "task-list";
@@ -14,16 +13,7 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
-  bool isChecked,
-      project = false,
-      practice = false,
-      work = false,
-      grocery = false,
-      cmpProject = false,
-      doc = false;
-  bool projectMark = false, practiceMark = false, workMark = false;
   double _value = 20.0;
-
   bool value1 = true;
 
   void onChangedValue1(bool value) {
@@ -31,8 +21,6 @@ class _TaskListState extends State<TaskList> {
       value1 = value;
     });
   }
-
-  bool isPressed = false;
 
   final f = new DateFormat('yyyy-month-dd');
   DateTime _date = new DateTime.now();
@@ -69,17 +57,9 @@ class _TaskListState extends State<TaskList> {
           onTap: () {
             _selectDate(context);
           },
-          child: Row(
-            children: <Widget>[
-              Text(
-                '${_date.day} / ${_date.month} / ${_date.year}',
-                style: subTitleWhite(),
-              ),
-              Icon(
-                Icons.arrow_drop_down,
-                color: Colors.white,
-              ),
-            ],
+          child: Text(
+            '${_date.day} / ${_date.month} / ${_date.year}',
+            style: subTitleWhite(),
           ),
         ),
         iconTheme: IconThemeData(color: Colors.white),
@@ -99,17 +79,18 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       drawer: DrawerList(),
       appBar: buildBar(context),
       backgroundColor: bgGrey,
       body: ListView(
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
         children: <Widget>[
           Container(
             height: 117.0,
-            width: screenWidth,
+            width: screenWidth(context),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("lib/assets/bg/bar.png"),
@@ -133,7 +114,7 @@ class _TaskListState extends State<TaskList> {
                     Container(
                       margin: EdgeInsets.only(top: 6.0),
                       height: 3.0,
-                      width: screenWidth * 0.4,
+                      width: screenWidth(context) * 0.4,
                       color: Colors.white,
                     )
                   ],
@@ -174,29 +155,11 @@ class _TaskListState extends State<TaskList> {
             padding: EdgeInsetsDirectional.only(
                 top: 10.0, bottom: 10.0, start: 15.0),
             child: Text(
-              "Others Tasks todo",
+              "Priority Tasks todo",
               style: primaryTextUnderline(),
             ),
           ),
-          ListView.builder(
-              physics: ScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: data['tasks'].length,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: <Widget>[
-                    Divider(
-                      height: 10.0,
-                      color: bgGrey,
-                    ),
-                    PriorityTaskCard(
-                        title: data['tasks'][index]['title'],
-                        time: data['tasks'][index]['time'],
-                        isList: data['tasks'][index]['isList']),
-                  ],
-                );
-              }),
+          PriorityTaskDetails(),
           Divider(
             height: 10.0,
             color: bgGrey,
@@ -244,41 +207,10 @@ class _TaskListState extends State<TaskList> {
             ),
           ),
           Divider(
-            height: 10.0,
+            height: 3.0,
             color: bgGrey,
           ),
-          ListView.builder(
-              physics: ScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: data['tasks'].length,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: <Widget>[
-                    Divider(
-                      height: 8.0,
-                      color: bgGrey,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => TaskExpanded(
-                              title: data['tasks'][index]['title'],
-                              time: data['tasks'][index]['time'],
-                            ),
-                          ),
-                        );
-                      },
-                      child: TaskCard(
-                          title: data['tasks'][index]['title'],
-                          time: data['tasks'][index]['time'],
-                          isList: data['tasks'][index]['isList']),
-                    ),
-                  ],
-                );
-              }),
+          TaskDetails(),
         ],
       ),
     );

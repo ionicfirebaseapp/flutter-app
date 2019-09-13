@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todo_open/screens/priority_task/priority_task.dart';
+import 'package:todo_open/screens/settings/contact_us.dart';
+import 'package:todo_open/screens/task/task_list.dart';
+import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
 import '../../screens/home/drawer.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../screens/auth/reset_password.dart';
-import '../../screens/categories/category_expanded.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   static String tag = "profile";
@@ -12,228 +14,166 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  @override
+  void initState() {
+    super.initState();
+    userInfo();
+  }
+
+  var user, fbuser;
+
+  userInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      user = prefs.getString('user');
+      fbuser = prefs.getString('fbuser');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: prefix0.bgGrey,
       drawer: DrawerList(),
       appBar: AppBar(
         elevation: 0.0,
-        title: Text(""),
+        title: Text("Profile", style: subBoldTitleWhite(),),
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Stack(
-        fit: StackFit.expand,
+      body: ListView(
+        padding: EdgeInsets.all(20.0),
         children: <Widget>[
-          new Image(
-            image: new AssetImage("lib/assets/bg/image.png"),
-            fit: BoxFit.cover,
-          ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 30.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
-                    padding: EdgeInsets.only(left: 20.0),
-                    height: 130.0,
-                    color: primary,
+          Container(
+            height: 70.0,
+            margin: EdgeInsets.only(bottom: 14.0),
+            width: screenHeight(context),
+            padding: EdgeInsets.all(14.0),
+            decoration: new BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                new BoxShadow(
+                  color: Colors.grey.shade300,
+                  blurRadius: 8.0,
+                ),
+              ],
+            ),
+            child: Row(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: primary.withOpacity(0.4),
+                  child: Image.asset("lib/assets/icon/user.png", color: Colors.white,),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 10.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Image(
-                              width: 90.0,
-                              height: 90.0,
-                              image: AssetImage("lib/assets/icon/logo.png"),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 33.0, left: 20.0),
-                              child: Text(
-                                "John Snow",
-                                style: titleBoldWhite(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          color: Colors.white,
-                          height: 3.0,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).pushNamed(ResetPassword.tag);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                right: 8.0, top: 6.0, bottom: 6.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: <Widget>[
-                                Text(
-                                  "Change Password",
-                                  style: categoryWhite(),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
+                        user != null ? Text('${user.toString().split('@')[0]}', style: textStyleOrangeSS(),) :
+                          Text('$fbuser', style: textStyleOrangeSS(),),
+                        user != null ? Text('$user', style: smallBoldDescription(),) :
+                          Text('$fbuser', style: smallBoldDescription(),),
                       ],
                     ),
                   ),
-                  Text(
-                    "YOUR TASKS",
-                    style: categoryWhite(),
+                ),
+              ],
+            ),
+          ),
+          InkWell(
+            onTap: (){
+              Navigator.of(context).pushNamed(PriorityTask.tag);
+            },
+            child: Container(
+              height: 70.0,
+              width: screenHeight(context),
+              padding: EdgeInsets.all(8.0),
+              margin: EdgeInsets.only(bottom: 14.0),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  new BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 8.0,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: 20.0,
-                      bottom: 30.0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Flexible(
-                          flex: 6,
-                          child: Container(
-                              padding: EdgeInsets.all(20.0),
-                              height: 120.0,
-                              width: 120.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  FloatingActionButton(
-                                    elevation: 0.0,
-                                    child: Icon(FontAwesomeIcons.briefcase,
-                                        size: 22.0, color: Colors.deepPurple),
-                                    backgroundColor: Colors.grey.shade100,
-                                    heroTag: null,
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              CategoryExpanded(
-                                            title: 'Work',
-                                            time: "12:30",
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  Text(
-                                    "Work",
-                                    style: categoryTitle2(),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Flexible(
-                          flex: 6,
-                          child: Container(
-                              padding: EdgeInsets.all(20.0),
-                              height: 120.0,
-                              width: 120.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  FloatingActionButton(
-                                    elevation: 0.0,
-                                    child: Icon(FontAwesomeIcons.handshake,
-                                        size: 22.0, color: Colors.blue),
-                                    backgroundColor: Colors.grey.shade100,
-                                    heroTag: null,
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              CategoryExpanded(
-                                            title: 'Meeting',
-                                            time: "10:30",
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  Text(
-                                    "Meeting",
-                                    style: categoryTitle2(),
-                                  )
-                                ],
-                              )),
-                        ),
-                      ],
-                    ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      IconButton(icon: Image.asset("lib/assets/icon/timeline.png", height: 22.0, width: 22.0,)),
+                      Text("Priority Tasks", style: textSmallStyleGreySS(),),
+                    ],
                   ),
-                  Text(
-                    "TASKS COMPLETED",
-                    style: categoryWhite(),
+                  IconButton(icon: Image.asset("lib/assets/icon/arrow.png", height: 22.0, width: 22.0,)),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: (){
+              Navigator.of(context).pushNamed(TaskList.tag);
+            },
+            child: Container(
+              height: 70.0,
+              width: screenHeight(context),
+              padding: EdgeInsets.all(8.0),
+              margin: EdgeInsets.only(bottom: 14.0),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  new BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 8.0,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20.0, bottom: 30.0),
-                    padding: EdgeInsets.all(20.0),
-                    height: 140.0,
-                    width: 380.0,
-                    color: Colors.white,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Flexible(
-                            child: Image(
-                              width: 150.0,
-                              height: 150.0,
-                              image: AssetImage('lib/assets/icon/graph.png'),
-                            ),
-                          ),
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text(
-                                  "70% Completed",
-                                  style: categoryTitle(),
-                                ),
-                                Text(
-                                  "30% Pending",
-                                  style: categoryTitle(),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      IconButton(icon: Image.asset("lib/assets/icon/completed.png", height: 22.0, width: 22.0, color: Colors.black,)),
+                      Text("Task List", style: textSmallStyleGreySS(),),
+                    ],
                   ),
+                  IconButton(icon: Image.asset("lib/assets/icon/arrow.png", height: 22.0, width: 22.0,)),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: (){
+              Navigator.of(context).pushNamed(ContactUs.tag);
+            },
+            child: Container(
+              height: 70.0,
+              width: screenHeight(context),
+              padding: EdgeInsets.all(8.0),
+              margin: EdgeInsets.only(bottom: 14.0),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  new BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 8.0,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: <Widget>[
+                  IconButton(icon: Image.asset("lib/assets/icon/help.png", height: 22.0, width: 22.0, color: Colors.black,)),
+                  Text("Help", style: textSmallStyleGreySS(),),
                 ],
               ),
             ),
           ),
         ],
-      ),
+      )
     );
   }
 }
