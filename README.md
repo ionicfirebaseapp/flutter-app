@@ -46,7 +46,7 @@ We developed Flutter To Do Mobile Application (App) leading technology FLUTTER &
 
 ## Quick start
 
-Read the [Getting started page](https://docs.ionicfirebaseapp.com/todo/) for information on the ionic firebase restaurant app.
+Read the [Getting started page](https://docs.ionicfirebaseapp.com/todo/) for information on flutter to do app.
   ### Video Guide is Comming soon, Please keep support and encourage us through share and star so we can bring all these product as opensource.
   
 ## Features
@@ -72,7 +72,7 @@ Read the [Getting started page](https://docs.ionicfirebaseapp.com/todo/) for inf
 
 ## What's included
 
-Our Flutter TO DO Mobile Application included free source code and setup file to download. Within the download you'll find Flutter UI for all the above screen mention. We release UI integration with Firestore for Pro-members. In case if you would like to add some feature or do you have any kind of suggestion then please let us know. We'll love to hear from your side. And/Or if you build something awesome in this application then alos let us know, if we love your innovation then we'll add to our Flutter Mobile App and you'll get rewarded form <a href="https://www.ionicfirebaseapp.com">Ionicfirebaseapp.com</a>.
+Our Flutter TO DO Mobile Application included free source code and setup file to download. Within the download you'll find Flutter UI for all the above screen mention. We release UI integration with Firestore for Pro-members. In case if you would like to add some feature or do you have any kind of suggestion then please let us know. We'll love to hear from your side. And/Or if you build something awesome in this application then also let us know, if we love your innovation then we'll add to our Flutter Mobile App and you'll get rewarded form <a href="https://www.ionicfirebaseapp.com">Ionicfirebaseapp.com</a>.
 
 
 ## Bugs and feature requests
