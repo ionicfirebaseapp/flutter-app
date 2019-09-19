@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../screens/profile/profile.dart';
 import '../../screens/settings/contact_us.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Settings extends StatefulWidget {
   static String tag = "settings";
@@ -30,17 +31,29 @@ class _SettingsState extends State<Settings> {
     userInfo();
   }
 
-  var user, fbuser;
+  var fbuser;
+  var userName, email, photoUrl, uid, emailVerified;
 
   userInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      user = prefs.getString('user');
       fbuser = prefs.getString('fbuser');
     });
-    print("user...................$user");
-  }
+    print("fbuser...................$fbuser");
+    FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
 
+    if (userProfile != null) {
+      setState(() {
+        userName = userProfile.displayName;
+        email = userProfile.email;
+        uid = userProfile.uid;
+        photoUrl = userProfile.photoUrl;
+      });
+    }
+    print('photourl....................$photoUrl');
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +85,8 @@ class _SettingsState extends State<Settings> {
                 children: <Widget>[
                   CircleAvatar(
                     backgroundColor: primary.withOpacity(0.4),
-                    child: Image.asset("lib/assets/icon/user.png", color: Colors.white,),
+                    child: photoUrl != null ? ClipOval(child: Image.network(photoUrl, width: 100, height: 100, fit: BoxFit.cover,)):
+                    Image.asset("lib/assets/icon/user.png", color: Colors.white,),
                   ),
                   Flexible(
                     child: Padding(
@@ -81,9 +95,9 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          user != null ? Text('${user.toString().split('@')[0]}', style: textStyleOrangeSS(),) :
+                          email != null ? Text('${email.toString().split('@')[0]}', style: textStyleOrangeSS(),) :
                           Text('$fbuser', style: textStyleOrangeSS(),),
-                          user != null ? Text('$user', style: smallBoldDescription(),) :
+                          email != null ? Text('$email', style: smallBoldDescription(),) :
                           Text('$fbuser', style: smallBoldDescription(),),
                         ],
                       ),

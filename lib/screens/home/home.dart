@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import '../../widgets/getCompletedTask.dart';
 import '../../services/crud.dart';
 import '../../animations/fade_in_ui.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Home extends StatefulWidget {
   static String tag = "home";
@@ -19,6 +20,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   crudMedthods crudObj = new crudMedthods();
   var tasks;
 
@@ -36,15 +38,26 @@ class _HomeState extends State<Home> {
     userInfo();
   }
 
-  var user, fbuser;
+  var fbuser;
+  var userName, email, photoUrl, uid, emailVerified;
 
   userInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      user = prefs.getString('user');
       fbuser = prefs.getString('fbuser');
     });
-    print("user...................$user $fbuser");
+    print("user...................$fbuser");
+    final FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
+
+    if (userProfile != null) {
+      userName = userProfile.displayName;
+      email = userProfile.email;
+//      photoUrl = userProfile.photoURL;
+//      emailVerified = userProfile.emailVerified;
+      uid = userProfile.uid;
+    }
+    print('user name ....................$userName $email');
+
   }
 
   String dateNow = DateFormat('d MMM yyyy').format(DateTime.now());
@@ -64,6 +77,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: bgGrey,
       body: Container(
         child: ListView(
@@ -74,7 +88,7 @@ class _HomeState extends State<Home> {
               alignment: AlignmentDirectional.center,
               height: 30.0,
               child:
-              user != null ? Text('"Dear ${user.toString().split('@')[0]}, May you be on Time "', style: smallAddressWhiteSI(),) :
+              userName != null ? Text('"Dear $userName, May you be on Time "', style: smallAddressWhiteSI(),) :
               Text('"Dear $fbuser, May you be on Time "', style: smallAddressWhiteSI(),),
               color: grey.withOpacity(0.66),
             ),

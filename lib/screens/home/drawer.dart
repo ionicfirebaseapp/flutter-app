@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import '../../screens/auth/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../screens/settings/contact_us.dart';
 
 class DrawerList extends StatefulWidget {
   @override
@@ -126,13 +127,23 @@ class _DrawerListState extends State<DrawerList> {
                       title: Text("Settings", style: productTitle(),),
                     ),
                   ),
+//                  InkWell(
+//                    onTap: () {
+//                      Navigator.of(context).pop();
+//                    },
+//                    child: ListTile(
+//                      leading: Image.asset("lib/assets/icon/info.png", height: 22.0, width: 22.0,),
+//                      title: Text("About us", style: productTitle(),),
+//                    ),
+//                  ),
                   InkWell(
                     onTap: () {
                       Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed(ContactUs.tag);
                     },
                     child: ListTile(
-                      leading: Image.asset("lib/assets/icon/info.png", height: 22.0, width: 22.0,),
-                      title: Text("About us", style: productTitle(),),
+                      leading: Image.asset("lib/assets/icon/help.png", height: 22.0, width: 22.0,),
+                      title: Text("Help", style: productTitle(),),
                     ),
                   ),
                   InkWell(

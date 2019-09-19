@@ -16,6 +16,7 @@ class TaskExpanded extends StatefulWidget {
 
 class _TaskExpandedState extends State<TaskExpanded> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   crudMedthods crudObj = new crudMedthods();
 
@@ -46,6 +47,13 @@ class _TaskExpandedState extends State<TaskExpanded> {
       crudObj.updateData(widget.updateDocId, {
         'taskDetail': this.taskDetail,
       });
+      _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.blueGrey,
+            content: Text('Task Details Updated successfully...!!!'),
+            duration: Duration(seconds: 2),
+          ));
+
     }
   }
 
@@ -124,6 +132,12 @@ class _TaskExpandedState extends State<TaskExpanded> {
                                             crudObj.updateData(widget.updateDocId, {
                                               'priorityTask' : this.isPriority
                                             });
+                                            _scaffoldKey.currentState.showSnackBar(
+                                                SnackBar(
+                                                  backgroundColor: Colors.blueGrey,
+                                                  content: Text('Task Updated successfully...!!!'),
+                                                  duration: Duration(seconds: 2),
+                                                ));
                                           }catch(e) {
                                             print(e);
                                           }
@@ -224,6 +238,7 @@ class _TaskExpandedState extends State<TaskExpanded> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: primary,
         iconTheme: IconThemeData(color: Colors.white),

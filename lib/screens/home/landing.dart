@@ -116,10 +116,10 @@ class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: primary,
         actions: <Widget>[
-           IconButton(
-             icon: Icon(FontAwesomeIcons.search, color: Colors.white, size: 14.0,),
-             onPressed: _searchPressed,
-           ),
+//           IconButton(
+//             icon: Icon(FontAwesomeIcons.search, color: Colors.white, size: 14.0,),
+//             onPressed: _searchPressed,
+//           ),
         ]
     );
   }

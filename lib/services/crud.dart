@@ -15,6 +15,7 @@ class crudMedthods {
     }
   }
 
+
   Future<void> addData(taskData) async {
     if (isLoggedIn()) {
       final FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -88,4 +89,25 @@ class crudMedthods {
     }
 
   }
+
+
+  Future<void> contactUs(taskData) async {
+    if (isLoggedIn()) {
+      Firestore.instance.collection('contactus').add(taskData).catchError((e) {
+        print(e);
+      });
+      //Using Transactions
+//       Firestore.instance.runTransaction((Transaction crudTransaction) async {
+//         CollectionReference reference =
+//             await Firestore.instance.collection('docs$uid');
+//
+//         reference.add(taskData);
+//       });
+    } else {
+      print('You need to be logged in');
+    }
+  }
+
 }
+
+

@@ -15,6 +15,7 @@ class PriorityTaskDetails extends StatefulWidget {
 }
 
 class _PriorityTaskDetailsState extends State<PriorityTaskDetails> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool isChecked = false, isPriority = false;
   crudMedthods crudObj = new crudMedthods();
   var tasks;
@@ -37,6 +38,7 @@ class _PriorityTaskDetailsState extends State<PriorityTaskDetails> {
     Widget priorityTasksList() {
       if (tasks != null) {
         return Container(
+          key: _scaffoldKey,
           child: StreamBuilder(
               stream: tasks,
               builder: (context, snapshot) {
@@ -101,6 +103,23 @@ class _PriorityTaskDetailsState extends State<PriorityTaskDetails> {
                                               crudObj.updateData(snapshot.data.documents[index].documentID, {
                                                 'priorityTask' : this.isPriority
                                               });
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: new Text("Updated Successfuly...!!!"),
+                                                    content: new Text("Task has been Updated"),
+                                                    actions: <Widget>[
+                                                      new FlatButton(
+                                                        child: new Text("Close"),
+                                                        onPressed: () {
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
                                             }catch(e) {
                                               print(e);
                                             }

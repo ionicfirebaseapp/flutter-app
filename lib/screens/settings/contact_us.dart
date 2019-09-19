@@ -3,6 +3,7 @@ import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
 import '../../screens/home/landing.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../services/crud.dart';
 
 class ContactUs extends StatefulWidget {
   static String tag = "contact-us";
@@ -13,6 +14,44 @@ class ContactUs extends StatefulWidget {
 class _ContactUsState extends State<ContactUs> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String email, subject, message, name;
+  bool loading = false;
+  crudMedthods crudObj = new crudMedthods();
+
+  sendData() async {
+    final FormState form = _formKey.currentState;
+    setState(() {
+      loading = true;
+    });
+    if (!form.validate()) {
+      return;
+    } else {
+      form.save();
+      crudObj.contactUs({
+        'taskTitle': this.name,
+        'taskDetail': this.email,
+        'priorityTask': subject,
+        'notify': message,
+      });
+      _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.blueGrey,
+            content: Text('Message sent successfully...!!!'),
+            duration: Duration(seconds: 1),
+          ));
+
+      new Future.delayed(const Duration(seconds: 1), () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => Landing(),
+          ),
+        );
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +110,7 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                   ),
                   Form(
-//                     key: _formKey,
+                     key: _formKey,
                     child: Theme(
                       data: ThemeData(
                         brightness: Brightness.dark,
@@ -105,6 +144,17 @@ class _ContactUsState extends State<ContactUs> {
                                     ),
                                     style: hintStyleDark(),
                                     keyboardType: TextInputType.text,
+                                    validator: (String value) {
+                                      final RegExp nameExp =
+                                      new RegExp(r'^[A-Za-z ]+$');
+                                      if (value.isEmpty ||
+                                          !nameExp.hasMatch(value)) {
+                                        return 'Please enter your name';
+                                      }
+                                    },
+                                    onSaved: (String value) {
+                                      name = value;
+                                    },
                                   ),
                                 ),
                                 Positioned(
@@ -148,6 +198,16 @@ class _ContactUsState extends State<ContactUs> {
                                     ),
                                     style: hintStyleDark(),
                                     keyboardType: TextInputType.emailAddress,
+                                    validator: (String value) {
+                                      if (value.isEmpty ||
+                                          !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                                              .hasMatch(value)) {
+                                        return 'Please enter a valid email';
+                                      }
+                                    },
+                                    onSaved: (String value) {
+                                      email = value;
+                                    },
                                   ),
                                 ),
                                 Positioned(
@@ -191,6 +251,17 @@ class _ContactUsState extends State<ContactUs> {
                                     ),
                                     keyboardType: TextInputType.text,
                                     style: hintStyleDark(),
+                                    validator: (String value) {
+                                      final RegExp nameExp =
+                                      new RegExp(r'^[A-Za-z ]+$');
+                                      if (value.isEmpty ||
+                                          !nameExp.hasMatch(value)) {
+                                        return 'Please enter your name';
+                                      }
+                                    },
+                                    onSaved: (String value) {
+                                      subject = value;
+                                    },
                                   ),
                                 ),
                                 Positioned(
@@ -233,7 +304,18 @@ class _ContactUsState extends State<ContactUs> {
                                     ),
                                     maxLines: 5,
                                     style: hintStyleDark(),
-                                    keyboardType: TextInputType.emailAddress,
+                                    keyboardType: TextInputType.text,
+                                    validator: (String value) {
+                                      final RegExp nameExp =
+                                      new RegExp(r'^[A-Za-z ]+$');
+                                      if (value.isEmpty ||
+                                          !nameExp.hasMatch(value)) {
+                                        return 'Please enter your name';
+                                      }
+                                    },
+                                    onSaved: (String value) {
+                                      message = value;
+                                    },
                                   ),
                                 ),
                               ],
@@ -263,21 +345,21 @@ class _ContactUsState extends State<ContactUs> {
                                       'SUBMIT',
                                       style: subTitleWhiteSR(),
                                     ),
-//                                      new Padding(
-//                                        padding: new EdgeInsets.only(
-//                                            left: 5.0, right: 5.0),
-//                                      ),
-//                                      loading
-//                                          ? new Image.asset(
-//                                        'lib/assets/gif/load.gif',
-//                                        width: 19.0,
-//                                        height: 19.0,
-//                                      )
-//                                          : new Text(''),
+                                      new Padding(
+                                        padding: new EdgeInsets.only(
+                                            left: 5.0, right: 5.0),
+                                      ),
+                                      loading
+                                          ? new Image.asset(
+                                        'lib/assets/gif/load.gif',
+                                        width: 19.0,
+                                        height: 19.0,
+                                      )
+                                          : new Text(''),
                                   ],
                                 ),
                               ),
-                              onPressed: (){},
+                              onPressed: sendData,
                               splashColor: secondary,
                             ),
                           ),

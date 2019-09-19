@@ -42,6 +42,12 @@ class _AddTaskState extends State<AddTask> {
   void initState() {
     getLocation();
     initializeNotifications();
+    String id = widget.updateDocId;
+    crudObj.getTaskData(id).then((results) {
+      setState(() {
+        tasks = results;
+      });
+    });
     super.initState();
   }
 
@@ -121,9 +127,10 @@ class _AddTaskState extends State<AddTask> {
     if (picked != null && picked != _date) {
       setState(() {
         selectedDate = picked;
+        dueDate = "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
       });
-      print('Date selected: ${selectedDate}');
-      dueDate = "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
+      print('Date selected: $dueDate');
+
     }
   }
 
@@ -222,6 +229,469 @@ class _AddTaskState extends State<AddTask> {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
 
+    Widget _taskForm() {
+      if (tasks != null) {
+        return SingleChildScrollView(
+          child: Container(
+            child: StreamBuilder(
+                stream: tasks,
+                builder: (context, snapshot) {
+                  if (snapshot.data != null) {
+                    return Container(
+                      child: SingleChildScrollView(
+                        child: Form(
+                          key: _formKey,
+                          child: ListView(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsetsDirectional.only(start: 10.0),
+                                child: TextFormField(
+                                  decoration: new InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Task Title',
+                                    hintStyle: hintStyleDark(),
+                                  ),
+                                  initialValue: widget.update != null ? snapshot.data['taskTitle'] : "",
+                                  keyboardType: TextInputType.text,
+                                  style: titleStyleBoldLight(),
+                                  validator: (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter your Task Title';
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    this.taskTitle = value;
+                                  },
+                                ),
+                              ),
+                              Divider(
+                                color: Colors.grey.shade500,
+                                height: 10.0,
+                              ),
+                              Container(
+                                padding: EdgeInsetsDirectional.only(start: 10.0),
+                                child: TextFormField(
+                                  decoration: new InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Task Category',
+                                    hintStyle: hintStyleDark(),
+                                  ),
+                                  initialValue: widget.update != null ? snapshot.data['category'] : "",
+                                  keyboardType: TextInputType.text,
+                                  style: titleStyleBoldLight(),
+                                  validator: (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter your Task Category';
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    this.category = value;
+                                  },
+                                ),
+                              ),
+                              Divider(
+                                color: Colors.grey.shade500,
+                                height: 10.0,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 14.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    InkWell(
+                                        child: Column(
+                                          children: <Widget>[
+                                            Image.asset("lib/assets/icon/date.png"),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: Text("Add Date", style: smallAddressGreySR(),),
+                                            )
+                                          ],
+                                        ),
+//                        color: calender ? Colors.blueAccent : Colors.grey.shade400,
+                                        onTap: () {
+                                          showModalBottomSheet<void>(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    setState(() => calender = true);
+                                                    _selectDate(context);
+                                                  },
+                                                  child: Container(
+                                                      color: primary,
+                                                      padding: EdgeInsets.all(16.0),
+                                                      child: Text(
+                                                        'ADD DUE DATE',
+                                                        textAlign: TextAlign.center,
+                                                        style: categoryWhite(),
+                                                      )),
+                                                );
+                                              });
+                                        }),
+                                    InkWell(
+                                        child: Column(
+                                          children: <Widget>[
+                                            Image.asset("lib/assets/icon/notify.png"),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: Text("Notify me", style: smallAddressGreySR(),),
+                                            )
+                                          ],
+                                        ),
+//                          color: ring ? Colors.red : Colors.grey.shade400,
+                                        onTap: () {
+                                          showModalBottomSheet<void>(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Container(
+                                                  height: 160.0,
+                                                  child: ListView(
+                                                    children: <Widget>[
+                                                      Container(
+                                                        width:
+                                                        MediaQuery.of(context).size.width,
+                                                        color: primary,
+                                                        padding: EdgeInsets.all(5.0),
+                                                        child: MaterialButton(
+                                                            onPressed: () async {
+                                                              Navigator.pop(context);
+                                                              setState(() => ring = true);
+                                                              selectedDate == null ?
+                                                              now = DateTime(
+                                                                  now.year,
+                                                                  now.month,
+                                                                  now.day,
+                                                                  selectedTime.hour,
+                                                                  selectedTime.minute) :
+                                                              now = DateTime(
+                                                                  selectedDate.year,
+                                                                  selectedDate.month,
+                                                                  selectedDate.day,
+                                                                  selectedTime.hour,
+                                                                  selectedTime.minute);
+
+                                                              print('alarm time $now');
+//                                              await singleNotification(
+//                                                now,
+//                                                "Todod Notification on...",
+//                                                "Looks like something intersting you have here...!!!",
+//                                                98123871,
+//                                              );
+                                                            },
+                                                            minWidth: MediaQuery.of(context)
+                                                                .size
+                                                                .width,
+                                                            child: Text(
+                                                              'ADD ALARM',
+                                                              textAlign: TextAlign.center,
+                                                              style: categoryWhite(),
+                                                            )),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            _selectDate(context);
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          padding: EdgeInsets.all(15.0),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment.spaceBetween,
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment.center,
+                                                            children: <Widget>[
+                                                              dueDate == null
+                                                                  ? Text(
+                                                                '',
+                                                                textAlign:
+                                                                TextAlign.center,
+                                                                style:
+                                                                titleStyleBoldLight(),
+                                                              )
+                                                                  : Text(
+                                                                '$dueDate',
+                                                                textAlign:
+                                                                TextAlign.center,
+                                                                style:
+                                                                titleStyleBoldLight(),
+                                                              ),
+                                                              Text(
+                                                                'Set',
+                                                                textAlign: TextAlign.center,
+                                                                style: address(),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            _selectTime(context);
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          padding: EdgeInsets.all(15.0),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment.spaceBetween,
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment.center,
+                                                            children: <Widget>[
+                                                              Text(
+                                                                '${selectedTime.format(context)}',
+                                                                textAlign: TextAlign.center,
+                                                                style: titleStyleBoldLight(),
+                                                              ),
+                                                              Icon(Icons.keyboard_arrow_down),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              });
+                                        }),
+                                    InkWell(
+                                        child: Column(
+                                          children: <Widget>[
+                                            Image.asset("lib/assets/icon/attach.png"),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: Text("Attach", style: smallAddressGreySR(),),
+                                            )
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          showModalBottomSheet<void>(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Container(
+                                                  height: 160.0,
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                    children: <Widget>[
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Container(
+                                                              color: primary,
+                                                              width: screenWidth,
+                                                              padding: EdgeInsets.all(20.0),
+                                                              child: Text(
+                                                                'ADD ATTACHMENT',
+                                                                textAlign: TextAlign.center,
+                                                                style: categoryWhite(),
+                                                              )),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(
+                                                            top: 10.0, bottom: 10.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment.spaceEvenly,
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment.center,
+                                                          children: <Widget>[
+                                                            InkWell(
+                                                              onTap: () {
+                                                                Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder: (BuildContext
+                                                                    context) =>
+                                                                        CurrentLocation(
+                                                                          lat: lat,
+                                                                          lng: lng,
+                                                                        ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                              child: AttachmentIcon(
+                                                                title: "Location",
+                                                                bg: "lib/assets/icon/green.png",
+                                                                icon: Icon(
+                                                                  Icons.location_on,
+                                                                  size: 22.0,
+                                                                  color: Colors.white,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            InkWell(
+                                                              onTap: takeImage,
+                                                              child: AttachmentIcon(
+                                                                title: "Camera",
+                                                                bg: "lib/assets/icon/orange.png",
+                                                                icon: Icon(
+                                                                  Icons.camera_alt,
+                                                                  size: 22.0,
+                                                                  color: Colors.white,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            InkWell(
+                                                              onTap: selectImage,
+                                                              child: AttachmentIcon(
+                                                                title: "Gallery",
+                                                                bg: "lib/assets/icon/blue.png",
+                                                                icon: Icon(
+                                                                  Icons.apps,
+                                                                  size: 22.0,
+                                                                  color: Colors.white,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              });
+                                        }),
+                                    InkWell(
+                                        child: Column(
+                                          children: <Widget>[
+                                            Image.asset("lib/assets/icon/date.png"),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: Text("Priority", style: smallAddressGreySR(),),
+                                            )
+                                          ],
+                                        ),
+//                          color: starMark ? secondary : Colors.grey.shade400,
+                                        onTap: () {
+                                          showModalBottomSheet<void>(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    setState(() => starMark = true);
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                      color: primary,
+                                                      padding: EdgeInsets.all(20.0),
+                                                      child: Text(
+                                                        'SAVE PRIOR TASKS',
+                                                        textAlign: TextAlign.center,
+                                                        style: categoryWhite(),
+                                                      )),
+                                                );
+                                              });
+                                        }),
+                                  ],
+                                ),
+                              ),
+
+                              Container(
+                                padding: EdgeInsetsDirectional.only(start: 10.0),
+                                child: TextFormField(
+                                  decoration: new InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Write here about your task',
+                                    hintStyle: hintStyleDark(),
+                                  ),
+                                  initialValue: widget.update != null ? snapshot.data['taskDetail'] : "",
+                                  keyboardType: TextInputType.text,
+                                  maxLines: 5,
+                                  style: subTitleBlack(),
+                                  validator: (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter your Task Detail';
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    this.taskDetail = value;
+                                  },
+                                ),
+                              ),
+                              _imageFile == null
+                                  ? Container()
+                                  : Container(
+                                margin: EdgeInsets.all(16.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Image.file(
+                                      _imageFile,
+                                      height: 100.0,
+                                      width: 100.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.close,
+                                        color: darkGrey,
+                                        size: 16.0,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _imageFile = null;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              _photoFile == null
+                                  ? Container()
+                                  : Container(
+                                margin: EdgeInsets.all(16.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Image.file(
+                                      _photoFile,
+                                      height: 100.0,
+                                      width: 100.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.close,
+                                        color: darkGrey,
+                                        size: 16.0,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _photoFile = null;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
+          ),
+        );
+      } else {
+        return Container(
+          child: CircularProgressIndicator(),
+        );
+      }
+    }
+
     return Scaffold(
       key: _scaffoldkey,
       appBar: AppBar(
@@ -243,457 +713,19 @@ class _AddTaskState extends State<AddTask> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: Container(
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsetsDirectional.only(start: 10.0),
-                  child: TextFormField(
-                    decoration: new InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Task Title',
-                      hintStyle: hintStyleDark(),
-                    ),
-                    keyboardType: TextInputType.text,
-                    style: titleStyleBoldLight(),
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Please enter your Task Title';
-                      }
-                    },
-                    onSaved: (value) {
-                      this.taskTitle = value;
-                    },
-                  ),
-                ),
-                Divider(
-                  color: Colors.grey.shade500,
-                  height: 10.0,
-                ),
-                Container(
-                  padding: EdgeInsetsDirectional.only(start: 10.0),
-                  child: TextFormField(
-                    decoration: new InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Task Category',
-                      hintStyle: hintStyleDark(),
-                    ),
-                    keyboardType: TextInputType.text,
-                    style: titleStyleBoldLight(),
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Please enter your Task Category';
-                      }
-                    },
-                    onSaved: (value) {
-                      this.category = value;
-                    },
-                  ),
-                ),
-                Divider(
-                  color: Colors.grey.shade500,
-                  height: 10.0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 14.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      InkWell(
-                          child: Column(
-                            children: <Widget>[
-                              Image.asset("lib/assets/icon/date.png"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text("Add Date", style: smallAddressGreySR(),),
-                              )
-                            ],
-                          ),
-//                        color: calender ? Colors.blueAccent : Colors.grey.shade400,
-                          onTap: () {
-                            showModalBottomSheet<void>(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return InkWell(
-                                    onTap: () {
-                                      setState(() => calender = true);
-                                      _selectDate(context);
-                                    },
-                                    child: Container(
-                                        color: primary,
-                                        padding: EdgeInsets.all(16.0),
-                                        child: Text(
-                                          'ADD DUE DATE',
-                                          textAlign: TextAlign.center,
-                                          style: categoryWhite(),
-                                        )),
-                                  );
-                                });
-                          }),
-                      InkWell(
-                          child: Column(
-                            children: <Widget>[
-                              Image.asset("lib/assets/icon/notify.png"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text("Notify me", style: smallAddressGreySR(),),
-                              )
-                            ],
-                          ),
-//                          color: ring ? Colors.red : Colors.grey.shade400,
-                          onTap: () {
-                            showModalBottomSheet<void>(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return Container(
-                                    height: 160.0,
-                                    child: ListView(
-                                      children: <Widget>[
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          color: primary,
-                                          padding: EdgeInsets.all(5.0),
-                                          child: MaterialButton(
-                                              onPressed: () async {
-                                                Navigator.pop(context);
-                                                setState(() => ring = true);
-                                                selectedDate == null ?
-                                                now = DateTime(
-                                                    now.year,
-                                                    now.month,
-                                                    now.day,
-                                                    selectedTime.hour,
-                                                    selectedTime.minute) :
-                                                now = DateTime(
-                                                    selectedDate.year,
-                                                    selectedDate.month,
-                                                    selectedDate.day,
-                                                    selectedTime.hour,
-                                                    selectedTime.minute);
-
-                                                print('alarm time $now');
-//                                              await singleNotification(
-//                                                now,
-//                                                "Todod Notification on...",
-//                                                "Looks like something intersting you have here...!!!",
-//                                                98123871,
-//                                              );
-                                              },
-                                              minWidth: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              child: Text(
-                                                'ADD ALARM',
-                                                textAlign: TextAlign.center,
-                                                style: categoryWhite(),
-                                              )),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            _selectDate(context);
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.all(15.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: <Widget>[
-                                                dueDate == null
-                                                    ? Text(
-                                                        '${_date.day}-${_date.month}-${_date.year}',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            titleStyleBoldLight(),
-                                                      )
-                                                    : Text(
-                                                        '$dueDate',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            titleStyleBoldLight(),
-                                                      ),
-                                                Text(
-                                                  'Set',
-                                                  textAlign: TextAlign.center,
-                                                  style: address(),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            _selectTime(context);
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.all(15.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: <Widget>[
-                                                Text(
-                                                  '${_time.format(context)}',
-                                                  textAlign: TextAlign.center,
-                                                  style: titleStyleBoldLight(),
-                                                ),
-                                                Icon(Icons.keyboard_arrow_down),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                });
-                          }),
-                      InkWell(
-                          child: Column(
-                            children: <Widget>[
-                              Image.asset("lib/assets/icon/attach.png"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text("Attach", style: smallAddressGreySR(),),
-                              )
-                            ],
-                          ),
-                          onTap: () {
-                            showModalBottomSheet<void>(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return Container(
-                                    height: 160.0,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Row(
-                                          children: <Widget>[
-                                            Container(
-                                                color: primary,
-                                                width: screenWidth,
-                                                padding: EdgeInsets.all(20.0),
-                                                child: Text(
-                                                  'ADD ATTACHMENT',
-                                                  textAlign: TextAlign.center,
-                                                  style: categoryWhite(),
-                                                )),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 10.0, bottom: 10.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              InkWell(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          CurrentLocation(
-                                                        lat: lat,
-                                                        lng: lng,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                                child: AttachmentIcon(
-                                                  title: "Location",
-                                                  bg: "lib/assets/icon/green.png",
-                                                  icon: Icon(
-                                                    Icons.location_on,
-                                                    size: 22.0,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                onTap: takeImage,
-                                                child: AttachmentIcon(
-                                                  title: "Camera",
-                                                  bg: "lib/assets/icon/orange.png",
-                                                  icon: Icon(
-                                                    Icons.camera_alt,
-                                                    size: 22.0,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                onTap: selectImage,
-                                                child: AttachmentIcon(
-                                                  title: "Gallery",
-                                                  bg: "lib/assets/icon/blue.png",
-                                                  icon: Icon(
-                                                    Icons.apps,
-                                                    size: 22.0,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                });
-                          }),
-                      InkWell(
-                          child: Column(
-                            children: <Widget>[
-                              Image.asset("lib/assets/icon/date.png"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text("Priority", style: smallAddressGreySR(),),
-                              )
-                            ],
-                          ),
-//                          color: starMark ? secondary : Colors.grey.shade400,
-                          onTap: () {
-                            showModalBottomSheet<void>(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return InkWell(
-                                    onTap: () {
-                                      setState(() => starMark = true);
-                                      Navigator.pop(context);
-                                    },
-                                    child: Container(
-                                        color: primary,
-                                        padding: EdgeInsets.all(20.0),
-                                        child: Text(
-                                          'SAVE PRIOR TASKS',
-                                          textAlign: TextAlign.center,
-                                          style: categoryWhite(),
-                                        )),
-                                  );
-                                });
-                          }),
-                    ],
-                  ),
-                ),
-
-                Container(
-                  padding: EdgeInsetsDirectional.only(start: 10.0),
-                  child: TextFormField(
-                    decoration: new InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Write here about your task',
-                      hintStyle: hintStyleDark(),
-                    ),
-                    keyboardType: TextInputType.text,
-                    maxLines: 5,
-                    style: subTitleBlack(),
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Please enter your Task Detail';
-                      }
-                    },
-                    onSaved: (value) {
-                      this.taskDetail = value;
-                    },
-                  ),
-                ),
-                _imageFile == null
-                    ? Container()
-                    : Container(
-                        margin: EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Image.file(
-                              _imageFile,
-                              height: 100.0,
-                              width: 100.0,
-                              fit: BoxFit.cover,
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.close,
-                                color: darkGrey,
-                                size: 16.0,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _imageFile = null;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                _photoFile == null
-                    ? Container()
-                    : Container(
-                        margin: EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Image.file(
-                              _photoFile,
-                              height: 100.0,
-                              width: 100.0,
-                              fit: BoxFit.cover,
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.close,
-                                color: darkGrey,
-                                size: 16.0,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _photoFile = null;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      body: _taskForm(),
       bottomNavigationBar: new Container(
         color: secondary,
         child: new InkWell(
           onTap: () async {
             final FormState form = _formKey.currentState;
             if (!form.validate()) {
-              return;
+
             } else {
               form.save();
               if (widget.update == true) {
                 print('11111111 update task');
                 try {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => Landing(),
-                    ),
-                  );
                   crudObj.updateData(widget.updateDocId, {
                     'taskTitle': this.taskTitle,
                     'taskDetail': this.taskDetail,
@@ -706,6 +738,21 @@ class _AddTaskState extends State<AddTask> {
                     'attach': this.attach,
                   });
                   uploadDocs();
+                  _scaffoldkey.currentState.showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.blueGrey,
+                        content: Text('Task Updated successfully...!!!'),
+                        duration: Duration(seconds: 1),
+                      ));
+
+                  new Future.delayed(const Duration(seconds: 1), () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => Landing(),
+                      ),
+                    );
+                  });
                 } catch (e) {
                   print(e);
                 }
@@ -724,12 +771,22 @@ class _AddTaskState extends State<AddTask> {
                     'attach': this.attach,
                   });
                   uploadDocs();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => Landing(),
-                    ),
-                  );
+                  _scaffoldkey.currentState.showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.blueGrey,
+                        content: Text('Task Added successfully...!!!'),
+                        duration: Duration(seconds: 1),
+                      ));
+
+                  new Future.delayed(const Duration(seconds: 1), () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => Landing(),
+                      ),
+                    );
+                  });
+
                 } catch (e) {
                   print(e);
                 }

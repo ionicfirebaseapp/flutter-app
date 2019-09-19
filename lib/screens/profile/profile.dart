@@ -6,6 +6,12 @@ import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
 import '../../screens/home/drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import '../../services/crud.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart' as path;
 
 class Profile extends StatefulWidget {
   static String tag = "profile";
@@ -15,21 +21,161 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
+  crudMedthods crudObj = new crudMedthods();
+
   @override
   void initState() {
     super.initState();
     userInfo();
   }
 
-  var user, fbuser;
+  var fbuser;
+  var userName, email, uid;
+  var photoUrl;
+  bool imageLoading = false;
 
   userInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      user = prefs.getString('user');
+      imageLoading = true;
       fbuser = prefs.getString('fbuser');
     });
+    print("fbuser...................$fbuser");
+    FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
+
+    if (userProfile != null) {
+      setState(() {
+        userName = userProfile.displayName;
+        email = userProfile.email;
+        uid = userProfile.uid;
+        photoUrl = userProfile.photoUrl;
+        imageLoading = false;
+      });
+    }
+    print('photourl....................$photoUrl');
+
+
   }
+
+  var imageUrl;
+
+  static File _imageFile;
+
+  takeImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      imageLoading = true;
+      _imageFile = image;
+      print('Image Path $_imageFile');
+    });
+    print("TakeImage  $_imageFile");
+    String fileName = path.basename(_imageFile.path);
+
+    final StorageReference firebaseStorageRef =
+    FirebaseStorage.instance.ref().child(fileName);
+    final StorageUploadTask task = firebaseStorageRef.putFile(_imageFile);
+    print('pic $task');
+    var taskSnapshot =
+    await (await task.onComplete).ref.getDownloadURL();
+
+    imageUrl = taskSnapshot.toString();
+    FirebaseAuth.instance.currentUser().then((val) {
+      UserUpdateInfo updateUser = UserUpdateInfo();
+      updateUser.photoUrl = imageUrl;
+      val.updateProfile(updateUser);
+    });
+    userInfo();
+    setState(() {
+      imageLoading = false;
+    });
+  }
+
+  selectImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imageLoading = true;
+      _imageFile = image;
+    });
+    print("SelectImage  $_imageFile");
+    String fileName = path.basename(_imageFile.path);
+
+    final StorageReference firebaseStorageRef =
+    FirebaseStorage.instance.ref().child(fileName);
+    final StorageUploadTask task = firebaseStorageRef.putFile(_imageFile);
+    var taskSnapshot =
+    await (await task.onComplete).ref.getDownloadURL();
+
+    imageUrl = taskSnapshot.toString();
+    FirebaseAuth.instance.currentUser().then((val) {
+      UserUpdateInfo updateUser = UserUpdateInfo();
+      updateUser.photoUrl = imageUrl;
+      val.updateProfile(updateUser);
+    });
+    userInfo();
+    setState(() {
+      imageLoading = false;
+    });
+    print('pic $imageUrl');
+  }
+
+  Widget profileImage() {
+    return
+    imageUrl != null ?
+    ClipOval(child: Image.network(imageUrl, width: 100, height: 100, fit: BoxFit.cover,)) :
+    photoUrl != null ? ClipOval(child: Image.network(photoUrl, width: 100, height: 100, fit: BoxFit.cover,)):
+    Image.asset("lib/assets/icon/user.png", width: 100, height: 100, color: Colors.white,);
+//    new Image.asset(
+//      'lib/assets/gif/load.gif',
+//      color: Colors.white,
+//      width: 22.0,
+//      height: 22.0,
+//    );
+  }
+
+  Future<bool> _onWillPop() {
+    return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: InkWell(
+          onTap: () {
+            takeImage();
+            Navigator.of(context).pop(false);
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(Icons.camera_alt, size: 18.0, color: Colors.black),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0),
+              ),
+              Text(
+                "Select Camera",
+                style: prefix0.address(),
+              ),
+            ],
+          ),
+        ),
+        content: InkWell(
+          onTap: () {
+            selectImage();
+            Navigator.of(context).pop(false);
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(Icons.image, size: 18.0, color: Colors.black),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0),
+              ),
+              Text("Select Gallery", style: prefix0.address()),
+            ],
+          ),
+        ),
+      ),
+    ) ??
+        false;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +191,36 @@ class _ProfileState extends State<Profile> {
         padding: EdgeInsets.all(20.0),
         children: <Widget>[
           Container(
+            height: 120.0,
+            child: Stack(
+              alignment: AlignmentDirectional.center,
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 50.0,
+                  backgroundColor: primary.withOpacity(0.4),
+                  child: profileImage(),
+                ),
+                Positioned(
+                  right: prefix0.screenWidth(context)/3.4,
+                  top: prefix0.screenHeight(context)/9,
+                  child: Container(
+                    height: 30.0,
+                    width: 30.0,
+                    child: new FloatingActionButton(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.white,
+                      onPressed: () => _onWillPop(),
+                      tooltip: 'Photo',
+                      child: new Icon(Icons.camera_alt, size: 14.0,),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
             height: 70.0,
-            margin: EdgeInsets.only(bottom: 14.0),
+            margin: EdgeInsets.only(top: 20.0, bottom: 14.0),
             width: screenHeight(context),
             padding: EdgeInsets.all(14.0),
             decoration: new BoxDecoration(
@@ -60,9 +234,13 @@ class _ProfileState extends State<Profile> {
             ),
             child: Row(
               children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: primary.withOpacity(0.4),
-                  child: Image.asset("lib/assets/icon/user.png", color: Colors.white,),
+                InkWell(
+                  onTap: () => _onWillPop(),
+                  child: CircleAvatar(
+                    radius: 22.0,
+                    backgroundColor: primary.withOpacity(0.4),
+                    child: profileImage(),
+                  ),
                 ),
                 Flexible(
                   child: Padding(
@@ -71,9 +249,9 @@ class _ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        user != null ? Text('${user.toString().split('@')[0]}', style: textStyleOrangeSS(),) :
+                        userName != null ? Text('$userName', style: textStyleOrangeSS(),) :
                           Text('$fbuser', style: textStyleOrangeSS(),),
-                        user != null ? Text('$user', style: smallBoldDescription(),) :
+                        email != null ? Text('$email', style: smallBoldDescription(),) :
                           Text('$fbuser', style: smallBoldDescription(),),
                       ],
                     ),
@@ -146,32 +324,32 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          InkWell(
-            onTap: (){
-              Navigator.of(context).pushNamed(ContactUs.tag);
-            },
-            child: Container(
-              height: 70.0,
-              width: screenHeight(context),
-              padding: EdgeInsets.all(8.0),
-              margin: EdgeInsets.only(bottom: 14.0),
-              decoration: new BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  new BoxShadow(
-                    color: Colors.grey.shade300,
-                    blurRadius: 8.0,
-                  ),
-                ],
-              ),
-              child: Row(
-                children: <Widget>[
-                  IconButton(icon: Image.asset("lib/assets/icon/help.png", height: 22.0, width: 22.0, color: Colors.black,)),
-                  Text("Help", style: textSmallStyleGreySS(),),
-                ],
-              ),
-            ),
-          ),
+//          InkWell(
+//            onTap: (){
+//              Navigator.of(context).pushNamed(ContactUs.tag);
+//            },
+//            child: Container(
+//              height: 70.0,
+//              width: screenHeight(context),
+//              padding: EdgeInsets.all(8.0),
+//              margin: EdgeInsets.only(bottom: 14.0),
+//              decoration: new BoxDecoration(
+//                color: Colors.white,
+//                boxShadow: [
+//                  new BoxShadow(
+//                    color: Colors.grey.shade300,
+//                    blurRadius: 8.0,
+//                  ),
+//                ],
+//              ),
+//              child: Row(
+//                children: <Widget>[
+//                  IconButton(icon: Image.asset("lib/assets/icon/help.png", height: 22.0, width: 22.0, color: Colors.black,)),
+//                  Text("Help", style: textSmallStyleGreySS(),),
+//                ],
+//              ),
+//            ),
+//          ),
         ],
       )
     );

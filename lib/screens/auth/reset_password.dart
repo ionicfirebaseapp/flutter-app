@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
 import '../../screens/auth/login.dart';
+import '../../services/firestoreService.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../common/constant.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResetPassword extends StatefulWidget {
   static String tag = "reset-password";
@@ -13,7 +18,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
 
-  String password, confirmPassword;
+  String email;
   bool loading = false;
 
   resetPassword() async {
@@ -25,13 +30,22 @@ class _ResetPasswordState extends State<ResetPassword> {
       setState(() {
         loading = true;
       });
-      if (confirmPassword.isNotEmpty && password.isNotEmpty) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Login(),
-          ),
-        );
+      if (email.isNotEmpty) {
+        try{
+          FirebaseUser user = await auth
+              .sendPasswordResetEmail(email:email,)
+              .then((userNew) {
+              return null;
+          });
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => Login(),
+              ),
+                  (Route<dynamic> route) => false);
+        }catch(e){
+          print('vvvvvvv $e');
+        }
       }
       setState(() {
         loading = false;
@@ -70,7 +84,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       alignment: AlignmentDirectional.center,
                       padding: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 30.0),
                       child: Text(
-                        "Reset Password If you have forgot password",
+                        "Enter your Email Id, Reset password link will send to your email address",
                         style: subTitleWhite2(),
                         textAlign: TextAlign.center,
                       ),
@@ -93,7 +107,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.only(bottom: 20.0),
+                              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 15.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
@@ -101,75 +115,24 @@ class _ResetPasswordState extends State<ResetPassword> {
                                     color: Colors.white,
                                     padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
+                                      textAlign: TextAlign.left,
                                       cursorColor: border,
-                                      decoration: new InputDecoration(
+                                      decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: 'Password',
+                                        hintText: 'Email Id',
                                         hintStyle: hintStyleDark(),
                                       ),
-                                      keyboardType: TextInputType.text,
                                       style: hintStyleDark(),
+                                      keyboardType: TextInputType.emailAddress,
                                       validator: (String value) {
-                                        if (value.isEmpty || value.length < 6) {
-                                          return 'Password invalid';
-                                        }
-                                      },
-                                      controller: _passwordTextController,
-                                      onSaved: (String value) {
-                                        password = value;
-                                      },
-                                      obscureText: true,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: -6.0,
-                                    right: (screenWidth(context) * 0.83) - 55.0,
-                                    child: Stack(
-                                      fit: StackFit.loose,
-                                      alignment: AlignmentDirectional.center,
-                                      children: <Widget>[
-                                        Image.asset("lib/assets/icon/send.png"),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              bottom: 8.0, left: 2.0),
-                                          child: Icon(
-                                            Icons.lock_outline,
-                                            color: Colors.white,
-                                            size: 18.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(bottom: 20.0),
-                              child: Stack(
-                                children: <Widget>[
-                                  Container(
-                                    width: screenWidth(context)*0.83,
-                                    color: Colors.white,
-                                    padding: EdgeInsets.only(left: 65.0),
-                                    child: TextFormField(
-                                      cursorColor: border,
-                                      decoration: new InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'Confirm Password',
-                                        hintStyle: hintStyleDark(),
-                                      ),
-                                      keyboardType: TextInputType.text,
-                                      style: hintStyleDark(),
-                                      obscureText: true,
-                                      validator: (String value) {
-                                        if (_passwordTextController.text !=
-                                            value) {
-                                          return 'Passwords do not match.';
+                                        if (value.isEmpty ||
+                                            !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                                                .hasMatch(value)) {
+                                          return 'Please enter a valid email';
                                         }
                                       },
                                       onSaved: (String value) {
-                                        confirmPassword = value;
+                                        email = value;
                                       },
                                     ),
                                   ),
@@ -185,9 +148,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                                           padding: EdgeInsets.only(
                                               bottom: 8.0, left: 2.0),
                                           child: Icon(
-                                            Icons.lock_outline,
+                                            FontAwesomeIcons.user,
                                             color: Colors.white,
-                                            size: 18.0,
+                                            size: 16.0,
                                           ),
                                         ),
                                       ],

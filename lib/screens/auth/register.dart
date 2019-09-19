@@ -6,6 +6,7 @@ import '../../services/firestoreService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../common/constant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class Register extends StatefulWidget {
@@ -37,7 +38,8 @@ class _RegisterState extends State<Register> {
 
   registration() async {
     final FormState form = _formKey.currentState;
-    print(email);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     setState(() {
       loading = true;
     });
@@ -45,6 +47,7 @@ class _RegisterState extends State<Register> {
       return;
     } else {
       form.save();
+      prefs.setString('name', '$name');
       print('email name $email $name $password');
 //      await LoginService.registerUser(email, password, name).then((onValue) {
       FirebaseUser user = await auth
@@ -54,12 +57,16 @@ class _RegisterState extends State<Register> {
         setState(() {
           loading = false;
         });
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => Login(),
-            ),
-                (Route<dynamic> route) => false);
+
+
+        userNew.sendEmailVerification().then((_) {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => Login(),
+              ),
+                  (Route<dynamic> route) => false);
+        });
       }).catchError((onError) {
         setState(() {
           loading = false;

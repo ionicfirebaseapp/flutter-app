@@ -14,6 +14,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../common/constant.dart';
 import 'dart:convert';
 import '../../screens/auth/reset_password.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   static String tag = "login";
@@ -35,12 +38,34 @@ class _LoginState extends State<Login> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+  }
 
   bool loading = false;
   var errorText;
+  var name, fbuser;
+
+  getUserInfo() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      name = prefs.getString('name');
+      fbuser = prefs.getString('fbuser');
+    });
+    print('ferrrr $name mmm $fbuser jj');
+  }
 
   Future<void> signInUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    FirebaseAuth.instance.currentUser().then((val) {
+      UserUpdateInfo updateUser = UserUpdateInfo();
+      updateUser.displayName = name;
+//      updateUser.photoUrl = picURL;
+      val.updateProfile(updateUser);
+    });
+
     prefs.setBool('login', true);
     setState(() {
       loading = true;
@@ -59,8 +84,8 @@ class _LoginState extends State<Login> {
           loading = false;
         });
 
+
         print('onval $user');
-        prefs.setString('user', '${user.email}');
 
         Navigator.pushAndRemoveUntil(
             context,
@@ -299,7 +324,7 @@ class _LoginState extends State<Login> {
                                       cursorColor: border,
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: 'User Name',
+                                        hintText: 'Email Id',
                                         hintStyle: hintStyleDark(),
                                       ),
                                       style: hintStyleDark(),
