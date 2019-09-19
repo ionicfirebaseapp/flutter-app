@@ -10,39 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8bdab5b-aa37-4217-beca-130f959b7627" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/auth/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/auth/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/auth/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/auth/register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/auth/reset_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/auth/reset_password.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/home.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/landing.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/landing.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/profile/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/profile/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/settings/contact_us.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/settings/contact_us.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/settings/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/settings/settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/task/add_task.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/add_task.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/task/task_expanded.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/task/task_expanded.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/crud.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/crud.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/getPriorityTaskDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/getPriorityTaskDetails.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/google-services.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/key.properties" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -66,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="576" column="40" selection-start-line="576" selection-start-column="40" selection-end-line="576" selection-end-column="40" />
+            <state relative-caret-position="394">
+              <caret line="590" column="36" lean-forward="true" selection-start-line="590" selection-start-column="36" selection-end-line="590" selection-end-column="36" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -213,66 +183,7 @@
             <path>
               <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
               <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
-              <item name="auth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
-              <item name="profile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
-              <item name="settings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
-              <item name="task" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="todoapp-pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="todoapp-pro" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="widgets" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -366,7 +277,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="top" id="Flutter Outline" order="0" side_tool="true" weight="0.0" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.15452054" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8785047" visible="true" weight="0.15452054" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -377,7 +288,7 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.13926701" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.910137" visible="true" weight="0.30085653" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.910137" weight="0.30085653" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3993576" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -387,7 +298,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.09205479" side_tool="true" weight="0.32976446" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32976446" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.90958905" weight="0.50428265" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.90958905" weight="0.60171306" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.9079452" weight="0.32976446" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -797,8 +708,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/task/add_task.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="576" column="40" selection-start-line="576" selection-start-column="40" selection-end-line="576" selection-end-column="40" />
+        <state relative-caret-position="394">
+          <caret line="590" column="36" lean-forward="true" selection-start-line="590" selection-start-column="36" selection-end-line="590" selection-end-column="36" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
