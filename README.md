@@ -24,7 +24,7 @@
   
 <p align="center">
   <a href="https://www.ionicfirebaseapp.com/products/flutter-mobile-app">
-    <img src="https://res.cloudinary.com/dlx35qw0l/image/upload/v1566380513/todo-App-Banner_xlvq3r.jpg" alt="Flutter To Do Mobile App Banner">
+    <img src="https://res.cloudinary.com/dlx35qw0l/image/upload/v1569306880/Untitled-1_1_l3fijn.png" alt="Flutter To Do Mobile App Banner">
   </a>
 </p>
 
