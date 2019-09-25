@@ -818,7 +818,7 @@ class _AddTaskState extends State<AddTask> {
               } else {
                 try {
                   print('11111111 add task $taskTitle');
-                  crudObj.addData(loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId,{
+                  crudObj.addData(loginType == 'fs' ? uid : fbId,{
                     'taskTitle': this.taskTitle,
                     'taskDetail': this.taskDetail,
                     'priorityTask': starMark,
