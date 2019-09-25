@@ -9,6 +9,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import '../screens/task/add_task.dart';
 import '../screens/home/landing.dart';
 import '../animations/fade_in_ui.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CompletedTaskDetails extends StatefulWidget {
   @override
@@ -22,14 +24,43 @@ class _CompletedTaskDetailsState extends State<CompletedTaskDetails> {
   bool taskCompleted = false;
   @override
   void initState() {
-    crudObj.getData().then((results) {
+    getInfo();
+    super.initState();
+  }
+
+  String uid, fbId, twId;
+  var loginType;
+
+  getInfo() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      loginType = prefs.getString('loginType');
+    });
+    print("logintype ...................$loginType");
+    if(loginType == 'fb'){
+      setState(() {
+        fbId = prefs.getString('fbId');
+      });
+      print('fbbuser $fbId');
+    }else if(loginType == 'tw'){
+      setState(() {
+        twId = prefs.getString('twId');
+      });
+      print('twuser $twId');
+    }else if(loginType == 'fs') {
+      final FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
+      if (userProfile != null) {
+        uid = userProfile.uid;
+      }
+      print('user name ....................$uid');
+    }
+    crudObj.getData(loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId).then((results) {
       if(mounted){
         setState(() {
           tasks = results;
         });
       }
     });
-    super.initState();
   }
 
   bool isChecked = false;
@@ -163,7 +194,7 @@ class _CompletedTaskDetailsState extends State<CompletedTaskDetails> {
                                       child: Center(
                                         child: InkWell(
                                           onTap: () {
-                                            crudObj.deleteData(snapshot.data.documents[index].documentID);
+                                            crudObj.deleteData(snapshot.data.documents[index].documentID, loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId);
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -207,7 +238,6 @@ class _CompletedTaskDetailsState extends State<CompletedTaskDetails> {
         return Column(
           children: <Widget>[
             FadeIn(1, CardPlaceholder()),
-            FadeIn(2, CardPlaceholder()),
             FadeIn(1.5, Text("Tasks not added yet...")),
           ],
         );

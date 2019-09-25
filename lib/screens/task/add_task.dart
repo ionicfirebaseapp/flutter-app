@@ -18,6 +18,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../widgets/attachmentIcon.dart';
 import '../../screens/home/landing.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddTask extends StatefulWidget {
   static String tag = "add-task";
@@ -38,17 +39,50 @@ class _AddTaskState extends State<AddTask> {
 
   crudMedthods crudObj = new crudMedthods();
 
+  String docId;
+
   @override
   void initState() {
+    getInfo();
     getLocation();
     initializeNotifications();
-    String id = widget.updateDocId;
-    crudObj.getTaskData(id).then((results) {
+
+    docId = widget.updateDocId;
+
+    super.initState();
+  }
+
+  String fbId;
+  var loginType, twId;
+
+  getInfo() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      loginType = prefs.getString('loginType');
+    });
+    print("logintype ...................$loginType");
+    if(loginType == 'fb'){
+      setState(() {
+        fbId = prefs.getString('fbId');
+      });
+      print('fbbuser $fbId');
+    }else if(loginType == 'tw'){
+      setState(() {
+        twId = prefs.getString('twId');
+      });
+      print('twuser $twId');
+    }else {
+      final FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
+      if (userProfile != null) {
+        uid = userProfile.uid;
+      }
+      print('user name ....................$uid');
+    }
+    crudObj.getTaskData(docId, loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId).then((results) {
       setState(() {
         tasks = results;
       });
     });
-    super.initState();
   }
 
   FlutterLocalNotificationsPlugin localNotificationsPlugin =
@@ -144,6 +178,8 @@ class _AddTaskState extends State<AddTask> {
     );
   }
 
+  String uid;
+
   bool visibilityTag = false;
   bool visibilityObs = false;
 
@@ -222,6 +258,29 @@ class _AddTaskState extends State<AddTask> {
         error = 'Permission denied';
       }
       currentLocation = null;
+    }
+  }
+
+  uploadDocs() async {
+    if (_imageFile != null && _photoFile != null) {
+      final StorageReference firebaseStorageRef =
+      FirebaseStorage.instance.ref().child('docs${loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId}/image$count.jpg');
+      final StorageUploadTask task = firebaseStorageRef.putFile(_imageFile);
+      final StorageReference firebaseStorageRef2 =
+      FirebaseStorage.instance.ref().child('docs${loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId}/images$count.jpg');
+      final StorageUploadTask task2 = firebaseStorageRef2.putFile(_photoFile);
+    } else if (_imageFile == null && _photoFile == null) {
+      return null;
+    } else {
+      if (_photoFile != null) {
+        final StorageReference firebaseStorageRef2 =
+        FirebaseStorage.instance.ref().child('docs${loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId}/images$count.jpg');
+        final StorageUploadTask task2 = firebaseStorageRef2.putFile(_photoFile);
+      } else {
+        final StorageReference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('docs${loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId}/image$count.jpg');
+        final StorageUploadTask task = firebaseStorageRef.putFile(_imageFile);
+      }
     }
   }
 
@@ -726,7 +785,7 @@ class _AddTaskState extends State<AddTask> {
               if (widget.update == true) {
                 print('11111111 update task');
                 try {
-                  crudObj.updateData(widget.updateDocId, {
+                  crudObj.updateData(widget.updateDocId, loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId, {
                     'taskTitle': this.taskTitle,
                     'taskDetail': this.taskDetail,
                     'priorityTask': starMark,
@@ -759,7 +818,7 @@ class _AddTaskState extends State<AddTask> {
               } else {
                 try {
                   print('11111111 add task $taskTitle');
-                  crudObj.addData({
+                  crudObj.addData(loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId,{
                     'taskTitle': this.taskTitle,
                     'taskDetail': this.taskDetail,
                     'priorityTask': starMark,
@@ -812,30 +871,6 @@ class _AddTaskState extends State<AddTask> {
     );
   }
 
-  uploadDocs() async {
-    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    final String uid = user.uid;
-    if (_imageFile != null && _photoFile != null) {
-      final StorageReference firebaseStorageRef =
-          FirebaseStorage.instance.ref().child('docs$uid/image$count.jpg');
-      final StorageUploadTask task = firebaseStorageRef.putFile(_imageFile);
-      final StorageReference firebaseStorageRef2 =
-          FirebaseStorage.instance.ref().child('docs$uid/images$count.jpg');
-      final StorageUploadTask task2 = firebaseStorageRef2.putFile(_photoFile);
-    } else if (_imageFile == null && _photoFile == null) {
-      return null;
-    } else {
-      if (_photoFile != null) {
-        final StorageReference firebaseStorageRef2 =
-            FirebaseStorage.instance.ref().child('docs$uid/images$count.jpg');
-        final StorageUploadTask task2 = firebaseStorageRef2.putFile(_photoFile);
-      } else {
-        final StorageReference firebaseStorageRef =
-            FirebaseStorage.instance.ref().child('docs$uid/image$count.jpg');
-        final StorageUploadTask task = firebaseStorageRef.putFile(_imageFile);
-      }
-    }
-  }
 }
 
 class CompositeSubscription {

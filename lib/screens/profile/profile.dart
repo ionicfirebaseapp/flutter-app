@@ -29,32 +29,47 @@ class _ProfileState extends State<Profile> {
     userInfo();
   }
 
-  var fbuser;
   var userName, email, uid;
   var photoUrl;
   bool imageLoading = false;
+  var fbUser, fbEmail, fbProfile, fbId;
+  var loginType;
+  var twId, twUser;
 
   userInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      imageLoading = true;
-      fbuser = prefs.getString('fbuser');
+      loginType = prefs.getString('loginType');
     });
-    print("fbuser...................$fbuser");
-    FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
-
-    if (userProfile != null) {
+    print("logintype ...................$loginType");
+    if(loginType == 'fb'){
       setState(() {
-        userName = userProfile.displayName;
-        email = userProfile.email;
-        uid = userProfile.uid;
-        photoUrl = userProfile.photoUrl;
-        imageLoading = false;
+        imageLoading = true;
+        fbUser = prefs.getString('fbUser');
+        fbEmail = prefs.getString('fbEmail');
+        fbId = prefs.getString('fbId');
+        fbProfile = prefs.getString('fbProfile');
       });
+      print('fb user $fbUser $fbProfile, $fbEmail, $fbId');
+    }else if(loginType == 'tw'){
+      setState(() {
+        twUser = prefs.getString('twUser');
+        twId = prefs.getString('twId');
+      });
+      print('twuser $twUser $twId');
+    }else if(loginType == 'fs') {
+      FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
+      if (userProfile != null) {
+        setState(() {
+          userName = userProfile.displayName;
+          email = userProfile.email;
+          uid = userProfile.uid;
+          photoUrl = userProfile.photoUrl;
+          imageLoading = false;
+        });
+      }
+      print('photourl.................... $userName $photoUrl');
     }
-    print('photourl....................$photoUrl');
-
-
   }
 
   var imageUrl;
@@ -198,9 +213,11 @@ class _ProfileState extends State<Profile> {
                 CircleAvatar(
                   radius: 50.0,
                   backgroundColor: primary.withOpacity(0.4),
-                  child: profileImage(),
+                  child: loginType == 'fb' ?
+                    ClipOval(child: Image.network(fbProfile, width: 100, height: 100, fit: BoxFit.cover,)) :
+                    profileImage(),
                 ),
-                Positioned(
+                loginType == 'fs' ? Positioned(
                   right: prefix0.screenWidth(context)/3.4,
                   top: prefix0.screenHeight(context)/9,
                   child: Container(
@@ -214,7 +231,7 @@ class _ProfileState extends State<Profile> {
                       child: new Icon(Icons.camera_alt, size: 14.0,),
                     ),
                   ),
-                ),
+                ) : Container(),
               ],
             ),
           ),
@@ -239,7 +256,9 @@ class _ProfileState extends State<Profile> {
                   child: CircleAvatar(
                     radius: 22.0,
                     backgroundColor: primary.withOpacity(0.4),
-                    child: profileImage(),
+                    child: loginType == 'fb' ?
+                    ClipOval(child: Image.network(fbProfile, width: 100, height: 100, fit: BoxFit.cover,)) :
+                    profileImage(),
                   ),
                 ),
                 Flexible(
@@ -249,10 +268,12 @@ class _ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        userName != null ? Text('$userName', style: textStyleOrangeSS(),) :
-                          Text('$fbuser', style: textStyleOrangeSS(),),
-                        email != null ? Text('$email', style: smallBoldDescription(),) :
-                          Text('$fbuser', style: smallBoldDescription(),),
+                        loginType == 'fs' ? Text('$userName', style: textStyleOrangeSS(),) :
+                          loginType == 'fb' ?  Text('$fbUser', style: textStyleOrangeSS(),) :
+                            Text('$twUser', style: textStyleOrangeSS(),),
+                        loginType == 'fs' ? Text('$email', style: smallBoldDescription(),) :
+                          loginType == 'fb' ? Text('$fbEmail', style: smallBoldDescription(),) :
+                            Text('-', style: smallBoldDescription(),),
                       ],
                     ),
                   ),

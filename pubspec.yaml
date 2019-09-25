@@ -70,6 +70,7 @@ flutter:
     - lib/assets/bg/sidebar_bg.png
     - lib/assets/bg/bar.png
     - lib/assets/gif/load.gif
+    - lib/assets/gif/spinner.gif
 
   fonts:
     - family: OpenSansSemiBold

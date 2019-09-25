@@ -58,6 +58,9 @@ class _DrawerListState extends State<DrawerList> {
   static final FacebookLogin facebookSignIn = new FacebookLogin();
 
   _facebookLogOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setBool('fbLogin', false);
     await facebookSignIn.logOut();
     _showMessage('Logged out.');
     Navigator.pushAndRemoveUntil(
@@ -150,9 +153,10 @@ class _DrawerListState extends State<DrawerList> {
                     onTap: () async{
                       Navigator.of(context).pop();
                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                      prefs.setString('fbuser', '');
-                      prefs.setString('user', '');
-                      signOutGoogle() || _facebookLogOut() || _twitterLogout();
+                      prefs.setBool('fbLogin', false);
+                      signOutGoogle() ||
+                      _facebookLogOut()
+                      || _twitterLogout();
                     },
                     child: ListTile(
                       leading: Image.asset("lib/assets/icon/signout.png", height: 22.0, width: 22.0,),

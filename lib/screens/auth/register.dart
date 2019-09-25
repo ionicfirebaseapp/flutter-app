@@ -47,7 +47,6 @@ class _RegisterState extends State<Register> {
       return;
     } else {
       form.save();
-      prefs.setString('name', '$name');
       print('email name $email $name $password');
 //      await LoginService.registerUser(email, password, name).then((onValue) {
       FirebaseUser user = await auth
@@ -60,6 +59,13 @@ class _RegisterState extends State<Register> {
 
 
         userNew.sendEmailVerification().then((_) {
+
+          FirebaseAuth.instance.currentUser().then((val) {
+            UserUpdateInfo updateUser = UserUpdateInfo();
+            updateUser.displayName = name;
+            val.updateProfile(updateUser);
+          });
+
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
@@ -119,7 +125,7 @@ class _RegisterState extends State<Register> {
               fit: BoxFit.cover,
             ),
             Positioned(
-              top: 80.0,
+              top: 40.0,
               child: Align(
                 alignment: AlignmentDirectional.topStart,
                 child: Column(

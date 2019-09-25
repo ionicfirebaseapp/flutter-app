@@ -16,11 +16,9 @@ class crudMedthods {
   }
 
 
-  Future<void> addData(taskData) async {
+  Future<void> addData(id,taskData) async {
     if (isLoggedIn()) {
-      final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-      final String  uid = user.uid;
-      Firestore.instance.collection('docs$uid').add(taskData).catchError((e) {
+      Firestore.instance.collection('docs$id').add(taskData).catchError((e) {
         print(e);
       });
       //Using Transactions
@@ -35,33 +33,27 @@ class crudMedthods {
     }
   }
 
-  getData() async {
+  getData(id) async {
     if (isLoggedIn()) {
-      final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-      final uid = user.uid;
-      return await Firestore.instance.collection('docs$uid').snapshots();
+      return await Firestore.instance.collection('docs$id').snapshots();
     } else {
       print('You need to be logged in');
     }
   }
 
-  getTaskData(selectedDoc) async {
+  getTaskData(selectedDoc, id) async {
     if (isLoggedIn()) {
-      final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-      final uid = user.uid;
-      return await Firestore.instance.collection('docs$uid').document(selectedDoc).snapshots();
+      return await Firestore.instance.collection('docs$id').document(selectedDoc).snapshots();
     } else {
       print('You need to be logged in');
     }
   }
 
 
-  updateData(selectedDoc, newValues)  async {
+  updateData(selectedDoc, id, newValues,)  async {
     if (isLoggedIn()) {
-      final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-      final uid = user.uid;
       Firestore.instance
-          .collection('docs$uid')
+          .collection('docs$id')
           .document(selectedDoc)
           .updateData(newValues)
           .catchError((e) {
@@ -73,12 +65,10 @@ class crudMedthods {
   }
 
 
-  deleteData(docId) async {
+  deleteData(docId, id) async {
     if (isLoggedIn()) {
-      final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-      final uid = user.uid;
       Firestore.instance
-          .collection('docs$uid')
+          .collection('docs$id')
           .document(docId)
           .delete()
           .catchError((e) {
@@ -96,13 +86,6 @@ class crudMedthods {
       Firestore.instance.collection('contactus').add(taskData).catchError((e) {
         print(e);
       });
-      //Using Transactions
-//       Firestore.instance.runTransaction((Transaction crudTransaction) async {
-//         CollectionReference reference =
-//             await Firestore.instance.collection('docs$uid');
-//
-//         reference.add(taskData);
-//       });
     } else {
       print('You need to be logged in');
     }

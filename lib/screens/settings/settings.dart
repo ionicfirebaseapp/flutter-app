@@ -31,29 +31,49 @@ class _SettingsState extends State<Settings> {
     userInfo();
   }
 
-  var fbuser;
   var userName, email, photoUrl, uid, emailVerified;
+  var fbUser, fbEmail, fbProfile, fbId;
+  var twUser, twId;
+
+  var loginType;
 
   userInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      fbuser = prefs.getString('fbuser');
+      loginType = prefs.getString('loginType');
     });
-    print("fbuser...................$fbuser");
-    FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
-
-    if (userProfile != null) {
+    print("logintype ...................$loginType");
+    if(loginType == 'fb'){
       setState(() {
-        userName = userProfile.displayName;
-        email = userProfile.email;
-        uid = userProfile.uid;
-        photoUrl = userProfile.photoUrl;
+        fbUser = prefs.getString('fbUser');
+        fbEmail = prefs.getString('fbEmail');
+        fbId = prefs.getString('fbId');
+        fbProfile = prefs.getString('fbProfile');
       });
+      print('fb user $fbUser $fbProfile, $fbEmail, $fbId');
+    }else if(loginType == 'tw'){
+      setState(() {
+        twUser = prefs.getString('twUser');
+        twId = prefs.getString('twId');
+      });
+      print('twuser $twUser $twId');
+    }else if(loginType == 'fs') {
+      FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
+
+      if (userProfile != null) {
+        setState(() {
+          userName = userProfile.displayName;
+          email = userProfile.email;
+          uid = userProfile.uid;
+          photoUrl = userProfile.photoUrl;
+        });
+      }
+      print('photourl.................... $userName $photoUrl');
     }
-    print('photourl....................$photoUrl');
-
-
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,6 +106,8 @@ class _SettingsState extends State<Settings> {
                   CircleAvatar(
                     backgroundColor: primary.withOpacity(0.4),
                     child: photoUrl != null ? ClipOval(child: Image.network(photoUrl, width: 100, height: 100, fit: BoxFit.cover,)):
+                    loginType == 'fb' ?
+                    ClipOval(child: Image.network(fbProfile, width: 100, height: 100, fit: BoxFit.cover,)) :
                     Image.asset("lib/assets/icon/user.png", color: Colors.white,),
                   ),
                   Flexible(
@@ -95,10 +117,12 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          email != null ? Text('${email.toString().split('@')[0]}', style: textStyleOrangeSS(),) :
-                          Text('$fbuser', style: textStyleOrangeSS(),),
-                          email != null ? Text('$email', style: smallBoldDescription(),) :
-                          Text('$fbuser', style: smallBoldDescription(),),
+                          loginType == 'fs' ? Text('$userName', style: textStyleOrangeSS(),) :
+                          loginType == 'fb' ?  Text('$fbUser', style: textStyleOrangeSS(),) :
+                          Text('$twUser', style: textStyleOrangeSS(),),
+                          loginType == 'fs' ? Text('$email', style: smallBoldDescription(),) :
+                          loginType == 'fb' ? Text('$fbEmail', style: smallBoldDescription(),) :
+                          Text('-', style: smallBoldDescription(),),
                         ],
                       ),
                     ),

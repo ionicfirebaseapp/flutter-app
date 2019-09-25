@@ -41,32 +41,19 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
-    getUserInfo();
   }
 
   bool loading = false;
-  var errorText;
-  var name, fbuser;
 
-  getUserInfo() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      name = prefs.getString('name');
-      fbuser = prefs.getString('fbuser');
-    });
-    print('ferrrr $name mmm $fbuser jj');
-  }
+  var errorText;
+  var fbUser, fbEmail, fbProfile, fbId;
+
 
   Future<void> signInUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    FirebaseAuth.instance.currentUser().then((val) {
-      UserUpdateInfo updateUser = UserUpdateInfo();
-      updateUser.displayName = name;
-//      updateUser.photoUrl = picURL;
-      val.updateProfile(updateUser);
-    });
 
-    prefs.setBool('login', true);
+    prefs.setString('loginType', 'fs');
+
     setState(() {
       loading = true;
     });
@@ -130,90 +117,154 @@ class _LoginState extends State<Login> {
     }
   }
 
-  fbLoginUser(
-    id,
-    name,
-    email,
-  ) async {
-    var authData = {
-      'facebookId': id,
-      'name': name,
-    };
-    var data = json.encode(authData);
-    print(json.encode(authData));
-    print("facebook..............................$data");
-  }
 
-  static final FacebookLogin facebookSignIn = new FacebookLogin();
-
-  String message = 'Log in/out by pressing the buttons below.';
-  bool fbLog = false;
-
-  putData(accessToken, data) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      loading = true;
-    });
-    await fbLoginUser(accessToken.userId, data['name'], data['email'])
-        .then((response) {
-      print("data......................$data");
-      prefs.setString('fbuser', '${data['name']}');
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => Landing(),
-        ),
-      );
-    });
-    setState(() {
-      loading = false;
-    });
-  }
-
-  facebookLog(accessToken) async {
-    await http
-        .get(
-            'https://graph.facebook.com/me?access_token=${accessToken.token}&fields=id,name,email,picture.type(large)')
-        .then((res) {
-      //	console.log('result ---' + JSON.stringify(res));
-      //console.log('user image url==' + JSON.stringify(res.data.picture.data.url));
-      String resp = res.body;
-      var data = json.decode(resp);
-
-      putData(accessToken, data);
-      print('fb data---> $data');
-    });
-  }
-
-  Future<Null> _facebookLogin() async {
-    final FacebookLoginResult result = await facebookSignIn
-        .logInWithReadPermissions(['public_profile, email']);
-
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final FacebookAccessToken accessToken = result.accessToken;
-        print('token $accessToken');
-        setState(() {
-          fbLog = true;
-        });
-        await facebookLog(accessToken);
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        print('cancel');
-        await facebookSignIn.logOut();
-        _showMessage('Logged out.');
-        setState(() {
-          fbLog = false;
-        });
-        _showMessage('Login cancelled by the user.');
-        break;
-      case FacebookLoginStatus.error:
-        print('error');
-        _showMessage('Something went wrong with the login process.\n'
-            'Here\'s the error Facebook gave us: ${result.errorMessage}');
-        break;
+    fbLoginUser(
+        id,
+        namee,
+        email,
+        ) async {
+      var authData = {
+        'facebookId': id,
+        'namee': namee,
+        'email': email
+      };
+      var dataa= json.encode(authData);
+      print(json.encode(authData));
+      print("facebook..............................$dataa");
     }
-  }
+
+     final FacebookLogin facebookSignIn = new FacebookLogin();
+
+    String message = 'Log in/out by pressing the buttons below.';
+    bool fbLog = false;
+
+    putData(accessToken, data) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      setState(() {
+        loading = true;
+      });
+      await fbLoginUser(accessToken.userId, data['name'], data['email'])
+          .then((response) {
+        print("data......................$data"
+            "${data['name']}, ${data['id']} ");
+
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => Landing(),
+            ),
+                (Route<dynamic> route) => false);
+      });
+      setState(() {
+        loading = false;
+      });
+    }
+
+    facebookLog(accessToken) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      prefs.setString('loginType', 'fb');
+      await http
+          .get(
+          'https://graph.facebook.com/me?access_token=${accessToken.token}&fields=id,name,email,picture.type(large)')
+          .then((res) {
+        //	console.log('result ---' + JSON.stringify(res));
+        //console.log('user image url==' + JSON.stringify(res.data.picture.data.url));
+        String resp = res.body;
+        var data = json.decode(resp);
+
+        putData(accessToken, data);
+        print('fb data---> $data ');
+        prefs.setString('fbUser', '${data['name']}');
+        prefs.setString('fbEmail', '${data['email']}');
+        prefs.setString('fbId', '${data['id']}');
+        prefs.setString('fbProfile', '${data['picture']['data']['url']}');
+      });
+    }
+
+    Future<Null> _facebookLogin() async {
+      final FacebookLoginResult result = await facebookSignIn
+          .logInWithReadPermissions(['public_profile, email']);
+
+      switch (result.status) {
+        case FacebookLoginStatus.loggedIn:
+          final FacebookAccessToken accessToken = result.accessToken;
+          print('token $accessToken');
+          setState(() {
+            fbLog = true;
+          });
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: new Text("Oppsy... taking more time than expected", style: subTitle(),),
+                content: Container(height: 50.0,child: Image.asset("lib/assets/gif/spinner.gif",)),
+                actions: <Widget>[
+                  new FlatButton(
+                    child: new Text("Close"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+          await facebookLog(accessToken);
+
+          break;
+        case FacebookLoginStatus.cancelledByUser:
+          print('cancel');
+          await facebookSignIn.logOut();
+          _showMessage('Logged out.');
+          setState(() {
+            fbLog = false;
+          });
+          _showMessage('Login cancelled by the user.');
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: new Text("Oops something gone wrong...!!!", style: subTitle()),
+                content: new Text("Try Login again", style: prefix0.category(),),
+                actions: <Widget>[
+                  new FlatButton(
+                    child: new Text("Close"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+          break;
+        case FacebookLoginStatus.error:
+          print('error');
+          _showMessage('Something went wrong with the login process.\n'
+              'Here\'s the error Facebook gave us: ${result.errorMessage}');
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: new Text("Oops something gone wrong...!!!"),
+                content: new Text("Try Login again"),
+                actions: <Widget>[
+                  new FlatButton(
+                    child: new Text("Close"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+          break;
+      }
+    }
 
   void _showMessage(String message) {
     setState(() {
@@ -229,18 +280,29 @@ class _LoginState extends State<Login> {
   String _message = 'Logged out.';
 
   void _twitterLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('loginType', 'tw');
     final TwitterLoginResult result = await twitterLogin.authorize();
     String newMessage;
 
     switch (result.status) {
       case TwitterLoginStatus.loggedIn:
         newMessage = 'Logged in! username: ${result.session.username}';
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => Landing(),
-          ),
-        );
+
+        print('twitter.................. ${result.session.username} ${result.session.userId} ');
+
+
+        print('resuttttttttttttttttt ${result.session}');
+        prefs.setString('twUser', '${result.session.username}');
+        prefs.setString('twId', '${result.session.userId}');
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => Landing(),
+            ),
+                (Route<dynamic> route) => false);
         break;
       case TwitterLoginStatus.cancelledByUser:
         newMessage = 'Login cancelled by user.';
@@ -273,7 +335,7 @@ class _LoginState extends State<Login> {
               fit: BoxFit.cover,
             ),
             Positioned(
-              top: 80.0,
+              top: 40.0,
               child: Align(
                 alignment: AlignmentDirectional.topStart,
                 child: Column(
@@ -327,6 +389,7 @@ class _LoginState extends State<Login> {
                                         hintText: 'Email Id',
                                         hintStyle: hintStyleDark(),
                                       ),
+                                      initialValue: 'deepika@pietechsolution.com',
                                       style: hintStyleDark(),
                                       keyboardType: TextInputType.emailAddress,
                                       validator: (String value) {
@@ -381,6 +444,7 @@ class _LoginState extends State<Login> {
                                         hintText: 'Password',
                                         hintStyle: hintStyleDark(),
                                       ),
+                                      initialValue: '123456',
                                       keyboardType: TextInputType.text,
                                       style: hintStyleDark(),
                                       validator: (String value) {
@@ -388,7 +452,7 @@ class _LoginState extends State<Login> {
                                           return 'Password invalid';
                                         }
                                       },
-                                      controller: _passwordTextController,
+//                                      controller: _passwordTextController,
                                       onSaved: (String value) {
                                         password = value;
                                       },

@@ -27,37 +27,59 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    crudObj.getData().then((results) {
+    userInfo();
+  }
+
+  var userName, email, photoUrl, uid, emailVerified;
+  var fbUser, fbEmail, fbProfile, fbId;
+  var twUser, twId;
+  var loginType;
+
+  userInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      loginType = prefs.getString('loginType');
+    });
+    print("logintype ...................$loginType");
+     if(loginType == 'fb'){
+       setState(() {
+         fbUser = prefs.getString('fbUser');
+         fbEmail = prefs.getString('fbEmail');
+         fbId = prefs.getString('fbId');
+         fbProfile = prefs.getString('fbProfile');
+       });
+       print('fbbuser $fbUser $fbProfile, $fbEmail, $fbId');
+     }else if(loginType == 'tw'){
+      setState(() {
+        twUser = prefs.getString('twUser');
+        twId = prefs.getString('twId');
+      });
+      print('twuser $twUser $twId');
+    }else if(loginType == 'fs') {
+       final FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
+       if (userProfile != null) {
+         userName = userProfile.displayName;
+         email = userProfile.email;
+//      photoUrl = userProfile.photoURL;
+//      emailVerified = userProfile.emailVerified;
+         uid = userProfile.uid;
+       }
+       print('user name ....................$userName $email $uid');
+     }
+
+     getData();
+
+  }
+
+  getData() async{
+    print("loginType 4444...................$loginType");
+    crudObj.getData(loginType == 'fs'? uid : loginType == 'fb' ? fbId : twId).then((results) {
       if(mounted){
         setState(() {
           tasks = results;
         });
       }
     });
-
-    userInfo();
-  }
-
-  var fbuser;
-  var userName, email, photoUrl, uid, emailVerified;
-
-  userInfo() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      fbuser = prefs.getString('fbuser');
-    });
-    print("user...................$fbuser");
-    final FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
-
-    if (userProfile != null) {
-      userName = userProfile.displayName;
-      email = userProfile.email;
-//      photoUrl = userProfile.photoURL;
-//      emailVerified = userProfile.emailVerified;
-      uid = userProfile.uid;
-    }
-    print('user name ....................$userName $email');
-
   }
 
   String dateNow = DateFormat('d MMM yyyy').format(DateTime.now());
@@ -88,8 +110,9 @@ class _HomeState extends State<Home> {
               alignment: AlignmentDirectional.center,
               height: 30.0,
               child:
-              userName != null ? Text('"Dear $userName, May you be on Time "', style: smallAddressWhiteSI(),) :
-              Text('"Dear $fbuser, May you be on Time "', style: smallAddressWhiteSI(),),
+              loginType == 'fb' ? Text('"Dear $fbUser, May you be on Time "', style: smallAddressWhiteSI(),) :
+              loginType == 'fb' ? Text('"Dear $userName, May you be on Time "', style: smallAddressWhiteSI(),) :
+              Text('"Dear $twUser, May you be on Time "', style: smallAddressWhiteSI(),),
               color: grey.withOpacity(0.66),
             ),
             Container(

@@ -7,6 +7,7 @@ import '../../screens/home/home.dart';
 import '../../screens/task/add_task.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../transitions/scale_route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Landing extends StatefulWidget {
   static String tag = "landing";
@@ -16,17 +17,11 @@ class Landing extends StatefulWidget {
 
 class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {
 
-  final f = new DateFormat('yyyy-month-dd');
-  DateTime _date = new DateTime.now();
-
-  String dateNow = DateFormat('kk:mm EEE d MMM').format(DateTime.now());
-
   int currentTab = 0;
   Home pageOne = new Home();
   AddTask pageTwo = new AddTask();
   List<Widget> pages;
   Widget currentPage;
-  var user, accountUser;
 
   @override
   void initState() {
@@ -38,76 +33,55 @@ class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {
     currentPage = pageOne;
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2019),
-      lastDate: DateTime(2020),
-    );
-    if (picked != null && picked != _date) {
-      print('Date selected: ${_date.toString()}');
-      setState(() {
-        _date = picked;
-      });
-    }
-  }
-
   Widget appBarTitle = Text('${DateFormat('d MMM yyyy').format(DateTime.now())}',
     style:  smallAddressWhite(),
   );
   Icon actionIcon = new Icon(Icons.search);
   final key = new GlobalKey<ScaffoldState>();
-  final TextEditingController _searchQuery = new TextEditingController();
-  bool _IsSearching;
-  String _searchText = "";
+//  bool _IsSearching;
+//  String _searchText = "";
 
 
-  void _searchPressed() {
+//  void _searchPressed() {
+//
+//    setState(() {
+//      if (this.actionIcon.icon == Icons.search) {
+//        this.actionIcon = new Icon(Icons.close);
+//        this.appBarTitle = new TextField(
+//          style: new TextStyle(
+//            color: Colors.white,
+//          ),
+//          decoration: new InputDecoration(
+//              prefixIcon: new Icon(Icons.search, color: Colors.white, size: 14.0,),
+//              hintText: "Search...",
+//              hintStyle: subTitleWhite(),
+//          ),
+//        );
+//        _handleSearchStart();
+//      }
+//      else {
+//        _handleSearchEnd();
+//      }
+//    });
+//  }
 
-    setState(() {
-      if (this.actionIcon.icon == Icons.search) {
-        this.actionIcon = new Icon(Icons.close);
-        this.appBarTitle = new TextField(
-          style: new TextStyle(
-            color: Colors.white,
-          ),
-          decoration: new InputDecoration(
-              prefixIcon: new Icon(Icons.search, color: Colors.white, size: 14.0,),
-              hintText: "Search...",
-              hintStyle: subTitleWhite(),
-          ),
-        );
-        _handleSearchStart();
-      }
-      else {
-        _handleSearchEnd();
-      }
-    });
-  }
-
-  void _handleSearchStart() {
-    setState(() {
-      _IsSearching = true;
-    });
-  }
-
-  void _handleSearchEnd() {
-    setState(() {
-      this.actionIcon = new Icon(Icons.search, color: Colors.white,);
-      this.appBarTitle =
-          Text('${DateFormat('d MMM yyyy').format(DateTime.now())}',
-            style:  smallAddressWhite(),
-          );
-      _IsSearching = false;
-      _searchQuery.clear();
-    });
-  }
+//  void _handleSearchStart() {
+//    setState(() {
+//      _IsSearching = true;
+//    });
+//  }
+//
+//  void _handleSearchEnd() {
+//    setState(() {
+//      this.actionIcon = new Icon(Icons.search, color: Colors.white,);
+//      this.appBarTitle =
+//          Text('${DateFormat('d MMM yyyy').format(DateTime.now())}',
+//            style:  smallAddressWhite(),
+//          );
+//      _IsSearching = false;
+//      _searchQuery.clear();
+//    });
+//  }
 
 
   Widget buildBar(BuildContext context) {
