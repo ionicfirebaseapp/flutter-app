@@ -40,6 +40,12 @@ class _MyAppState extends State<MyApp> {
     ContactUs.tag: (context) => ContactUs()
   };
 
+  @override
+  void initState() {
+    super.initState();
+    userInfo();
+  }
+
   var login;
 
   userInfo() async {
@@ -61,7 +67,7 @@ class _MyAppState extends State<MyApp> {
         accentColor: primary,
         cursorColor: border,
       ),
-      home: login == true || login != null ? Landing() : Login(),
+      home: login == false || login == null ?  Login() : Landing(),
       routes: routes,
     );
   }

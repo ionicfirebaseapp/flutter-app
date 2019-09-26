@@ -129,28 +129,39 @@ class _PriorityTaskDetailsState extends State<PriorityTaskDetails> {
                                             size: 24.0, color: secondary),
                                         onPressed: (){
                                           setState(() {
-                                            isPriority =! isPriority;
+                                            isPriority =  false;
                                             try{
-                                              crudObj.updateData(snapshot.data.documents[index].documentID, loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId, {
-                                                'priorityTask' : this.isPriority
-                                              });
-                                              showDialog(
-                                                context: context,
-                                                builder: (BuildContext context) {
-                                                  return AlertDialog(
-                                                    title: new Text("Updated Successfuly...!!!"),
-                                                    content: new Text("Task has been Updated"),
-                                                    actions: <Widget>[
-                                                      new FlatButton(
-                                                        child: new Text("Close"),
-                                                        onPressed: () {
-                                                          Navigator.of(context).pop();
-                                                        },
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
+                                              print('pppppppppppppppppppppppppp $isPriority');
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return AlertDialog(
+                                                      title: new Text("Are you sure ?"),
+                                                      content: Text("You're willing to remove the task ${snapshot.data.documents[index]['taskTitle']} "
+                                                          "from Prioriy task..."),
+                                                      actions: <Widget>[
+                                                        new FlatButton(
+                                                          child: new Text("Cancel"),
+                                                          onPressed: () {
+                                                            crudObj.updateData(snapshot.data.documents[index].documentID, loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId, {
+                                                              'priorityTask' : this.isPriority
+                                                            });
+                                                            Navigator.pop(context);
+                                                          },
+                                                        ),
+                                                        new FlatButton(
+                                                          child: new Text("Ok"),
+                                                          onPressed: () {
+                                                            crudObj.updateData(snapshot.data.documents[index].documentID, loginType == 'fs' ? uid : loginType == 'fb' ? fbId : twId, {
+                                                              'priorityTask' : this.isPriority
+                                                            });
+                                                            Navigator.pop(context);
+                                                          },
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
                                             }catch(e) {
                                               print(e);
                                             }

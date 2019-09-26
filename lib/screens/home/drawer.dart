@@ -154,6 +154,7 @@ class _DrawerListState extends State<DrawerList> {
                       Navigator.of(context).pop();
                       SharedPreferences prefs = await SharedPreferences.getInstance();
                       prefs.setBool('fbLogin', false);
+                      prefs.setBool('login', false);
                       signOutGoogle() ||
                       _facebookLogOut()
                       || _twitterLogout();

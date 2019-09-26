@@ -118,11 +118,11 @@ class _SettingsState extends State<Settings> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           loginType == 'fs' ? Text('$userName', style: textStyleOrangeSS(),) :
-                          loginType == 'fb' ?  Text('$fbUser', style: textStyleOrangeSS(),) :
+                          loginType == 'fb' ? Text('$fbUser', style: textStyleOrangeSS(),) :
                           Text('$twUser', style: textStyleOrangeSS(),),
                           loginType == 'fs' ? Text('$email', style: smallBoldDescription(),) :
-                          loginType == 'fb' ? Text('$fbEmail', style: smallBoldDescription(),) :
-                          Text('-', style: smallBoldDescription(),),
+//                          loginType == 'fb' && fbEmail != null ? Text('$fbEmail', style: smallBoldDescription(),) :
+                          Text('', style: smallBoldDescription(),),
                         ],
                       ),
                     ),

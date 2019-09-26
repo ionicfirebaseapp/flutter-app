@@ -53,6 +53,7 @@ class _LoginState extends State<Login> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setString('loginType', 'fs');
+    prefs.setBool('login', true);
 
     setState(() {
       loading = true;
@@ -166,6 +167,7 @@ class _LoginState extends State<Login> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       prefs.setString('loginType', 'fb');
+      prefs.setBool('login', true);
       await http
           .get(
           'https://graph.facebook.com/me?access_token=${accessToken.token}&fields=id,name,email,picture.type(large)')
@@ -191,7 +193,7 @@ class _LoginState extends State<Login> {
       switch (result.status) {
         case FacebookLoginStatus.loggedIn:
           final FacebookAccessToken accessToken = result.accessToken;
-          print('token $accessToken');
+          print('token ........................$accessToken');
           setState(() {
             fbLog = true;
           });
@@ -216,7 +218,7 @@ class _LoginState extends State<Login> {
 
           break;
         case FacebookLoginStatus.cancelledByUser:
-          print('cancel');
+          print('cancel ${result.errorMessage}');
           await facebookSignIn.logOut();
           _showMessage('Logged out.');
           setState(() {
@@ -242,7 +244,7 @@ class _LoginState extends State<Login> {
           );
           break;
         case FacebookLoginStatus.error:
-          print('error');
+          print('errrrrrrrrrrrrrrrrrrrrooooooooo            ${result.errorMessage}');
           _showMessage('Something went wrong with the login process.\n'
               'Here\'s the error Facebook gave us: ${result.errorMessage}');
           showDialog(
@@ -283,6 +285,7 @@ class _LoginState extends State<Login> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setString('loginType', 'tw');
+    prefs.setBool('login', true);
     final TwitterLoginResult result = await twitterLogin.authorize();
     String newMessage;
 
@@ -444,7 +447,7 @@ class _LoginState extends State<Login> {
                                         hintText: 'Password',
                                         hintStyle: hintStyleDark(),
                                       ),
-                                      initialValue: '123456',
+                                      initialValue: '123123',
                                       keyboardType: TextInputType.text,
                                       style: hintStyleDark(),
                                       validator: (String value) {

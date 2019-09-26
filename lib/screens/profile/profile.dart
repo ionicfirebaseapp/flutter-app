@@ -272,8 +272,8 @@ class _ProfileState extends State<Profile> {
                           loginType == 'fb' ?  Text('$fbUser', style: textStyleOrangeSS(),) :
                             Text('$twUser', style: textStyleOrangeSS(),),
                         loginType == 'fs' ? Text('$email', style: smallBoldDescription(),) :
-                          loginType == 'fb' ? Text('$fbEmail', style: smallBoldDescription(),) :
-                            Text('-', style: smallBoldDescription(),),
+//                          loginType == 'fb' && fbEmail != null ? Text('$fbEmail', style: smallBoldDescription(),) :
+                            Text('', style: smallBoldDescription(),),
                       ],
                     ),
                   ),

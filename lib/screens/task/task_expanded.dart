@@ -188,12 +188,24 @@ class _TaskExpandedState extends State<TaskExpanded> {
                               crudObj.updateData(widget.updateDocId, widget.id,{
                                 'priorityTask' : this.isPriority
                               });
-                              _scaffoldKey.currentState.showSnackBar(
-                                  SnackBar(
-                                    backgroundColor: Colors.blueGrey,
-                                    content: Text('Task Updated successfully...!!!'),
-                                    duration: Duration(seconds: 2),
-                                  ));
+                              print('pppppppppppppppppppppppppp $isPriority');
+                              if(isPriority == true) {
+                                _scaffoldKey.currentState.showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.blueGrey,
+                                      content: Text(
+                                          'Task Added to Priority successfully...!!!'),
+                                      duration: Duration(seconds: 2),
+                                    ));
+                              }else if(isPriority == false){
+                                _scaffoldKey.currentState.showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.blueGrey,
+                                      content: Text(
+                                          'Task Removed from Priority successfully...!!!'),
+                                      duration: Duration(seconds: 2),
+                                    ));
+                              }
                             }catch(e) {
                               print(e);
                             }

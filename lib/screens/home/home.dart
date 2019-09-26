@@ -111,12 +111,12 @@ class _HomeState extends State<Home> {
               height: 30.0,
               child:
               loginType == 'fb' ? Text('"Dear $fbUser, May you be on Time "', style: smallAddressWhiteSI(),) :
-              loginType == 'fb' ? Text('"Dear $userName, May you be on Time "', style: smallAddressWhiteSI(),) :
+              loginType == 'fs' ? Text('"Dear $userName, May you be on Time "', style: smallAddressWhiteSI(),) :
               Text('"Dear $twUser, May you be on Time "', style: smallAddressWhiteSI(),),
               color: grey.withOpacity(0.66),
             ),
             Container(
-              height: 78.0,
+              height: 80.0,
               child: BottomNavigationBar(
                 onTap: onTabTapped,
                 currentIndex: _currentIndex,

@@ -66,12 +66,40 @@ class _RegisterState extends State<Register> {
             val.updateProfile(updateUser);
           });
 
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => Login(),
-              ),
-                  (Route<dynamic> route) => false);
+
+          showDialog<Null>(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return Container(
+                width: 270.0,
+                child: new AlertDialog(
+                  title: new Text('Thank you for Signing Up with us...!!'),
+                  content: new SingleChildScrollView(
+                    child: new ListBody(
+                      children: <Widget>[
+                        new Text('Email verfication link has been sent to your Email Id. Verify it before proceeding with login'),
+                      ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    new FlatButton(
+                      child: new Text('ok'),
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => Login(),
+                            ),
+                                (Route<dynamic> route) => false);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+
         });
       }).catchError((onError) {
         setState(() {

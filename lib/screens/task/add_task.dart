@@ -85,15 +85,6 @@ class _AddTaskState extends State<AddTask> {
     });
   }
 
-  FlutterLocalNotificationsPlugin localNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  initializeNotifications() async {
-    var initializeAndroid = AndroidInitializationSettings('ic_launcher');
-    var initializeIOS = IOSInitializationSettings();
-    var initSettings = InitializationSettings(initializeAndroid, initializeIOS);
-    await localNotificationsPlugin.initialize(initSettings);
-  }
-
   TimeOfDay time = new TimeOfDay.now();
   TimeOfDay selectedTime = new TimeOfDay.now();
 
@@ -111,6 +102,17 @@ class _AddTaskState extends State<AddTask> {
       print("selected time $selectedTime ");
     }
   }
+
+
+  FlutterLocalNotificationsPlugin localNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  initializeNotifications() async {
+    var initializeAndroid = AndroidInitializationSettings('ic_launcher');
+    var initializeIOS = IOSInitializationSettings();
+    var initSettings = InitializationSettings(initializeAndroid, initializeIOS);
+    await localNotificationsPlugin.initialize(initSettings);
+  }
+
 
   Future singleNotification(
       DateTime datetime, String message, String subtext, int hashcode,
@@ -150,6 +152,7 @@ class _AddTaskState extends State<AddTask> {
 
   DateTime selectedDate;
   String dueDate;
+
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -377,7 +380,7 @@ class _AddTaskState extends State<AddTask> {
                                               builder: (BuildContext context) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    setState(() => calender = true);
+                                                    setState(() => calender =! calender);
                                                     _selectDate(context);
                                                   },
                                                   child: Container(
@@ -403,118 +406,11 @@ class _AddTaskState extends State<AddTask> {
                                         ),
 //                          color: ring ? Colors.red : Colors.grey.shade400,
                                         onTap: () {
+
                                           showModalBottomSheet<void>(
                                               context: context,
                                               builder: (BuildContext context) {
-                                                return Container(
-                                                  height: 160.0,
-                                                  child: ListView(
-                                                    children: <Widget>[
-                                                      Container(
-                                                        width:
-                                                        MediaQuery.of(context).size.width,
-                                                        color: primary,
-                                                        padding: EdgeInsets.all(5.0),
-                                                        child: MaterialButton(
-                                                            onPressed: () async {
-                                                              Navigator.pop(context);
-                                                              setState(() => ring = true);
-                                                              selectedDate == null ?
-                                                              now = DateTime(
-                                                                  now.year,
-                                                                  now.month,
-                                                                  now.day,
-                                                                  selectedTime.hour,
-                                                                  selectedTime.minute) :
-                                                              now = DateTime(
-                                                                  selectedDate.year,
-                                                                  selectedDate.month,
-                                                                  selectedDate.day,
-                                                                  selectedTime.hour,
-                                                                  selectedTime.minute);
-
-                                                              print('alarm time $now');
-//                                              await singleNotification(
-//                                                now,
-//                                                "Todod Notification on...",
-//                                                "Looks like something intersting you have here...!!!",
-//                                                98123871,
-//                                              );
-                                                            },
-                                                            minWidth: MediaQuery.of(context)
-                                                                .size
-                                                                .width,
-                                                            child: Text(
-                                                              'ADD ALARM',
-                                                              textAlign: TextAlign.center,
-                                                              style: categoryWhite(),
-                                                            )),
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            _selectDate(context);
-                                                          });
-                                                        },
-                                                        child: Container(
-                                                          padding: EdgeInsets.all(15.0),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment.spaceBetween,
-                                                            crossAxisAlignment:
-                                                            CrossAxisAlignment.center,
-                                                            children: <Widget>[
-                                                              dueDate == null
-                                                                  ? Text(
-                                                                '',
-                                                                textAlign:
-                                                                TextAlign.center,
-                                                                style:
-                                                                titleStyleBoldLight(),
-                                                              )
-                                                                  : Text(
-                                                                '$dueDate',
-                                                                textAlign:
-                                                                TextAlign.center,
-                                                                style:
-                                                                titleStyleBoldLight(),
-                                                              ),
-                                                              Text(
-                                                                'Set',
-                                                                textAlign: TextAlign.center,
-                                                                style: address(),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            _selectTime(context);
-                                                          });
-                                                        },
-                                                        child: Container(
-                                                          padding: EdgeInsets.all(15.0),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment.spaceBetween,
-                                                            crossAxisAlignment:
-                                                            CrossAxisAlignment.center,
-                                                            children: <Widget>[
-                                                              Text(
-                                                                '${selectedTime.format(context)}',
-                                                                textAlign: TextAlign.center,
-                                                                style: titleStyleBoldLight(),
-                                                              ),
-                                                              Icon(Icons.keyboard_arrow_down),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
+                                                return SetTimeDate();
                                               });
                                         }),
                                     InkWell(
@@ -634,7 +530,13 @@ class _AddTaskState extends State<AddTask> {
                                                 return InkWell(
                                                   onTap: () {
                                                     setState(() => starMark = true);
-                                                    Navigator.pop(context);
+
+                                                    _scaffoldkey.currentState.showSnackBar(
+                                                        SnackBar(
+                                                          backgroundColor: Colors.blueGrey,
+                                                          content: Text('Added to Priority'),
+                                                          duration: Duration(seconds: 1),
+                                                        ));
                                                   },
                                                   child: Container(
                                                       color: primary,
@@ -649,6 +551,16 @@ class _AddTaskState extends State<AddTask> {
                                         }),
                                   ],
                                 ),
+                              ),
+
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                child: dueDate != null ? Row(
+                                  children: <Widget>[
+                                    Text("Due Date: ", style: redBoldText(),),
+                                    Text(dueDate, style: productTitle(),)
+                                  ],
+                                ) : Container(),
                               ),
 
                               Container(
@@ -903,3 +815,173 @@ class CompositeSubscription {
     return this._subscriptions.toList();
   }
 }
+
+
+class SetTimeDate extends StatefulWidget {
+  @override
+  _SetTimeDateState createState() => _SetTimeDateState();
+}
+
+class _SetTimeDateState extends State<SetTimeDate> {
+
+  TimeOfDay time = new TimeOfDay.now();
+  TimeOfDay selectedTime = new TimeOfDay.now();
+
+  DateTime now = new DateTime.now();
+
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: time,
+    );
+    if (picked != null && picked != time) {
+      setState(() {
+        selectedTime = picked;
+      });
+      print("selected time $selectedTime ");
+    }
+  }
+
+  TimeOfDay _time = new TimeOfDay.now();
+
+  String dateNow = DateFormat('EEE d MMM').format(DateTime.now());
+
+  final f = new DateFormat('yyyy-month-dd');
+  DateTime _date = new DateTime.now();
+
+  DateTime selectedDate;
+  String dueDate;
+  bool ring = false;
+
+
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2020),
+    );
+    if (picked != null && picked != _date) {
+      setState(() {
+        selectedDate = picked;
+        dueDate = "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
+      });
+      print('Date selected: $dueDate');
+
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 160.0,
+      child: ListView(
+        children: <Widget>[
+          Container(
+            width:
+            MediaQuery.of(context).size.width,
+            color: primary,
+            padding: EdgeInsets.all(5.0),
+            child: MaterialButton(
+                onPressed: () async {
+                  Navigator.pop(context);
+                  setState(() => ring = true);
+                  selectedDate == null ?
+                  now = DateTime(
+                      now.year,
+                      now.month,
+                      now.day,
+                      selectedTime.hour,
+                      selectedTime.minute) :
+                  now = DateTime(
+                      selectedDate.year,
+                      selectedDate.month,
+                      selectedDate.day,
+                      selectedTime.hour,
+                      selectedTime.minute);
+
+                  print('alarm time $now');
+//                                              await singleNotification(
+//                                                now,
+//                                                "Todod Notification on...",
+//                                                "Looks like something intersting you have here...!!!",
+//                                                98123871,
+//                                              );
+                },
+                minWidth: MediaQuery.of(context)
+                    .size
+                    .width,
+                child: Text(
+                  'ADD ALARM',
+                  textAlign: TextAlign.center,
+                  style: categoryWhite(),
+                )),
+          ),
+          InkWell(
+            onTap: () {
+              setState(() {
+                _selectDate(context);
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment:
+                MainAxisAlignment.spaceBetween,
+                crossAxisAlignment:
+                CrossAxisAlignment.center,
+                children: <Widget>[
+                  dueDate == null
+                      ? Text(
+                    '$dateNow',
+                    textAlign:
+                    TextAlign.center,
+                    style:
+                    titleStyleBoldLight(),
+                  )
+                      : Text(
+                    '$dueDate',
+                    textAlign:
+                    TextAlign.center,
+                    style:
+                    titleStyleBoldLight(),
+                  ),
+                  Text(
+                    'Set',
+                    textAlign: TextAlign.center,
+                    style: address(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              setState(() {
+                _selectTime(context);
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment:
+                MainAxisAlignment.spaceBetween,
+                crossAxisAlignment:
+                CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    '${selectedTime.format(context)}',
+                    textAlign: TextAlign.center,
+                    style: titleStyleBoldLight(),
+                  ),
+                  Icon(Icons.keyboard_arrow_down),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
