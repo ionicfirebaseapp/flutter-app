@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:todo_open/style/style.dart';
-import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
@@ -20,11 +19,15 @@ import '../../screens/home/landing.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+bool ring = false;
+DateTime notifiedTime;
+
 class AddTask extends StatefulWidget {
   static String tag = "add-task";
   final bool update;
   final String updateDocId;
-  AddTask({Key key, this.update, this.updateDocId}) : super(key: key);
+  AddTask({Key key, this.update, this.updateDocId, }) : super(key: key);
   @override
   _AddTaskState createState() => _AddTaskState();
 }
@@ -40,14 +43,16 @@ class _AddTaskState extends State<AddTask> {
   crudMedthods crudObj = new crudMedthods();
 
   String docId;
+  final double _initFabHeight = 120.0;
+  double _fabHeight;
 
   @override
   void initState() {
     getInfo();
     getLocation();
     initializeNotifications();
-
     docId = widget.updateDocId;
+    _fabHeight = _initFabHeight;
 
     super.initState();
   }
@@ -88,7 +93,7 @@ class _AddTaskState extends State<AddTask> {
   TimeOfDay time = new TimeOfDay.now();
   TimeOfDay selectedTime = new TimeOfDay.now();
 
-  DateTime now = new DateTime.now();
+//  DateTime now = new DateTime.now();
 
   Future<Null> _selectTime(BuildContext context) async {
     final TimeOfDay picked = await showTimePicker(
@@ -135,7 +140,6 @@ class _AddTaskState extends State<AddTask> {
   var formatter = new DateFormat('yyyy-MM-dd');
   bool calender = false,
       chat = false,
-      ring = false,
       attach = false,
       starMark = false,
       mic = false;
@@ -287,6 +291,7 @@ class _AddTaskState extends State<AddTask> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -375,24 +380,33 @@ class _AddTaskState extends State<AddTask> {
                                         ),
 //                        color: calender ? Colors.blueAccent : Colors.grey.shade400,
                                         onTap: () {
+                                          final FormState form = _formKey.currentState;
+                                          if (!form.validate()) {
+
+                                          } else {
+                                          form.save();
                                           showModalBottomSheet<void>(
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    setState(() => calender =! calender);
+                                                    setState(() =>
+                                                    calender = !calender);
                                                     _selectDate(context);
                                                   },
                                                   child: Container(
                                                       color: primary,
-                                                      padding: EdgeInsets.all(16.0),
+                                                      padding: EdgeInsets.all(
+                                                          16.0),
                                                       child: Text(
                                                         'ADD DUE DATE',
-                                                        textAlign: TextAlign.center,
+                                                        textAlign: TextAlign
+                                                            .center,
                                                         style: categoryWhite(),
                                                       )),
                                                 );
                                               });
+                                          }
                                         }),
                                     InkWell(
                                         child: Column(
@@ -405,14 +419,21 @@ class _AddTaskState extends State<AddTask> {
                                           ],
                                         ),
 //                          color: ring ? Colors.red : Colors.grey.shade400,
-                                        onTap: () {
+                                        onTap: () async {
+                                          final FormState form = _formKey.currentState;
+                                          if (!form.validate()) {
 
-                                          showModalBottomSheet<void>(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return SetTimeDate();
-                                              });
-                                        }),
+                                          } else {
+                                            showModalBottomSheet<void>(
+                                                context: context,
+                                                builder: (
+                                                    BuildContext context) {
+                                                  return SetTimeDate();
+                                                });
+
+                                          }
+                                        },
+                                    ),
                                     InkWell(
                                         child: Column(
                                           children: <Widget>[
@@ -424,93 +445,113 @@ class _AddTaskState extends State<AddTask> {
                                           ],
                                         ),
                                         onTap: () {
-                                          showModalBottomSheet<void>(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return Container(
-                                                  height: 160.0,
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                    children: <Widget>[
-                                                      Row(
-                                                        children: <Widget>[
-                                                          Container(
-                                                              color: primary,
-                                                              width: screenWidth,
-                                                              padding: EdgeInsets.all(20.0),
-                                                              child: Text(
-                                                                'ADD ATTACHMENT',
-                                                                textAlign: TextAlign.center,
-                                                                style: categoryWhite(),
-                                                              )),
-                                                        ],
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets.only(
-                                                            top: 10.0, bottom: 10.0),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment.spaceEvenly,
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment.center,
+                                          final FormState form = _formKey.currentState;
+                                          if (!form.validate()) {
+
+                                          } else {
+                                            showModalBottomSheet<void>(
+                                                context: context,
+                                                builder: (
+                                                    BuildContext context) {
+                                                  return Container(
+                                                    height: 160.0,
+                                                    child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                      children: <Widget>[
+                                                        Row(
                                                           children: <Widget>[
-                                                            InkWell(
-                                                              onTap: () {
-                                                                Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                    builder: (BuildContext
-                                                                    context) =>
-                                                                        CurrentLocation(
-                                                                          lat: lat,
-                                                                          lng: lng,
-                                                                        ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                              child: AttachmentIcon(
-                                                                title: "Location",
-                                                                bg: "lib/assets/icon/green.png",
-                                                                icon: Icon(
-                                                                  Icons.location_on,
-                                                                  size: 22.0,
-                                                                  color: Colors.white,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            InkWell(
-                                                              onTap: takeImage,
-                                                              child: AttachmentIcon(
-                                                                title: "Camera",
-                                                                bg: "lib/assets/icon/orange.png",
-                                                                icon: Icon(
-                                                                  Icons.camera_alt,
-                                                                  size: 22.0,
-                                                                  color: Colors.white,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            InkWell(
-                                                              onTap: selectImage,
-                                                              child: AttachmentIcon(
-                                                                title: "Gallery",
-                                                                bg: "lib/assets/icon/blue.png",
-                                                                icon: Icon(
-                                                                  Icons.apps,
-                                                                  size: 22.0,
-                                                                  color: Colors.white,
-                                                                ),
-                                                              ),
-                                                            ),
+                                                            Container(
+                                                                color: primary,
+                                                                width: screenWidth,
+                                                                padding: EdgeInsets
+                                                                    .all(20.0),
+                                                                child: Text(
+                                                                  'ADD ATTACHMENT',
+                                                                  textAlign: TextAlign
+                                                                      .center,
+                                                                  style: categoryWhite(),
+                                                                )),
                                                           ],
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              });
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .only(
+                                                              top: 10.0,
+                                                              bottom: 10.0),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                            children: <Widget>[
+                                                              InkWell(
+                                                                onTap: () {
+                                                                  Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                      builder: (
+                                                                          BuildContext
+                                                                          context) =>
+                                                                          CurrentLocation(
+                                                                            lat: lat,
+                                                                            lng: lng,
+                                                                          ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                child: AttachmentIcon(
+                                                                  title: "Location",
+                                                                  bg: "lib/assets/icon/green.png",
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .location_on,
+                                                                    size: 22.0,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              InkWell(
+                                                                onTap: takeImage,
+                                                                child: AttachmentIcon(
+                                                                  title: "Camera",
+                                                                  bg: "lib/assets/icon/orange.png",
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .camera_alt,
+                                                                    size: 22.0,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              InkWell(
+                                                                onTap: selectImage,
+                                                                child: AttachmentIcon(
+                                                                  title: "Gallery",
+                                                                  bg: "lib/assets/icon/blue.png",
+                                                                  icon: Icon(
+                                                                    Icons.apps,
+                                                                    size: 22.0,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                });
+                                          }
                                         }),
                                     InkWell(
                                         child: Column(
@@ -524,30 +565,49 @@ class _AddTaskState extends State<AddTask> {
                                         ),
 //                          color: starMark ? secondary : Colors.grey.shade400,
                                         onTap: () {
-                                          showModalBottomSheet<void>(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return InkWell(
-                                                  onTap: () {
-                                                    setState(() => starMark = true);
+                                          final FormState form = _formKey.currentState;
+                                          if (!form.validate()) {
 
-                                                    _scaffoldkey.currentState.showSnackBar(
-                                                        SnackBar(
-                                                          backgroundColor: Colors.blueGrey,
-                                                          content: Text('Added to Priority'),
-                                                          duration: Duration(seconds: 1),
-                                                        ));
-                                                  },
-                                                  child: Container(
-                                                      color: primary,
-                                                      padding: EdgeInsets.all(20.0),
-                                                      child: Text(
-                                                        'SAVE PRIOR TASKS',
-                                                        textAlign: TextAlign.center,
-                                                        style: categoryWhite(),
-                                                      )),
-                                                );
-                                              });
+                                          } else {
+                                            showModalBottomSheet<void>(
+                                                context: context,
+                                                builder: (
+                                                    BuildContext context) {
+                                                  return InkWell(
+                                                    onTap: () {
+                                                      Navigator.pop(context);
+                                                      setState(() =>
+                                                      starMark = true);
+                                                      _scaffoldkey.currentState
+                                                          .showSnackBar(
+                                                          SnackBar(
+                                                            backgroundColor: Colors
+                                                                .blueGrey,
+                                                            content: Text(
+                                                                'Added to Priority'),
+                                                              action: SnackBarAction(
+                                                                label: 'ok',
+                                                                onPressed: () {
+                                                                  Navigator.pop(context);
+                                                                },
+                                                              ),
+                                                            duration: Duration(
+                                                                seconds: 1),
+                                                          ));
+                                                    },
+                                                    child: Container(
+                                                        color: primary,
+                                                        padding: EdgeInsets.all(
+                                                            20.0),
+                                                        child: Text(
+                                                          'SAVE PRIOR TASKS',
+                                                          textAlign: TextAlign
+                                                              .center,
+                                                          style: categoryWhite(),
+                                                        )),
+                                                  );
+                                                });
+                                          }
                                         }),
                                   ],
                                 ),
@@ -729,7 +789,7 @@ class _AddTaskState extends State<AddTask> {
                 }
               } else {
                 try {
-                  print('11111111 add task $taskTitle');
+                  print('11111111 add task $taskTitle $ring');
                   crudObj.addData(loginType == 'fs' ? uid : fbId,{
                     'taskTitle': this.taskTitle,
                     'taskDetail': this.taskDetail,
@@ -763,7 +823,7 @@ class _AddTaskState extends State<AddTask> {
                 }
               }
               ring == true ? await singleNotification(
-                  now,
+                  notifiedTime,
                   "Todo - $taskTitle",
                   "Looks like something intersting you have here...!!!",
                   98123871,
@@ -851,7 +911,10 @@ class _SetTimeDateState extends State<SetTimeDate> {
 
   DateTime selectedDate;
   String dueDate;
-  bool ring = false;
+
+  String formatDate(DateTime date) => new DateFormat('EEE d MMM').format(selectedDate);
+
+  String notifyTime(DateTime date) => new DateFormat('hh:mm aa on EEE d MMM ').format(notifiedTime);
 
 
   _selectDate(BuildContext context) async {
@@ -864,7 +927,8 @@ class _SetTimeDateState extends State<SetTimeDate> {
     if (picked != null && picked != _date) {
       setState(() {
         selectedDate = picked;
-        dueDate = "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
+//        dueDate = "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
+      dueDate = formatDate(selectedDate);
       });
       print('Date selected: $dueDate');
 
@@ -884,16 +948,14 @@ class _SetTimeDateState extends State<SetTimeDate> {
             padding: EdgeInsets.all(5.0),
             child: MaterialButton(
                 onPressed: () async {
-                  Navigator.pop(context);
-                  setState(() => ring = true);
                   selectedDate == null ?
-                  now = DateTime(
+                  notifiedTime = DateTime(
                       now.year,
                       now.month,
                       now.day,
                       selectedTime.hour,
                       selectedTime.minute) :
-                  now = DateTime(
+                  notifiedTime = DateTime(
                       selectedDate.year,
                       selectedDate.month,
                       selectedDate.day,
@@ -901,12 +963,27 @@ class _SetTimeDateState extends State<SetTimeDate> {
                       selectedTime.minute);
 
                   print('alarm time $now');
-//                                              await singleNotification(
-//                                                now,
-//                                                "Todod Notification on...",
-//                                                "Looks like something intersting you have here...!!!",
-//                                                98123871,
-//                                              );
+                  setState(() {
+                    ring = true;
+                  });
+                  Navigator.pop(context, true);
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: new Text("You've updated your task"),
+                        content: Text("Task notification has been set ${notifyTime(notifiedTime)}"),
+                        actions: <Widget>[
+                          new FlatButton(
+                            child: new Text("Ok"),
+                            onPressed: () {
+                              Navigator.pop(context, true );
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
                 minWidth: MediaQuery.of(context)
                     .size
@@ -984,4 +1061,5 @@ class _SetTimeDateState extends State<SetTimeDate> {
     );
   }
 }
+
 
