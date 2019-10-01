@@ -94,7 +94,7 @@ class _LoginState extends State<Login> {
             return Container(
               width: 270.0,
               child: new AlertDialog(
-                title: new Text('Please!!'),
+                title: new Text('Please check!!'),
                 content: new SingleChildScrollView(
                   child: new ListBody(
                     children: <Widget>[

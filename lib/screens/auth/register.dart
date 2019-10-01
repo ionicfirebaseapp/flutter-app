@@ -105,7 +105,8 @@ class _RegisterState extends State<Register> {
         setState(() {
           loading = false;
         });
-//        errorText = onError.toString().split(',')[1];
+        print('onnnnnn $onError');
+        errorText = onError.toString().split(',')[1];
         showDialog<Null>(
           context: context,
           barrierDismissible: false,
@@ -113,11 +114,11 @@ class _RegisterState extends State<Register> {
             return Container(
               width: 270.0,
               child: new AlertDialog(
-                title: new Text('Please!!'),
+                title: new Text('Please check!!'),
                 content: new SingleChildScrollView(
                   child: new ListBody(
                     children: <Widget>[
-                      new Text('$onError'),
+                      new Text('$errorText'),
                     ],
                   ),
                 ),
