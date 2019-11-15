@@ -1,4 +1,4 @@
-package app.ionicfirebaseapp.todoapp;
+package app.ionicfirebaseapp.todoproapp;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
