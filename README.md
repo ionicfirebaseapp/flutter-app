@@ -133,8 +133,8 @@ Instagram: <https://www.instagram.com/ionicfirebaseapp>
 
 ### Most Popular Technologies & Products based on User Choice Last Month
 
-Flutter App: Browse Flutter Application @ https://www.ionicfirebaseapp.com/products/category/Flutter-App
+Flutter App: Browse Flutter Application @ https://www.ionicfirebaseapp.com/category/flutter-app
 
-NodeJs Backend: Browse Your NodeJS Backend @ https://www.ionicfirebaseapp.com/products/category/Backend
+NodeJs Backend: Browse Your NodeJS Backend @ https://www.ionicfirebaseapp.com/category/backend
 
-Multi Restaurant App: Brose Multi Restaurant App @ https://www.ionicfirebaseapp.com/products/category/Multi-Restaurant
+Multi Restaurant App: Brose Multi Restaurant App @ https://www.ionicfirebaseapp.com/category/multi-restaurant
