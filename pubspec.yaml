@@ -1,6 +1,6 @@
 name: todo_open
 description: A new Flutter application.
-version: 1.0.2+3
+version: 1.0.2+3oo
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
