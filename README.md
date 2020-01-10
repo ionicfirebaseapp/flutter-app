@@ -4,8 +4,6 @@
   </a>
 </p>
 <h3 align="center">IONICFIREBASEAPP</h3>
-<a href="https://www.ionicfirebaseapp.com/coupons" rel=no follow><img src="https://res.cloudinary.com/dlx35qw0l/image/upload/v1576219871/Codecanyon/Artboard_2_4.png" alt="christmas sale">
-</a>
 
  <a href="https://www.ionicfirebaseapp.com/products/flutter-mobile-app"> <h3 align="center">DOWNLOAD TODO APP</h3> </a>
 
