@@ -14,9 +14,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../common/constant.dart';
 import 'dart:convert';
 import '../../screens/auth/reset_password.dart';
-import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'dart:async';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   static String tag = "login";
@@ -48,7 +48,6 @@ class _LoginState extends State<Login> {
   var errorText;
   var fbUser, fbEmail, fbProfile, fbId;
 
-
   Future<void> signInUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -71,7 +70,6 @@ class _LoginState extends State<Login> {
         setState(() {
           loading = false;
         });
-
 
         print('onval $user');
 
@@ -118,155 +116,161 @@ class _LoginState extends State<Login> {
     }
   }
 
+  fbLoginUser(
+    id,
+    namee,
+    email,
+  ) async {
+    var authData = {'facebookId': id, 'namee': namee, 'email': email};
+    var dataa = json.encode(authData);
+    print(json.encode(authData));
+    print("facebook..............................$dataa");
+  }
 
-    fbLoginUser(
-        id,
-        namee,
-        email,
-        ) async {
-      var authData = {
-        'facebookId': id,
-        'namee': namee,
-        'email': email
-      };
-      var dataa= json.encode(authData);
-      print(json.encode(authData));
-      print("facebook..............................$dataa");
+  final FacebookLogin facebookSignIn = new FacebookLogin();
+
+  String message = 'Log in/out by pressing the buttons below.';
+  bool fbLog = false;
+
+  putData(accessToken, data) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      loading = true;
+    });
+    await fbLoginUser(accessToken.userId, data['name'], data['email'])
+        .then((response) {
+      print("data......................$data"
+          "${data['name']}, ${data['id']} ");
+
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => Landing(),
+          ),
+          (Route<dynamic> route) => false);
+    });
+    setState(() {
+      loading = false;
+    });
+  }
+
+  facebookLog(accessToken) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('loginType', 'fb');
+    prefs.setBool('login', true);
+    await http
+        .get(
+            'https://graph.facebook.com/me?access_token=${accessToken.token}&fields=id,name,email,picture.type(large)')
+        .then((res) {
+      //	console.log('result ---' + JSON.stringify(res));
+      //console.log('user image url==' + JSON.stringify(res.data.picture.data.url));
+      String resp = res.body;
+      var data = json.decode(resp);
+
+      putData(accessToken, data);
+      print('fb data---> $data ');
+      prefs.setString('fbUser', '${data['name']}');
+      prefs.setString('fbEmail', '${data['email']}');
+      prefs.setString('fbId', '${data['id']}');
+      prefs.setString('fbProfile', '${data['picture']['data']['url']}');
+    });
+  }
+
+  Future<Null> _facebookLogin() async {
+    final FacebookLoginResult result = await facebookSignIn
+        .logInWithReadPermissions(['public_profile, email']);
+
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        final FacebookAccessToken accessToken = result.accessToken;
+        print('token ........................$accessToken');
+        setState(() {
+          fbLog = true;
+        });
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text(
+                "Oppsy... taking more time than expected",
+                style: subTitle(),
+              ),
+              content: Container(
+                  height: 50.0,
+                  child: Image.asset(
+                    "lib/assets/gif/spinner.gif",
+                  )),
+              actions: <Widget>[
+                new FlatButton(
+                  child: new Text("Close"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        await facebookLog(accessToken);
+
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print('cancel ${result.errorMessage}');
+        await facebookSignIn.logOut();
+        _showMessage('Logged out.');
+        setState(() {
+          fbLog = false;
+        });
+        _showMessage('Login cancelled by the user.');
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Oops something gone wrong...!!!",
+                  style: subTitle()),
+              content: new Text(
+                "Try Login again",
+                style: prefix0.category(),
+              ),
+              actions: <Widget>[
+                new FlatButton(
+                  child: new Text("Close"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        break;
+      case FacebookLoginStatus.error:
+        print(
+            'errrrrrrrrrrrrrrrrrrrrooooooooo            ${result.errorMessage}');
+        _showMessage('Something went wrong with the login process.\n'
+            'Here\'s the error Facebook gave us: ${result.errorMessage}');
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Oops something gone wrong...!!!"),
+              content: new Text("Try Login again"),
+              actions: <Widget>[
+                new FlatButton(
+                  child: new Text("Close"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        break;
     }
-
-     final FacebookLogin facebookSignIn = new FacebookLogin();
-
-    String message = 'Log in/out by pressing the buttons below.';
-    bool fbLog = false;
-
-    putData(accessToken, data) async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      setState(() {
-        loading = true;
-      });
-      await fbLoginUser(accessToken.userId, data['name'], data['email'])
-          .then((response) {
-        print("data......................$data"
-            "${data['name']}, ${data['id']} ");
-
-
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => Landing(),
-            ),
-                (Route<dynamic> route) => false);
-      });
-      setState(() {
-        loading = false;
-      });
-    }
-
-    facebookLog(accessToken) async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      prefs.setString('loginType', 'fb');
-      prefs.setBool('login', true);
-      await http
-          .get(
-          'https://graph.facebook.com/me?access_token=${accessToken.token}&fields=id,name,email,picture.type(large)')
-          .then((res) {
-        //	console.log('result ---' + JSON.stringify(res));
-        //console.log('user image url==' + JSON.stringify(res.data.picture.data.url));
-        String resp = res.body;
-        var data = json.decode(resp);
-
-        putData(accessToken, data);
-        print('fb data---> $data ');
-        prefs.setString('fbUser', '${data['name']}');
-        prefs.setString('fbEmail', '${data['email']}');
-        prefs.setString('fbId', '${data['id']}');
-        prefs.setString('fbProfile', '${data['picture']['data']['url']}');
-      });
-    }
-
-    Future<Null> _facebookLogin() async {
-      final FacebookLoginResult result = await facebookSignIn
-          .logInWithReadPermissions(['public_profile, email']);
-
-      switch (result.status) {
-        case FacebookLoginStatus.loggedIn:
-          final FacebookAccessToken accessToken = result.accessToken;
-          print('token ........................$accessToken');
-          setState(() {
-            fbLog = true;
-          });
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: new Text("Oppsy... taking more time than expected", style: subTitle(),),
-                content: Container(height: 50.0,child: Image.asset("lib/assets/gif/spinner.gif",)),
-                actions: <Widget>[
-                  new FlatButton(
-                    child: new Text("Close"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              );
-            },
-          );
-          await facebookLog(accessToken);
-
-          break;
-        case FacebookLoginStatus.cancelledByUser:
-          print('cancel ${result.errorMessage}');
-          await facebookSignIn.logOut();
-          _showMessage('Logged out.');
-          setState(() {
-            fbLog = false;
-          });
-          _showMessage('Login cancelled by the user.');
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: new Text("Oops something gone wrong...!!!", style: subTitle()),
-                content: new Text("Try Login again", style: prefix0.category(),),
-                actions: <Widget>[
-                  new FlatButton(
-                    child: new Text("Close"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              );
-            },
-          );
-          break;
-        case FacebookLoginStatus.error:
-          print('errrrrrrrrrrrrrrrrrrrrooooooooo            ${result.errorMessage}');
-          _showMessage('Something went wrong with the login process.\n'
-              'Here\'s the error Facebook gave us: ${result.errorMessage}');
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: new Text("Oops something gone wrong...!!!"),
-                content: new Text("Try Login again"),
-                actions: <Widget>[
-                  new FlatButton(
-                    child: new Text("Close"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              );
-            },
-          );
-          break;
-      }
-    }
+  }
 
   void _showMessage(String message) {
     setState(() {
@@ -293,8 +297,8 @@ class _LoginState extends State<Login> {
       case TwitterLoginStatus.loggedIn:
         newMessage = 'Logged in! username: ${result.session.username}';
 
-        print('twitter.................. ${result.session.username} ${result.session.userId} ');
-
+        print(
+            'twitter.................. ${result.session.username} ${result.session.userId} ');
 
         print('resuttttttttttttttttt ${result.session}');
         prefs.setString('twUser', '${result.session.username}');
@@ -305,7 +309,7 @@ class _LoginState extends State<Login> {
             MaterialPageRoute(
               builder: (BuildContext context) => Landing(),
             ),
-                (Route<dynamic> route) => false);
+            (Route<dynamic> route) => false);
         break;
       case TwitterLoginStatus.cancelledByUser:
         newMessage = 'Login cancelled by user.';
@@ -377,11 +381,12 @@ class _LoginState extends State<Login> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 15.0),
+                              padding:
+                                  EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 15.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
-                                    width: screenWidth(context)*0.83,
+                                    width: screenWidth(context) * 0.83,
                                     color: Colors.white,
                                     padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
@@ -392,7 +397,8 @@ class _LoginState extends State<Login> {
                                         hintText: 'Email Id',
                                         hintStyle: hintStyleDark(),
                                       ),
-                                      initialValue: 'deepika@pietechsolution.com',
+                                      initialValue:
+                                          'deepika@pietechsolution.com',
                                       style: hintStyleDark(),
                                       keyboardType: TextInputType.emailAddress,
                                       validator: (String value) {
@@ -409,7 +415,7 @@ class _LoginState extends State<Login> {
                                   ),
                                   Positioned(
                                     top: -6.0,
-                                  right: (screenWidth(context) * 0.83) - 55.0,
+                                    right: (screenWidth(context) * 0.83) - 55.0,
                                     child: Stack(
                                       fit: StackFit.loose,
                                       alignment: AlignmentDirectional.center,
@@ -432,11 +438,11 @@ class _LoginState extends State<Login> {
                             ),
                             Container(
                               padding:
-                              EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                                  EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
-                                    width: screenWidth(context)*0.83,
+                                    width: screenWidth(context) * 0.83,
                                     color: Colors.white,
                                     padding: EdgeInsets.only(left: 65.0),
                                     child: TextFormField(
@@ -491,7 +497,7 @@ class _LoginState extends State<Login> {
                                   left: 16.0, right: 30.0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Row(
@@ -510,7 +516,8 @@ class _LoginState extends State<Login> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.of(context).pushNamed(ResetPassword.tag);
+                                      Navigator.of(context)
+                                          .pushNamed(ResetPassword.tag);
                                     },
                                     child: Text(
                                       "Forget Password",
@@ -550,10 +557,10 @@ class _LoginState extends State<Login> {
                                       ),
                                       loading
                                           ? new Image.asset(
-                                        'lib/assets/gif/load.gif',
-                                        width: 19.0,
-                                        height: 19.0,
-                                      )
+                                              'lib/assets/gif/load.gif',
+                                              width: 19.0,
+                                              height: 19.0,
+                                            )
                                           : new Text(''),
                                     ],
                                   ),
@@ -597,16 +604,14 @@ class _LoginState extends State<Login> {
                               onTap: _facebookLogin,
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment:
-                                CrossAxisAlignment.center,
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
                                     height: 50.0,
                                     width: 50.0,
                                     decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(8.0),
                                       color: Colors.white,
                                     ),
                                     child: new Icon(
@@ -628,15 +633,12 @@ class _LoginState extends State<Login> {
                           child: InkWell(
                             onTap: _twitterLogin,
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                     color: Colors.white,
                                   ),
                                   height: 50.0,
