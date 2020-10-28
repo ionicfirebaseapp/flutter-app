@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todo_open/screens/auth/reset_password.dart';
-import 'package:todo_open/style/style.dart' as prefix0;
+//import 'package:todo_open/style/style.dart' as prefix0;
 import '../../style/style.dart';
 import '../../screens/home/drawer.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../screens/profile/profile.dart';
-import '../../screens/settings/contact_us.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import '../../screens/profile/profile.dart';
+// import '../../screens/settings/contact_us.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -43,7 +43,7 @@ class _SettingsState extends State<Settings> {
       loginType = prefs.getString('loginType');
     });
     print("logintype ...................$loginType");
-    if(loginType == 'fb'){
+    if (loginType == 'fb') {
       setState(() {
         fbUser = prefs.getString('fbUser');
         fbEmail = prefs.getString('fbEmail');
@@ -51,13 +51,13 @@ class _SettingsState extends State<Settings> {
         fbProfile = prefs.getString('fbProfile');
       });
       print('fb user $fbUser $fbProfile, $fbEmail, $fbId');
-    }else if(loginType == 'tw'){
+    } else if (loginType == 'tw') {
       setState(() {
         twUser = prefs.getString('twUser');
         twId = prefs.getString('twId');
       });
       print('twuser $twUser $twId');
-    }else if(loginType == 'fs') {
+    } else if (loginType == 'fs') {
       FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
 
       if (userProfile != null) {
@@ -72,8 +72,6 @@ class _SettingsState extends State<Settings> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +79,10 @@ class _SettingsState extends State<Settings> {
         drawer: DrawerList(),
         appBar: AppBar(
           elevation: 0.0,
-          title: Text("Settings", style: subBoldTitleWhite(),),
+          title: Text(
+            "Settings",
+            style: subBoldTitleWhite(),
+          ),
           iconTheme: IconThemeData(color: Colors.white),
         ),
         body: ListView(
@@ -105,10 +106,26 @@ class _SettingsState extends State<Settings> {
                 children: <Widget>[
                   CircleAvatar(
                     backgroundColor: primary.withOpacity(0.4),
-                    child: photoUrl != null ? ClipOval(child: Image.network(photoUrl, width: 100, height: 100, fit: BoxFit.cover,)):
-                    loginType == 'fb' ?
-                    ClipOval(child: Image.network(fbProfile, width: 100, height: 100, fit: BoxFit.cover,)) :
-                    Image.asset("lib/assets/icon/user.png", color: Colors.white,),
+                    child: photoUrl != null
+                        ? ClipOval(
+                            child: Image.network(
+                            photoUrl,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ))
+                        : loginType == 'fb'
+                            ? ClipOval(
+                                child: Image.network(
+                                fbProfile,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ))
+                            : Image.asset(
+                                "lib/assets/icon/user.png",
+                                color: Colors.white,
+                              ),
                   ),
                   Flexible(
                     child: Padding(
@@ -117,12 +134,31 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          loginType == 'fs' ? Text('$userName', style: textStyleOrangeSS(),) :
-                          loginType == 'fb' ? Text('$fbUser', style: textStyleOrangeSS(),) :
-                          Text('$twUser', style: textStyleOrangeSS(),),
-                          loginType == 'fs' ? Text('$email', style: smallBoldDescription(),) :
+                          loginType == 'fs'
+                              ? Text(
+                                  '$userName',
+                                  style: textStyleOrangeSS(),
+                                )
+                              : loginType == 'fb'
+                                  ? Text(
+                                      '$fbUser',
+                                      style: textStyleOrangeSS(),
+                                    )
+                                  : Text(
+                                      '$twUser',
+                                      style: textStyleOrangeSS(),
+                                    ),
+                          loginType == 'fs'
+                              ? Text(
+                                  '$email',
+                                  style: smallBoldDescription(),
+                                )
+                              :
 //                          loginType == 'fb' && fbEmail != null ? Text('$fbEmail', style: smallBoldDescription(),) :
-                          Text('', style: smallBoldDescription(),),
+                              Text(
+                                  '',
+                                  style: smallBoldDescription(),
+                                ),
                         ],
                       ),
                     ),
@@ -131,43 +167,53 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             Container(
-              height: 70.0,
-              width: screenHeight(context),
-              padding: EdgeInsets.all(8.0),
-              margin: EdgeInsets.only(bottom: 14.0),
-              decoration: new BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  new BoxShadow(
-                    color: Colors.grey.shade300,
-                    blurRadius: 8.0,
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      IconButton(icon: Image.asset("lib/assets/icon/notification.png", height: 22.0, width: 22.0, color: Colors.black,)),
-                      Text("Push Notifications", style: textSmallStyleGreySS(),),
-                    ],
-                  ),
-                  Container(
-                    width: screenWidth(context)*0.3,
-                    child: SwitchListTile(
-                      value: _value,
-                      onChanged: (bool value) {
-                        onChanged(value);
-                      },
-                      activeColor: primary,
+                height: 70.0,
+                width: screenHeight(context),
+                padding: EdgeInsets.all(8.0),
+                margin: EdgeInsets.only(bottom: 14.0),
+                decoration: new BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    new BoxShadow(
+                      color: Colors.grey.shade300,
+                      blurRadius: 8.0,
                     ),
-                  ),
-                ],
-              )
-            ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Image.asset(
+                            "lib/assets/icon/notification.png",
+                            height: 22.0,
+                            width: 22.0,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {},
+                        ),
+                        Text(
+                          "Push Notifications",
+                          style: textSmallStyleGreySS(),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      width: screenWidth(context) * 0.3,
+                      child: SwitchListTile(
+                        value: _value,
+                        onChanged: (bool value) {
+                          onChanged(value);
+                        },
+                        activeColor: primary,
+                      ),
+                    ),
+                  ],
+                )),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).pushNamed(ResetPassword.tag);
               },
               child: Container(
@@ -189,17 +235,34 @@ class _SettingsState extends State<Settings> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        IconButton(icon: Image.asset("lib/assets/icon/completed.png", height: 22.0, width: 22.0, color: Colors.black,)),
-                        Text("Reset Password", style: textSmallStyleGreySS(),),
+                        IconButton(
+                          icon: Image.asset(
+                            "lib/assets/icon/completed.png",
+                            height: 22.0,
+                            width: 22.0,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {},
+                        ),
+                        Text(
+                          "Reset Password",
+                          style: textSmallStyleGreySS(),
+                        ),
                       ],
                     ),
-                    IconButton(icon: Image.asset("lib/assets/icon/arrow.png", height: 22.0, width: 22.0,)),
+                    IconButton(
+                      icon: Image.asset(
+                        "lib/assets/icon/arrow.png",
+                        height: 22.0,
+                        width: 22.0,
+                      ),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),
             ),
           ],
-        )
-    );
+        ));
   }
 }

@@ -41,40 +41,46 @@ class _HomeState extends State<Home> {
       loginType = prefs.getString('loginType');
     });
     print("logintype ...................$loginType");
-     if(loginType == 'fb'){
-       setState(() {
-         fbUser = prefs.getString('fbUser');
-         fbEmail = prefs.getString('fbEmail');
-         fbId = prefs.getString('fbId');
-         fbProfile = prefs.getString('fbProfile');
-       });
-       print('fbbuser $fbUser $fbProfile, $fbEmail, $fbId');
-     }else if(loginType == 'tw'){
+    if (loginType == 'fb') {
+      setState(() {
+        fbUser = prefs.getString('fbUser');
+        fbEmail = prefs.getString('fbEmail');
+        fbId = prefs.getString('fbId');
+        fbProfile = prefs.getString('fbProfile');
+      });
+      print('fbbuser $fbUser $fbProfile, $fbEmail, $fbId');
+    } else if (loginType == 'tw') {
       setState(() {
         twUser = prefs.getString('twUser');
         twId = prefs.getString('twId');
       });
       print('twuser $twUser $twId');
-    }else if(loginType == 'fs') {
-       final FirebaseUser userProfile = await FirebaseAuth.instance.currentUser();
-       if (userProfile != null) {
-         userName = userProfile.displayName;
-         email = userProfile.email;
+    } else if (loginType == 'fs') {
+      final FirebaseUser userProfile =
+          await FirebaseAuth.instance.currentUser();
+      if (userProfile != null) {
+        userName = userProfile.displayName;
+        email = userProfile.email;
 //      photoUrl = userProfile.photoURL;
 //      emailVerified = userProfile.emailVerified;
-         uid = userProfile.uid;
-       }
-       print('user name ....................$userName $email $uid');
-     }
+        uid = userProfile.uid;
+      }
+      print('user name ....................$userName $email $uid');
+    }
 
-     getData();
-
+    getData();
   }
 
-  getData() async{
+  getData() async {
     print("loginType 4444...................$loginType");
-    crudObj.getData(loginType == 'fs'? uid : loginType == 'fb' ? fbId : twId).then((results) {
-      if(mounted){
+    crudObj
+        .getData(loginType == 'fs'
+            ? uid
+            : loginType == 'fb'
+                ? fbId
+                : twId)
+        .then((results) {
+      if (mounted) {
         setState(() {
           tasks = results;
         });
@@ -109,10 +115,20 @@ class _HomeState extends State<Home> {
             Container(
               alignment: AlignmentDirectional.center,
               height: 30.0,
-              child:
-              loginType == 'fb' ? Text('"Dear $fbUser, May you be on Time "', style: smallAddressWhiteSI(),) :
-              loginType == 'fs' ? Text('"Dear $userName, May you be on Time "', style: smallAddressWhiteSI(),) :
-              Text('"Dear $twUser, May you be on Time "', style: smallAddressWhiteSI(),),
+              child: loginType == 'fb'
+                  ? Text(
+                      '"Dear $fbUser, May you be on Time "',
+                      style: smallAddressWhiteSI(),
+                    )
+                  : loginType == 'fs'
+                      ? Text(
+                          '"Dear $userName, May you be on Time "',
+                          style: smallAddressWhiteSI(),
+                        )
+                      : Text(
+                          '"Dear $twUser, May you be on Time "',
+                          style: smallAddressWhiteSI(),
+                        ),
               color: grey.withOpacity(0.66),
             ),
             Container(
@@ -127,19 +143,34 @@ class _HomeState extends State<Home> {
                 items: [
                   BottomNavigationBarItem(
                     backgroundColor: darkGrey,
-                    icon: Text("Today", style: smallAddressWhite2SR(),),
+                    icon: Text(
+                      "Today",
+                      style: smallAddressWhite2SR(),
+                    ),
                     title: Padding(
                       padding: const EdgeInsets.only(top: 4.0),
-                      child: Image.asset("lib/assets/icon/today.png", height: 25.0, width: 25.0,),
+                      child: Image.asset(
+                        "lib/assets/icon/today.png",
+                        height: 25.0,
+                        width: 25.0,
+                      ),
 //                      Text(dateNow, style: subTitleWhiteSR()),
                     ),
                   ),
                   BottomNavigationBarItem(
                     backgroundColor: darkGrey,
-                    icon: Text("Task Completed", style: smallAddressWhite2SR(),),
+                    icon: Text(
+                      "Task Completed",
+                      style: smallAddressWhite2SR(),
+                    ),
                     title: Padding(
                       padding: const EdgeInsets.only(top: 4.0),
-                      child: Image.asset("lib/assets/icon/completed.png", height: 25.0, width: 25.0, color: Colors.white70,),
+                      child: Image.asset(
+                        "lib/assets/icon/completed.png",
+                        height: 25.0,
+                        width: 25.0,
+                        color: Colors.white70,
+                      ),
 //                      Text("2/10", style: subTitleWhiteSR()),
                     ),
                   )
@@ -154,14 +185,12 @@ class _HomeState extends State<Home> {
   }
 }
 
-
 class TaskInProgress extends StatefulWidget {
   @override
   _TaskInProgressState createState() => _TaskInProgressState();
 }
 
 class _TaskInProgressState extends State<TaskInProgress> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -189,7 +218,6 @@ class _TaskInProgressState extends State<TaskInProgress> {
   }
 }
 
-
 class TaskCompleted extends StatefulWidget {
   @override
   _TaskCompletedState createState() => _TaskCompletedState();
@@ -213,5 +241,3 @@ class _TaskCompletedState extends State<TaskCompleted> {
     );
   }
 }
-
-
